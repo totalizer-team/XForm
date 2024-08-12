@@ -54,9 +54,9 @@ import { observer } from 'mobx-react';
 /**
  * 依赖组建
  */
-import FormRenderingEngine from '../../FormRenderingEngine';
+import FormRenderingEngine from '../../engine/FormRenderingEngine';
 
-import { _default } from '../../_UTILS';
+import { _default } from '../../core/_UTILS';
 /**
  * 子组件
  */

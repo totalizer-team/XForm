@@ -32,7 +32,7 @@ import { observer } from 'mobx-react';
 /**
  * 依赖组建
  */
-import FormRenderingEngine from '../../FormRenderingEngine';
+import FormRenderingEngine from '../../engine/FormRenderingEngine';
 
 export default observer(({
   path, store, schema, $$store,

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Unstable_Grid2';
 import { observer } from 'mobx-react';
 
-import { COMPONENTS } from './_CONST';
+import { COMPONENTS } from '../components';
 
 /**
  * Form Item
@@ -14,8 +14,6 @@ const FormItem = observer(({
 }) => {
   const { c, xs } = schema;
   const Child = COMPONENTS[c];
-
-  console.log('$$$ Item:', path);
 
   // 注册组件状态
   $$store.registerStatus(path, schema);
@@ -36,7 +34,7 @@ const FormItem = observer(({
   if (!visible) return '';
 
   return (
-    <Grid size={xs || 12}>
+    <Grid xs={xs || 12}>
       <Child
         path={path}
         store={store}

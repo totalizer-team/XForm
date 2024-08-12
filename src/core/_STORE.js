@@ -1,4 +1,3 @@
-import { ConstructionOutlined } from '@mui/icons-material';
 import { makeAutoObservable, observable } from 'mobx';
 
 class Store {

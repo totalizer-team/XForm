@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 
-import { DEFAULT_VALUE } from './_CONST';
+import { DEFAULT_VALUE } from '../components';
+
 /**
  * 根据路径读取数据
  * @param {*} obj
