@@ -1,11 +1,11 @@
 ---
 hero:
-  title: library
-  description: Form
+  title: X-Form
+  description: 表单解决方案
   actions:
-    - text: Hello
+    - text: 快速开始
       link: /
-    - text: World
+    - text: 示例
       link: /
 features:
   - title: Hello
