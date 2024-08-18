@@ -70,7 +70,7 @@ export default observer(({
       <TabPanel
         value="data"
         sx={{
-          p: 1,
+          p: 2,
           flex: 1,
           overflow: 'auto',
         }}
@@ -80,7 +80,7 @@ export default observer(({
       <TabPanel
         value="schema"
         sx={{
-          p: 1,
+          p: 2,
           flex: 1,
           overflow: 'auto',
         }}
@@ -90,7 +90,7 @@ export default observer(({
       <TabPanel
         value="status"
         sx={{
-          p: 1,
+          p: 2,
           flex: 1,
           overflow: 'auto',
         }}

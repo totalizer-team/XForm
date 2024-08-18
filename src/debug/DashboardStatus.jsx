@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-// import ReactJson from 'react-json-view';
+import JsonView from '@uiw/react-json-view';
+import { vscodeTheme } from '@uiw/react-json-view/vscode';
 import { useTheme } from '@mui/material/styles';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
@@ -9,7 +10,17 @@ export default observer(({ $$store }) => {
   const isDark = theme?.palette?.mode === 'dark';
 
   const { tick } = $$store;
-  return <></>
+  const style = isDark ? { vscodeTheme } : {};
+
+  return (
+    <JsonView
+      value={$$store.componentStatus}
+      style={style}
+      displayObjectSize={false}
+      displayDataTypes={false}
+      enableClipboard={false}
+    />
+  );
   // return (
   //   <ReactJson
   //     src={$$store.componentStatus}

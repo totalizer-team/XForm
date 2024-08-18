@@ -21,7 +21,12 @@ export default observer(({
     rows,
     minRows,
     maxRows,
-  } = schema;
+
+    errorMsg,
+  } = $$store.context(path);
+
+  // 渲染组件
+  const value = $$store.getValue(path);
 
   const componentProps = {};
   if (multiline === true) {
@@ -32,10 +37,6 @@ export default observer(({
       if (maxRows) componentProps.maxRows = maxRows;
     }
   }
-
-  // 渲染组件
-  const value = $$store.getValue(path);
-  const errorMsg = $$store.getErrorMsg(path);
 
   return (
     <TextField

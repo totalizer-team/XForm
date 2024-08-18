@@ -12,9 +12,7 @@ export default observer(({
   // disabled,
 
   path = '',
-  store = null,
   $$store = null,
-  schema = {},
 }) => {
   /**
    * schema 中的配置信息，用于配置组件的功能
@@ -25,7 +23,10 @@ export default observer(({
     readOnly,
     helperText,
     options,
-  } = schema;
+    errorMsg,
+  } = $$store.context(path);
+
+  const value = $$store.getValue(path);
 
   const _options = options.map((el) => {
     if (typeof el === 'object') return el;
@@ -34,10 +35,6 @@ export default observer(({
       value: el,
     };
   });
-
-  // 渲染组件
-  const value = $$store.getValue(path);
-  const errorMsg = $$store.getErrorMsg(path);
 
   return (
     <FormControl fullWidth error={!!errorMsg}>

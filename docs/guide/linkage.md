@@ -10,3 +10,5 @@ mobile: false
 
 # 联动
 
+
+<code src="./examples/linkage"></code>

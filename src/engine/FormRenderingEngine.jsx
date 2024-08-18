@@ -17,7 +17,8 @@ const FormItem = observer(({
 
   // 注册组件状态
   $$store.registerStatus(path, schema);
-  const visible = $$store.getVisible(path);
+
+  const { visible } = $$store.context(path);
 
   useEffect(
     () => () => {
@@ -53,20 +54,25 @@ export default observer(({
   store = null,
   schema,
   $$store,
-}) => (
-  <Grid
-    container
-    spacing={2}
-    sx={{ flexGrow: 1 }}
-  >
-    {Object.keys(schema).map((key) => (
-      <FormItem
-        key={key}
-        path={`${path}.${key}`}
-        store={store}
-        schema={schema[key]}
-        $$store={$$store}
-      />
-    ))}
-  </Grid>
-));
+}) => {
+  useEffect(() => {
+    $$store.changeAll();
+  }, []);
+  return (
+    <Grid
+      container
+      spacing={2}
+      sx={{ flexGrow: 1 }}
+    >
+      {Object.keys(schema).map((key) => (
+        <FormItem
+          key={key}
+          path={`${path}.${key}`}
+          store={store}
+          schema={schema[key]}
+          $$store={$$store}
+        />
+      ))}
+    </Grid>
+  );
+});
