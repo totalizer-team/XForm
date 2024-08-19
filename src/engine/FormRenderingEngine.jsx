@@ -56,7 +56,10 @@ export default observer(({
   $$store,
 }) => {
   useEffect(() => {
-    $$store.changeAll();
+    $$store.init();
+    return () => {
+      $$store.destroy();
+    };
   }, []);
   return (
     <Grid

@@ -27,6 +27,7 @@ export default observer(({
 
   // 渲染组件
   const value = $$store.getValue(path);
+  $$store.linkage(path);
 
   const componentProps = {};
   if (multiline === true) {

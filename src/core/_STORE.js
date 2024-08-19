@@ -12,6 +12,11 @@ class Store {
   debugMode = 'data';
 
   /**
+   *
+   */
+  loaded = false;
+
+  /**
    * 组件的状体管理器
    */
   componentStatus = {};
@@ -69,6 +74,19 @@ class Store {
     delete this.componentStatus[path];
   }
 
+  init() {
+    this.changeAll();
+    this.loaded = true;
+  }
+
+  destroy() {
+    this.loaded = false;
+  }
+
+  linkage(path) {
+    if (this.loaded) this.onChange(path);
+  }
+
   context(path) {
     return this.componentStatus[path];
   }
@@ -78,7 +96,9 @@ class Store {
     if (visible) {
       const value = this.getValue(path);
       if (typeof this.componentStatus[path].rule === 'function') {
-        const errorMsg = this.componentStatus[path].rule(value);
+        const errorMsg = this.componentStatus[path].rule(value, {
+          $getValue: this.$getValue.bind(this),
+        });
         this.componentStatus[path].errorMsg = errorMsg || '';
       }
     } else {
@@ -97,12 +117,34 @@ class Store {
       this.componentStatus[path].onChange({
         getValue: this.getValue.bind(this),
         context: this.context.bind(this),
+        $get: this.$get.bind(this),
+        $set: this.$set.bind(this),
       });
     }
   }
 
-  // $get(){}
-  // $set(){}
+  $get(path, attr) {
+    const targetPath = `${this.path}.${path}`;
+    if (attr === 'value') {
+      return this.store.$$get(targetPath);
+    }
+
+    return this.componentStatus[targetPath][attr];
+  }
+
+  $set(path, attr, value) {
+    const targetPath = `${this.path}.${path}`;
+    if (attr === 'value') {
+      this.store.$$set(targetPath, value);
+    } else {
+      this.componentStatus[targetPath][attr] = value;
+    }
+  }
+
+  $getValue(path) {
+    const targetPath = `${this.path}.${path}`;
+    return this.store.$$get(targetPath);
+  }
 
   changeAll() {
     Object.keys(this.componentStatus).forEach((key) => {

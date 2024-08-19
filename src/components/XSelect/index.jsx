@@ -27,6 +27,7 @@ export default observer(({
   } = $$store.context(path);
 
   const value = $$store.getValue(path);
+  $$store.linkage(path);
 
   const _options = options.map((el) => {
     if (typeof el === 'object') return el;

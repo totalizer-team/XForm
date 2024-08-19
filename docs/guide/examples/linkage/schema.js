@@ -8,14 +8,13 @@ const schema = {
       { value: 1, label: '展示标题' },
       { value: 2, label: '隐藏标题' },
     ],
-    onChange: ({ getValue, context }) => {
-      const value = getValue('myFormData.type');
-      const target = context('myFormData.title');
+    onChange: ({ $get, $set }) => {
+      const value = $get('type', 'value');
       if (value === 1) {
-        target.visible = true;
+        $set('title', 'visible', true);
       }
       if (value === 2) {
-        target.visible = false;
+        $set('title', 'visible', false);
       }
     },
   },
@@ -23,10 +22,6 @@ const schema = {
     c: 'XTextField',
     xs: 12,
     label: '标题',
-    visible: (context) => {
-      const type = context.getValue('myFormData.type');
-      return type === 1;
-    },
   },
 };
 export default schema;

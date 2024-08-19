@@ -22,12 +22,15 @@ export default observer(({
   path = '',
   store = null,
   $$store = null,
+  width = 400,
+  height = '100vh',
 }) => (
   <Box
     sx={{
-      width: 400,
+      width,
+      height,
+      minHeight: 400,
       display: 'flex',
-      height: '100vh',
       flexDirection: 'column',
       borderLeft: 1,
       borderColor: 'divider',
