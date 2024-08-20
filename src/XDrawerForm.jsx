@@ -34,7 +34,7 @@ const XDrawerForm = observer(({
 }) => {
   const correctSchema = useMemo(() => _repairSchema(schema), [schema]);
 
-  const $$store = useMemo(() => new $$Store(path, store, correctSchema), []);
+  const $$store = useMemo(() => new $$Store(path, store, schema), []);
 
   return (
     <Drawer

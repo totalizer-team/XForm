@@ -18,12 +18,15 @@ const XBaseForm = observer(({
   debug = false,
 }) => {
   const correctSchema = useMemo(() => _repairSchema(schema), [schema]);
-  const $$store = useMemo(() => new $$Store(path, store, correctSchema), []);
+  const $$store = useMemo(() => new $$Store(path, store, schema), [path, store, schema]);
 
   if (debug) {
     return (
-      <Stack direction="row">
-        <Box sx={{ width: '60%', p: 4 }}>
+      <Box sx={{ position: 'relative', width: '100%' }}>
+        <Box sx={{
+          width: '60%', minHeight: 400, p: 4, boxSizing: 'border-box',
+        }}
+        >
           <FormRenderingEngine
             path={path}
             store={store}
@@ -31,8 +34,17 @@ const XBaseForm = observer(({
             $$store={$$store}
           />
         </Box>
-        <Dashboard store={store} $$store={$$store} path={path} width="40%" height={400} />
-      </Stack>
+        <Box sx={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: '40%',
+        }}
+        >
+          <Dashboard store={store} $$store={$$store} path={path} width="100%" height="100%" />
+        </Box>
+      </Box>
     );
   }
 

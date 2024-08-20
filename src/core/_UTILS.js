@@ -92,13 +92,38 @@ const _fillDefaults = (schema) => {
   });
   return schema;
 };
+
+function deepClone(obj) {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map(deepClone);
+  }
+
+  const clone = {};
+  Object.keys(obj).forEach((key) => {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      // 递归克隆函数
+      if (typeof obj[key] === 'function') {
+        clone[key] = obj[key].bind(clone);
+      } else {
+        clone[key] = deepClone(obj[key]);
+      }
+    }
+  });
+
+  return clone;
+}
 /**
  * 修正 schema
  * @param {*} schema
  */
 export const _repairSchema = (schema) => {
-  _fillDefaults(schema);
-  return schema;
+  const _schema = deepClone(schema);
+  _fillDefaults(_schema);
+  return _schema;
 };
 
 /**

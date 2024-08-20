@@ -29,7 +29,6 @@ export default observer(({
     sx={{
       width,
       height,
-      minHeight: 400,
       display: 'flex',
       flexDirection: 'column',
       borderLeft: 1,
