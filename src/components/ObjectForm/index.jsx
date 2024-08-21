@@ -35,7 +35,7 @@ import { observer } from 'mobx-react';
 import FormRenderingEngine from '../../engine/FormRenderingEngine';
 
 export default observer(({
-  path, store, schema, $$store,
+  path, schema, $$store,
 }) => {
   const _schema = schema.schema;
   const { label } = schema;
@@ -49,7 +49,6 @@ export default observer(({
       </Stack>
       <FormRenderingEngine
         path={path}
-        store={store}
         schema={_schema}
         $$store={$$store}
       />

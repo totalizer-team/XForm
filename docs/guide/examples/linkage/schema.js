@@ -8,8 +8,7 @@ const schema = {
       { value: 1, label: '展示标题' },
       { value: 2, label: '隐藏标题' },
     ],
-    onChange: ({ $get, $set }) => {
-      const value = $get('type', 'value');
+    onChange: (value, { $get, $set }) => {
       if (value === 1) {
         $set('title', 'visible', true);
       }

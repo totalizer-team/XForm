@@ -1,3 +1,7 @@
+/**
+ * compact: true
+ */
+
 import { XBaseForm } from '@totalizer/xform';
 import { observer } from 'mobx-react';
 
@@ -6,8 +10,8 @@ import schema from './schema';
 
 export default observer(() => (
   <XBaseForm
-    store={store}
     path="myFormData"
+    store={store}
     schema={schema}
     debug
   />

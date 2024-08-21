@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { observer } from 'mobx-react';
 
@@ -8,10 +8,12 @@ import { COMPONENTS } from '../components';
  * Form Item
  */
 const FormItem = observer(({
-  path, store,
+  path,
   schema = {}, // schema
   $$store,
 }) => {
+  console.log('~~~ FormItem', path);
+
   const { c, xs } = schema;
   const Child = COMPONENTS[c];
 
@@ -38,7 +40,6 @@ const FormItem = observer(({
     <Grid xs={xs || 12}>
       <Child
         path={path}
-        store={store}
         $$store={$$store}
         schema={schema}
       />
@@ -51,10 +52,11 @@ const FormItem = observer(({
  */
 export default observer(({
   path = '',
-  store = null,
   schema,
   $$store,
 }) => {
+  console.log('~~~ FormEngine', path);
+
   useEffect(() => {
     $$store.init();
     return () => {
@@ -71,7 +73,6 @@ export default observer(({
         <FormItem
           key={key}
           path={`${path}.${key}`}
-          store={store}
           schema={schema[key]}
           $$store={$$store}
         />

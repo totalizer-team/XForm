@@ -5,18 +5,9 @@ import {
 import { observer } from 'mobx-react';
 
 export default observer(({
-  // label = '',
-  // value = '',
-  // onChange = () => {},
-  // options = [],
-  // disabled,
-
   path = '',
   $$store = null,
 }) => {
-  /**
-   * schema 中的配置信息，用于配置组件的功能
-   */
   const {
     label,
     disabled,
@@ -26,8 +17,13 @@ export default observer(({
     errorMsg,
   } = $$store.context(path);
 
+  console.log('~~~ Select', path);
+
   const value = $$store.getValue(path);
-  $$store.linkage(path);
+
+  useEffect(() => {
+    $$store.linkage(path);
+  }, [value]);
 
   const _options = options.map((el) => {
     if (typeof el === 'object') return el;

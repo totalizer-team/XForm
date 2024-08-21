@@ -9,10 +9,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import {
-  _repairSchema,
-} from './core/_UTILS';
-import $$Store from './core/_STORE';
+import _repair from './core/repair';
+
+import $$Store from './core/Store';
 
 import FormRenderingEngine from './engine/FormRenderingEngine';
 
@@ -32,7 +31,7 @@ const XDrawerForm = observer(({
   onClose = () => { },
   onSave = () => { },
 }) => {
-  const correctSchema = useMemo(() => _repairSchema(schema), [schema]);
+  const correctSchema = useMemo(() => _repair(schema), [schema]);
 
   const $$store = useMemo(() => new $$Store(path, store, schema), []);
 

@@ -54,14 +54,19 @@ class Store {
 
   registerStatus(path, schema) {
     if (this.componentStatus[path]) return;
+
     this.componentStatus[path] = {
       errorMsg: '', // 错误信息， 类型 String
-      // visible: true,
       ...schema,
     };
   }
 
   resetStatus(path, visible) {
+    /**
+     * 如果 visible 不产出变化，不进行值操作
+     * */
+    if (this.componentStatus[path].visible === visible) return;
+
     this.componentStatus[path].errorMsg = '';
     this.componentStatus[path].visible = visible;
     if (this.getValue(path) !== this.componentStatus[path].default) {
@@ -84,7 +89,9 @@ class Store {
   }
 
   linkage(path) {
-    if (this.loaded) this.onChange(path);
+    if (this.loaded) {
+      this.onChange(path);
+    }
   }
 
   context(path) {
@@ -114,9 +121,8 @@ class Store {
 
   onChange(path) {
     if (typeof this.componentStatus[path].onChange === 'function') {
-      this.componentStatus[path].onChange({
-        getValue: this.getValue.bind(this),
-        context: this.context.bind(this),
+      const value = this.getValue(path);
+      this.componentStatus[path].onChange(value, {
         $get: this.$get.bind(this),
         $set: this.$set.bind(this),
       });
@@ -147,16 +153,14 @@ class Store {
   }
 
   changeAll() {
-    Object.keys(this.componentStatus).forEach((key) => {
-      this.onChange(key);
+    Object.keys(this.componentStatus).forEach((path) => {
+      this.onChange(path);
     });
   }
 
   setValue(path, value) {
     this.store.$$set(path, value);
     this.setTick();
-
-    this.onChange(path);
     this.validate(path);
   }
 

@@ -12,6 +12,10 @@ mobile: false
 * 抽屉表单： `XDrawerForm`
 
 
+:::info{title=计划中研发的表单}
+XDialogForm、XFilterForm、XStepForm、XMiniForm
+:::
+
 
 ## 抽屉表单
 

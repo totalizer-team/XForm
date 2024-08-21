@@ -7,11 +7,9 @@ import { observer } from 'mobx-react';
 export default observer(({
   path = '', // 数据路径
   $$store = null, // 状态管理
-  schema = {}, // 配置
 }) => {
-  /**
-   * schema 中的配置信息，用于配置组件的功能
-   */
+  console.log('~~~ TextField', path);
+
   const {
     label,
     disabled,
@@ -27,7 +25,10 @@ export default observer(({
 
   // 渲染组件
   const value = $$store.getValue(path);
-  $$store.linkage(path);
+
+  useEffect(() => {
+    $$store.linkage(path);
+  }, [value]);
 
   const componentProps = {};
   if (multiline === true) {

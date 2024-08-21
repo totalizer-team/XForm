@@ -33,7 +33,7 @@ export default schema;
 
 代码解释：
 
-* `rule` 值为一个函数，函数的参数 `value` 为表单组件当前的值，函数返回值为字符串，表示校验不通过，并提示错误信息。函数的返回值为空字符串，则表示能通过校验的合法值。
+* `rule` 值为一个函数，函数的参数 `value` 为表单组件当前的值，函数返回值为字符串，用于错误信息展示。
 
 
 ## 联动校验
@@ -78,4 +78,4 @@ export default schema;
 
 ## 代码示例
 
-<code src="./examples/validation"></code>
+<code src="./examples/validation" compact background="#fff"></code>

@@ -56,7 +56,7 @@ import { observer } from 'mobx-react';
  */
 import FormRenderingEngine from '../../engine/FormRenderingEngine';
 
-import { _default } from '../../core/_UTILS';
+import _merge from '../../core/merge';
 /**
  * 子组件
  */
@@ -231,7 +231,7 @@ export default observer(({
                 _key += 1;
                 res.push({
                   _key,
-                  ..._default(_schema),
+                  ..._merge(_schema, {}),
                 });
                 changeHandler(res);
               }}

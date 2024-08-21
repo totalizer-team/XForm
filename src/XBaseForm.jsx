@@ -3,10 +3,9 @@ import { observer } from 'mobx-react';
 
 import { Stack, Box } from '@mui/material';
 
-import {
-  _repairSchema,
-} from './core/_UTILS';
-import $$Store from './core/_STORE';
+import _repair from './core/repair';
+
+import $$Store from './core/Store';
 
 import FormRenderingEngine from './engine/FormRenderingEngine';
 import Dashboard from './debug/Dashboard';
@@ -17,7 +16,9 @@ const XBaseForm = observer(({
   schema,
   debug = false,
 }) => {
-  const correctSchema = useMemo(() => _repairSchema(schema), [schema]);
+  console.log('~~~ XBaseForm');
+
+  const correctSchema = useMemo(() => _repair(schema), [schema]);
   const $$store = useMemo(() => new $$Store(path, store, schema), [path, store, schema]);
 
   if (debug) {
