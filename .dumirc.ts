@@ -4,5 +4,6 @@ export default defineConfig({
   outputPath: 'docs-dist',
   themeConfig: {
     name: 'XForm',
+    logo: '/logo.jpeg',
   },
 });
