@@ -10,7 +10,6 @@ const _setDefault = (schema) => {
     helperText: '',
     visible: true,
     disabled: false,
-    readOnly: false,
   };
 
   Object.keys(DEFAULT_CONFIG).forEach((key) => {
@@ -30,10 +29,19 @@ const _setObjectDefault = (config) => {
 const _fillDefaults = (schema) => {
   Object.keys(schema).forEach((key) => {
     const itemSchema = schema[key];
-    if (typeof itemSchema.schema === 'object') {
+    if (
+      itemSchema.c === 'ObjectBlock' &&
+      typeof itemSchema.schema === 'object'
+    ) {
       _setDefault(itemSchema);
       _fillDefaults(itemSchema.schema);
       _setObjectDefault(itemSchema);
+    } else if (
+      itemSchema.c === 'ArrayList' &&
+      typeof itemSchema.schema === 'object'
+    ) {
+      _setDefault(itemSchema);
+      _fillDefaults(itemSchema.schema);
     } else {
       _setDefault(itemSchema);
     }

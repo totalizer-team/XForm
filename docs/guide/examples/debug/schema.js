@@ -1,17 +1,17 @@
 const schema = {
   title: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 6,
     label: '标题',
   },
   type: {
-    c: 'XSelect',
+    c: 'Select',
     xs: 6,
     label: '类型',
     options: [1, 2, 3],
   },
   des: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 12,
     label: '描述',
     multiline: true,

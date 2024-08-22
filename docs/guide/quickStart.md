@@ -73,18 +73,18 @@ export default new Store();
 ``` js
 const schema = {
   title: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 6,
     label: '标题',
   },
   type: {
-    c: 'XSelect',
+    c: 'Select',
     xs: 6,
     label: '类型',
     options: [1, 2, 3],
   },
   des: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 12,
     label: '描述',
     multiline: true,
@@ -96,9 +96,9 @@ export default schema;
 
 ```
 代码解释：
-* `c` 用来描述使用的组件，`XTextField`,`XSelect` 是 XForm 中内置的组件，分别表示文本输入组件和选择组件。
+* `c` 用来描述使用的组件，`TextField`,`Select` 是 XForm 中内置的组件，分别表示文本输入组件和选择组件。
 * `xs` 用于描述网格布局中占用的空间大小，可选值为 1 ～ 12。
-* `label` 是表单的标题，`options` 是 `XSelect` 中用于组件定义选项，`multiline`、`minRows`、`maxRows` 则是 `XTextField` 中用来定义多行输入的配置。
+* `label` 是表单的标题，`options` 是 `Select` 中用于组件定义选项，`multiline`、`minRows`、`maxRows` 则是 `TextField` 中用来定义多行输入的配置。
 * `title`、`type`、`des`，是用户自定义关键字，描述了表单生成的数据结构，表单会按照这个结构与store中定义的 `myFormData` 进行数据同步。
 
 以上 schema 描述的数据结构如下：

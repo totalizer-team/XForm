@@ -61,7 +61,7 @@ import _merge from '../../core/merge';
  * 子组件
  */
 const XItem = observer(({
-  path, store, record, schema, onDelete, $$store,
+  path, record, schema, onDelete, $$store,
 }) => {
   const theme = useTheme();
   const isDark = theme?.palette?.mode === 'dark';
@@ -103,6 +103,8 @@ const XItem = observer(({
         {...attributes}
         {...listeners}
         sx={{
+          position: 'relative',
+          top: 15,
           cursor: 'move',
         }}
       >
@@ -110,11 +112,16 @@ const XItem = observer(({
       </IconButton>
       <FormRenderingEngine
         path={path}
-        store={store}
         schema={schema}
         $$store={$$store}
       />
-      <Stack direction="row">
+      <Stack
+        direction="row"
+        sx={{
+          position: 'relative',
+          top: 15,
+        }}
+      >
         <IconButton onClick={onDelete}>
           <DeleteOutlineIcon />
         </IconButton>
@@ -128,12 +135,12 @@ const XItem = observer(({
  * 主组建
  */
 export default observer(({
-  path, store, schema, $$store,
+  path, schema, $$store,
 }) => {
   const { label } = schema;
   const _schema = schema.schema;
 
-  const noKeyData = store.$$get(path);
+  const noKeyData = $$store.getValue(path);
   const keys = useRef([]);
 
   let data = [];
@@ -162,7 +169,7 @@ export default observer(({
       const { _key, ...others } = el;
       return others;
     });
-    store.$$set(path, result);
+    $$store.setValue(path, result);
     $$store.setTick();
   };
 
@@ -196,7 +203,6 @@ export default observer(({
         >
           <Box sx={{
             p: 2,
-            width: '100%',
             borderBottom: 1,
             borderColor: 'divider',
           }}
@@ -207,7 +213,6 @@ export default observer(({
             {data.map((el, i) => (
               <XItem
                 path={`${path}[${i}]`}
-                store={store}
                 key={el._key}
                 record={el}
                 schema={_schema}

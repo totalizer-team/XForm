@@ -1,21 +1,21 @@
-import XSelect from './XSelect';
-import XTextField from './XTextField';
+import Select from './Select';
+import TextField from './TextField';
 
-import ListForm from './ListForm';
-import ObjectForm from './ObjectForm';
+import ArrayList from './ArrayList';
+import ObjectBlock from './ObjectBlock';
 
 export const COMPONENTS = {
-  XSelect,
-  XTextField,
+  Select,
+  TextField,
 
-  ListForm,
-  ObjectForm,
+  ArrayList,
+  ObjectBlock,
 };
 
 export const DEFAULT_VALUE = {
-  XSelect: '',
-  XTextField: '',
+  Select: '',
+  TextField: '',
 
-  ListForm: [],
-  ObjectForm: {},
+  ArrayList: [],
+  ObjectBlock: {},
 };

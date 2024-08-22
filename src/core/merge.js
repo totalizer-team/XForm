@@ -10,7 +10,7 @@ import _set from './set';
 const _setValue = (res, schema, data, parentPath = '') => {
   Object.keys(schema).forEach((key) => {
     const path = parentPath ? `${parentPath}.${key}` : key;
-    if (['ListForm'].includes(schema[key].c)) {
+    if (['ArrayList'].includes(schema[key].c)) {
       // do somthing
       const value = _get(data, path);
       if (Array.isArray(value)) {
@@ -22,7 +22,7 @@ const _setValue = (res, schema, data, parentPath = '') => {
       } else {
         _set(res, path, []);
       }
-    } else if (['ObjectForm'].includes(schema[key].c)) {
+    } else if (['ObjectBlock'].includes(schema[key].c)) {
       _set(res, path, {});
       _setValue(res, schema[key].schema, data, path);
     } else {

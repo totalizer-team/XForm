@@ -1,5 +1,7 @@
 import { makeAutoObservable, observable } from 'mobx';
 
+import getPrefixPath from './getPrefixPath';
+
 class Store {
   /**
    *
@@ -105,6 +107,7 @@ class Store {
       if (typeof this.componentStatus[path].rule === 'function') {
         const errorMsg = this.componentStatus[path].rule(value, {
           $getValue: this.$getValue.bind(this),
+          prefixPath: getPrefixPath(path, this.path),
         });
         this.componentStatus[path].errorMsg = errorMsg || '';
       }
@@ -125,6 +128,7 @@ class Store {
       this.componentStatus[path].onChange(value, {
         $get: this.$get.bind(this),
         $set: this.$set.bind(this),
+        prefixPath: getPrefixPath(path, this.path),
       });
     }
   }

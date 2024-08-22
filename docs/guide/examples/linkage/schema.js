@@ -1,6 +1,6 @@
 const schema = {
   type: {
-    c: 'XSelect',
+    c: 'Select',
     xs: 12,
     label: '是否展示标题',
     default: 2,
@@ -18,7 +18,7 @@ const schema = {
     },
   },
   title: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 12,
     label: '标题',
   },

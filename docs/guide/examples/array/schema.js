@@ -1,25 +1,24 @@
 const schema = {
-  title: {
-    c: 'XTextField',
-    xs: 6,
-    label: '标题',
-  },
-
-  info: {
-    c: 'ObjectForm',
+  organizationName: {
+    c: 'TextField',
     xs: 12,
-    label: '信息',
+    label: '组织名称',
+  },
+  member: {
+    c: 'ArrayList',
+    xs: 12,
+    label: '成员',
     schema: {
-      type: {
-        c: 'XSelect',
+      name: {
+        c: 'TextField',
         xs: 6,
-        label: '类型',
-        options: [1, 2, 3],
+        label: '姓名',
       },
-      des: {
-        c: 'XTextField',
+      sex: {
+        c: 'Select',
         xs: 6,
-        label: '描述',
+        label: '性别',
+        options: ['男', '女'],
       },
     },
   },

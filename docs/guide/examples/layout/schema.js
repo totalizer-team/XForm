@@ -1,11 +1,11 @@
 const schema = {
   title: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 8,
     label: '标题',
   },
   type: {
-    c: 'XSelect',
+    c: 'Select',
     xs: 4,
     label: '类型',
     options: [1, 2, 3],

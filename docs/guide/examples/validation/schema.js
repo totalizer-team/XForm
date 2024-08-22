@@ -1,6 +1,6 @@
 const schema = {
   title: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 12,
     label: '标题',
     rule: (value) => {
@@ -9,12 +9,12 @@ const schema = {
     },
   },
   pwd: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 12,
     label: '密码',
   },
   pwd2: {
-    c: 'XTextField',
+    c: 'TextField',
     xs: 12,
     label: '确认密码',
     rule: (value, { $getValue }) => {

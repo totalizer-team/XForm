@@ -21,15 +21,15 @@ mobile: false
 ``` js
 const schema = {
   title: {  // title 是表单生成数据的
-    c: 'XTextField', // 组件名称，使用 XTextFiled 组件来展示，并最终将组件的值赋值给 title
+    c: 'TextField', // 组件名称，使用 XTextFiled 组件来展示，并最终将组件的值赋值给 title
     xs: 6, // 组件的通用属性 xs 描述了组件在网格布局中占据的宽度为 6
     label: '标题', // 组件的通用属性 label，描述了组件的标题
   },
   type: {
-    c: 'XSelect',
+    c: 'Select',
     xs: 6,
     label: '类型',
-    options: [1, 2, 3],  // options 是组件 XSelect 的私有属性，用来描述所有可使用的选项
+    options: [1, 2, 3],  // options 是组件 Select 的私有属性，用来描述所有可使用的选项
   },
 };
 ```
