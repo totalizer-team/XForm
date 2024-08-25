@@ -1,6 +1,7 @@
 import { useMemo, useEffect } from 'react';
 import {
   TextField,
+  InputAdornment,
 } from '@mui/material';
 import { observer } from 'mobx-react';
 
@@ -15,12 +16,18 @@ export default observer(({
     disabled,
     readOnly,
     helperText,
+    errorMsg,
+
+    /** 拓展参数： */
+    placeholder = '',
+    variant = 'outlined',
+    type = 'text',
     multiline,
     rows,
     minRows,
     maxRows,
-
-    errorMsg,
+    endAdornment = '',
+    startAdornment = '',
   } = $$store.context(path);
 
   // 渲染组件
@@ -30,7 +37,7 @@ export default observer(({
     $$store.linkage(path);
   }, [value]);
 
-  const componentProps = {};
+  const componentProps = { variant, type, placeholder };
   if (multiline === true) {
     componentProps.multiline = multiline;
     if (rows) componentProps.rows = rows;
@@ -39,6 +46,14 @@ export default observer(({
       if (maxRows) componentProps.maxRows = maxRows;
     }
   }
+  const InputProps = {};
+  if (endAdornment) {
+    InputProps.endAdornment = <InputAdornment position="end">{endAdornment}</InputAdornment>;
+  }
+  if (startAdornment) {
+    InputProps.startAdornment = <InputAdornment position="start">{startAdornment}</InputAdornment>;
+  }
+  componentProps.InputProps = InputProps;
 
   return (
     <TextField
@@ -55,7 +70,7 @@ export default observer(({
       onBlur={() => $$store.validate(path)}
       error={!!errorMsg}
       helperText={errorMsg || helperText}
-      multiline={multiline}
+
       {...componentProps}
     />
   );

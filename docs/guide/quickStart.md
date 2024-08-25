@@ -150,4 +150,4 @@ export default observer(() => {
 
 以下是最终效果，你可以尝试在表单中录入数据，并观察数据的时时变化情况。
 
-<code src="./examples/simple"></code>
+<code src="./examples/simple"  background="#fff"></code>

@@ -2,15 +2,16 @@
 group:
   title:  基础组件
   order: 0
-order: 04
+order: 07
 toc: content
 mobile: false
 ---
 
-# Checkbox
+# Switch
 
+开关
 
 ## 示例
 
-<code src="./examples/Checkbox" compact background="#fff"></code>
+<code src="./examples/Switch" compact background="#fff"></code>
 

@@ -2,15 +2,16 @@
 group:
   title:  基础组件
   order: 0
-order: 04
+order: 06
 toc: content
 mobile: false
 ---
 
-# Checkbox
+# Slider
+
 
 
 ## 示例
 
-<code src="./examples/Checkbox" compact background="#fff"></code>
+<code src="./examples/Slider" compact background="#fff"></code>
 

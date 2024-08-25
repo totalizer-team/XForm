@@ -13,8 +13,9 @@ export default observer(({
     disabled,
     readOnly,
     helperText,
-    options,
+    options = [],
     errorMsg,
+    variant = 'outlined',
   } = $$store.context(path);
 
   console.log('~~~ Select', path);
@@ -33,13 +34,17 @@ export default observer(({
     };
   });
 
+  const componentsProps = { };
+
   return (
-    <FormControl fullWidth error={!!errorMsg}>
+    <FormControl fullWidth error={!!errorMsg} variant={variant}>
       <InputLabel disabled={disabled}>{label}</InputLabel>
       <Select
         label={label}
         value={value}
         disabled={disabled}
+        variant={variant}
+        {...componentsProps}
       >
         {_options.map((el) => (
           <MenuItem
@@ -52,6 +57,7 @@ export default observer(({
             {el.label}
           </MenuItem>
         ))}
+
       </Select>
       <FormHelperText>{errorMsg || helperText}</FormHelperText>
 
