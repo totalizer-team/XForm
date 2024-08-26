@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import {
-  Select, MenuItem, FormControl, InputLabel, FormHelperText,
+  Select, MenuItem, FormControl, FormLabel, FormHelperText, RadioGroup, FormControlLabel, Radio,
 } from '@mui/material';
 import { observer } from 'mobx-react';
 
@@ -11,14 +11,13 @@ export default observer(({
   const {
     label,
     disabled,
-    readOnly,
     helperText,
     options = [],
     errorMsg,
-    variant = 'outlined',
+    row = false,
   } = $$store.context(path);
 
-  console.log('~~~ Select', path);
+  console.log('~~~ Raido', path, errorMsg);
 
   const value = $$store.getValue(path);
 
@@ -37,31 +36,26 @@ export default observer(({
   const componentsProps = {};
 
   return (
-    <FormControl fullWidth error={!!errorMsg} variant={variant}>
-      <InputLabel disabled={disabled}>{label}</InputLabel>
-      <Select
-        label={label}
-        value={value}
-        disabled={disabled}
-        variant={variant}
-        {...componentsProps}
+    <FormControl fullWidth error={!!errorMsg}>
+      <FormLabel disabled={disabled}>{label}</FormLabel>
+      <RadioGroup
+        row={row}
+        value={_options.findIndex((el) => el.value === value)}
+        onChange={(e, v) => {
+          $$store.setValue(path, _options[parseInt(v, 10)].value);
+        }}
       >
-        {_options.map((el) => (
-          <MenuItem
-            value={el.value}
+        {_options.map((el, i) => (
+          <FormControlLabel
+            value={i}
             key={el.value}
-            onClick={() => {
-              $$store.setValue(path, el.value);
-            }}
-            disabled={el.disabled}
-          >
-            {el.label}
-          </MenuItem>
+            control={<Radio />}
+            label={el.label}
+            disabled={disabled || !!el.disabled}
+          />
         ))}
-
-      </Select>
+      </RadioGroup>
       <FormHelperText>{errorMsg || helperText}</FormHelperText>
-
     </FormControl>
   );
 });

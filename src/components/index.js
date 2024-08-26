@@ -1,21 +1,27 @@
+import Checkbox from './Checkbox';
+import MultipleSelect from './MultipleSelect';
+import Radio from './Radio';
 import Select from './Select';
 import TextField from './TextField';
 
 import ArrayList from './ArrayList';
 import ObjectBlock from './ObjectBlock';
 
-export const COMPONENTS = {
-  Select,
-  TextField,
+const COMPONENTS = {};
+const DEFAULT_VALUE = {};
 
-  ArrayList,
-  ObjectBlock,
+const registerComponent = (name, c, defaultValue) => {
+  COMPONENTS[name] = c;
+  DEFAULT_VALUE[name] = defaultValue;
 };
 
-export const DEFAULT_VALUE = {
-  Select: '',
-  TextField: '',
+registerComponent('TextField', TextField, '');
+registerComponent('Select', Select, '');
+registerComponent('MultipleSelect', MultipleSelect, []);
+registerComponent('Radio', Radio, '');
+registerComponent('Checkbox', Checkbox, []);
 
-  ArrayList: [],
-  ObjectBlock: {},
-};
+registerComponent('ArrayList', ArrayList, []);
+registerComponent('ObjectBlock', ObjectBlock, {});
+
+export { COMPONENTS, DEFAULT_VALUE };

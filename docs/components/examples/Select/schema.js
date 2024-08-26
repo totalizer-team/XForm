@@ -26,7 +26,23 @@ const schema = {
     label: 'helperText ',
     variant: 'outlined',
     helperText: 'helperText ',
+    default: 1,
+    options: [
+      { label: '默认选项', value: 1 },
+      { label: '错误选项', value: 0 },
+      { label: '禁止选项', value: -1, disabled: true },
+    ],
+    rule: (v) => {
+      if (v === 0) return '错误选项';
+      return '';
+    },
+  },
+  disabled: {
+    c: 'Select',
+    xs: 12,
+    label: '禁止编辑',
     options: ['a', 'b', 'c'],
+    disabled: true,
   },
 };
 export default schema;

@@ -55,6 +55,7 @@
     "@mui/lab": "^5.0.0-alpha.173",
     "@mui/material": "^5.16.7",
     "@uiw/react-json-view": "^2.0.0-alpha.26",
+    "dayjs": "^1.11.13",
     "mobx": "^6.13.1",
     "mobx-react": "^9.1.1",
     "react": "^18.3.1",

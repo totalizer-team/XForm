@@ -14,9 +14,12 @@ mobile: false
 * [Select](/components/Select)
 * [Radio](/components/Radio)
 * [Checkbox](/components/Checkbox)
+* [DatePicker](/components/Date-Picker)
+* [TimePicker](/components/Time-Picker)
+* [Switch](/components/Switch)
 * [Rating](/components/Rating)
 * [Slider](/components/Slider)
-* [Switch](/components/Switch)
+
 
 结构组件：
 * [ObjectBlock](/components/Object-Block)

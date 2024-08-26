@@ -2,7 +2,7 @@
 group:
   title:  基础组件
   order: 0
-order: 06
+order: 10
 toc: content
 mobile: false
 ---

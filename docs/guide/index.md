@@ -17,6 +17,9 @@ XForm 源自一个内部低代码项目（产品代号 Totalizer）的重要组�
 Totalizer 项目暂时并没有开源计划，仅内部系统使用。但这并不影响你使用其重要组成部分 XForm 。
 :::
 
+## 适用场景
+
+对于深度依赖 MUI 和 Mobx 框架的中后台项目，XForm 能大幅度简化研发。当然，如何你想从 0 到 1 开始搭建一个中后台项目，这一定是不错的选择。
 
 ## 设计理念
 
@@ -28,6 +31,7 @@ Totalizer 项目暂时并没有开源计划，仅内部系统使用。但这并�
 * 组件库：[MUI](https://mui.com/)
 * 数据状态管理：[Mobx](https://mobx.js.org/README.html)
 * 拖拽工具：[dnd kit](https://dndkit.com/)
+* 时间库：[dayjs](https://day.js.org/)
 * JSON 数据展示：[@uiw/react-json-view](https://uiwjs.github.io/react-json-view/)
 * 代码 Diff 展示： [react-diff-viewer](https://praneshravi.in/react-diff-viewer/)
 * Excel 解析：[SheetJS](https://docs.sheetjs.com/docs/)
