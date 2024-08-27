@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-
+import dayjs from 'dayjs';
 import { DEFAULT_VALUE } from '../components';
 
 const _setDefault = (schema) => {
@@ -50,28 +50,37 @@ const _fillDefaults = (schema) => {
 };
 
 function deepClone(obj) {
-  if (typeof obj !== 'object' || obj === null) {
+  // 基本数据类型（null, number, string, boolean, undefined）
+  if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
+  // 处理 Date 对象
+  if (obj instanceof Date) {
+    return new Date(obj);
+  }
+
+  // 处理 dayjs 对象
+  if (dayjs.isDayjs(obj)) {
+    return dayjs(obj); // 重新实例化一个 dayjs 对象
+  }
+
+  // 处理数组
   if (Array.isArray(obj)) {
     return obj.map(deepClone);
   }
 
-  const clone = {};
+  // 处理对象
+  const clonedObj = {};
   Object.keys(obj).forEach((key) => {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      // 递归克隆函数
-      if (typeof obj[key] === 'function') {
-        clone[key] = obj[key].bind(clone);
-      } else {
-        clone[key] = deepClone(obj[key]);
-      }
+      clonedObj[key] = deepClone(obj[key]);
     }
   });
 
-  return clone;
+  return clonedObj;
 }
+
 /**
  * 修正 schema
  * @param {*} schema

@@ -43,6 +43,7 @@ export default observer(({
         value={_options.findIndex((el) => el.value === value)}
         onChange={(e, v) => {
           $$store.setValue(path, _options[parseInt(v, 10)].value);
+          $$store.validate(path);
         }}
       >
         {_options.map((el, i) => (

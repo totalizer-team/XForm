@@ -9,6 +9,9 @@ mobile: false
 
 # Radio
 
+单选框，在多个选项中选中一个状态。
+
+
 ## 示例
 
 <code src="./examples/Radio" compact background="#fff"></code>

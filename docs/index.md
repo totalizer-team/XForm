@@ -1,7 +1,7 @@
 ---
 hero:
   title: XForm
-  description: 专为数据录入的人机交互体验而生，致力于极致的开发体验
+  description: 专为数据录入的人机交互体验而生，实现基于配置开发，并为低代码产品提供解决方案。
   actions:
     - text: 快速开始
       link: /guide

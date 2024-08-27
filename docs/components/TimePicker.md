@@ -9,11 +9,11 @@ mobile: false
 
 # TimePicke
 
+时间选择器，用于输入或选择时间。
 
 ## 示例
 
 <code src="./examples/TimePicker" compact background="#fff"></code>
-
 
 
 ## Props

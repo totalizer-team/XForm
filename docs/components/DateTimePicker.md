@@ -2,18 +2,18 @@
 group:
   title:  基础组件
   order: 0
-order: 06
+order: 08
 toc: content
 mobile: false
 ---
 
-# DatePicker
+# DateTimePicker
 
-日期选择器，用于输入或选择日期。
+日期时间选择器，用于同时输入或选择日期和时间。
 
 ## 示例
 
-<code src="./examples/DatePicker" compact background="#fff"></code>
+<code src="./examples/DateTimePicker" compact background="#fff"></code>
 
 
 

@@ -9,6 +9,8 @@ mobile: false
 
 # Checkbox
 
+多选框，允许在多个选项中选中多个状态。
+
 
 ## 示例
 

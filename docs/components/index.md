@@ -12,10 +12,12 @@ mobile: false
 基础组件：
 * [TextField](/components/Text-Field)
 * [Select](/components/Select)
+* [MultipleSelect](/components/Multiple-Select)
 * [Radio](/components/Radio)
 * [Checkbox](/components/Checkbox)
 * [DatePicker](/components/Date-Picker)
 * [TimePicker](/components/Time-Picker)
+* [DateTimePicker](/components/Date-Time-Picker)
 * [Switch](/components/Switch)
 * [Rating](/components/Rating)
 * [Slider](/components/Slider)

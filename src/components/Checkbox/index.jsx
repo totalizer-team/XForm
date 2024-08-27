@@ -60,6 +60,7 @@ export default observer(({
                     if (v) res.push(k);
                   }
                   $$store.setValue(path, res);
+                  $$store.validate(path);
                 }}
               />
             )}

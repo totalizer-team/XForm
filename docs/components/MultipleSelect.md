@@ -9,6 +9,7 @@ mobile: false
 
 # MultipleSelect
 
+多选选择器，允许在一个列表选项中选择多个选项。。
 
 ## 示例
 

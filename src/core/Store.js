@@ -59,6 +59,7 @@ class Store {
 
     this.componentStatus[path] = {
       errorMsg: '', // 错误信息， 类型 String
+      _rule: null, // 组件内置校验规则
       ...schema,
     };
   }
@@ -100,18 +101,43 @@ class Store {
     return this.componentStatus[path];
   }
 
+  setRule(path, fn) {
+    if (!this.componentStatus[path]._rule) {
+      this.componentStatus[path]._rule = fn;
+    }
+  }
+
   validate(path) {
     const { visible } = this.componentStatus[path];
     if (visible) {
       const value = this.getValue(path);
-      if (typeof this.componentStatus[path].rule === 'function') {
-        const errorMsg = this.componentStatus[path].rule(value, {
+
+      let errorMsg = '';
+
+      if (typeof this.componentStatus[path]._rule === 'function') {
+        errorMsg = this.componentStatus[path]._rule(value, {
           $getValue: this.$getValue.bind(this),
           prefixPath: getPrefixPath(path, this.path),
         });
-        this.componentStatus[path].errorMsg = errorMsg || '';
+      }
+
+      if (!errorMsg && typeof this.componentStatus[path].rule === 'function') {
+        errorMsg = this.componentStatus[path].rule(value, {
+          $getValue: this.$getValue.bind(this),
+          prefixPath: getPrefixPath(path, this.path),
+        });
+      }
+
+      if (this.componentStatus[path].errorMsg !== errorMsg) {
+        this.componentStatus[path].errorMsg = errorMsg;
       }
     } else {
+      this.componentStatus[path].errorMsg = '';
+    }
+  }
+
+  clearErrorMsg(path) {
+    if (this.componentStatus[path].errorMsg) {
       this.componentStatus[path].errorMsg = '';
     }
   }
@@ -165,7 +191,7 @@ class Store {
   setValue(path, value) {
     this.store.$$set(path, value);
     this.setTick();
-    this.validate(path);
+    // this.validate(path);
   }
 
   getValue(path) {

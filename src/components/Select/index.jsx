@@ -52,6 +52,7 @@ export default observer(({
             key={el.value}
             onClick={() => {
               $$store.setValue(path, el.value);
+              $$store.validate(path);
             }}
             disabled={el.disabled}
           >

@@ -61,6 +61,7 @@ export default observer(({
         }}
         onChange={(e) => {
           $$store.setValue(path, e.target.value);
+          $$store.validate(path);
         }}
         {...componentsProps}
       >

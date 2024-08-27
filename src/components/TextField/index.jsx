@@ -67,10 +67,10 @@ export default observer(({
       inputProps={{
         readOnly,
       }}
+      onFocus={() => $$store.clearErrorMsg(path)}
       onBlur={() => $$store.validate(path)}
       error={!!errorMsg}
       helperText={errorMsg || helperText}
-
       {...componentProps}
     />
   );
