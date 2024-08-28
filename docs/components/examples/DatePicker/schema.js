@@ -4,8 +4,21 @@ const schema = {
   default: {
     c: 'DatePicker',
     xs: 12,
-    label: '日期 ',
-    helperText: 'helperText , YYYY-MM-DD ',
+    label: 'default',
+    helperText: 'default',
+    default: dayjs().format('YYYY-MM-DD'),
+    minDate: dayjs().subtract(7, 'day'),
+    maxDate: dayjs().add(7, 'day'),
+    rule: (v) => {
+      if (dayjs(v).isAfter(dayjs())) return '不能选择今天之后的日期';
+      return '';
+    },
+  },
+  format: {
+    c: 'DatePicker',
+    xs: 12,
+    label: 'format',
+    helperText: 'YYYY-MM-DD',
     default: dayjs().format('YYYY-MM-DD'),
     minDate: dayjs().subtract(7, 'day'),
     maxDate: dayjs().add(7, 'day'),
@@ -30,6 +43,21 @@ const schema = {
     views: ['year'],
     format: 'YYYY',
     dataFormat: 'YYYY',
+  },
+  yearAndMonth: {
+    c: 'DatePicker',
+    xs: 12,
+    label: '年份和月份 ',
+    views: ['year', 'month'],
+    dataFormat: 'YYYY-MM',
+  },
+
+  disabled: {
+    c: 'DatePicker',
+    xs: 12,
+    label: 'disabled ',
+    default: dayjs().format('YYYY-MM-DD'),
+    disabled: true,
   },
 };
 export default schema;

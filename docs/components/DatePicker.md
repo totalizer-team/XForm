@@ -24,7 +24,7 @@ mobile: false
 | label      | `string` | ''                       | 组件标题       |
 | default    | `string` | ''                       | 默认值         |
 | helperText | `string` | ''                       | 提示           |
-| format     | `string` | ``                       | 组件显示的格式 |
+| format     | `string` | `-`                      | 组件显示的格式 |
 | dataFormat | `string` | `YYYY-MM-DD`             | 数据存储的格式 |
 | minDate    | `dayjs`  | `dayjs('1900-01-01')`    | 最小日期       |
 | maxDate    | `dayjs`  | `dayjs('2099-12-31')`    | 最大日期       |

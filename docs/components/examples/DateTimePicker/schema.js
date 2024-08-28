@@ -2,34 +2,28 @@ import dayjs from 'dayjs';
 
 const schema = {
   default: {
-    c: 'DatePicker',
+    c: 'DateTimePicker',
     xs: 12,
-    label: '日期 ',
-    helperText: 'helperText , YYYY-MM-DD ',
-    default: dayjs().format('YYYY-MM-DD'),
-    minDate: dayjs().subtract(7, 'day'),
-    maxDate: dayjs().add(7, 'day'),
-    format: 'YYYY-MM-DD',
-    rule: (v) => {
-      if (dayjs(v).isAfter(dayjs())) return '不能选择今天之后的日期';
-      return '';
-    },
+    label: 'default',
+    default: '2024-12-31 10:30:00',
+    helperText: 'helperText',
+    minDateTime: dayjs('2024-01-01 08:30:00', 'YYYY-MM-DD HH:mm:ss'),
+    maxDateTime: dayjs('2024-12-31 21:30:00', 'YYYY-MM-DD HH:mm:ss'),
   },
-  month: {
-    c: 'DatePicker',
+  format: {
+    c: 'DateTimePicker',
     xs: 12,
-    label: '月份 ',
-    views: ['month'],
-    format: 'MMMM',
-    dataFormat: 'MM',
+    label: 'format ',
+    views: ['day', 'month', 'year', 'hours', 'minutes', 'seconds'],
+    format: 'YYYY-MM-DD HH:mm:ss',
+    helperText: 'YYYY-MM-DD HH:mm:ss',
   },
-  year: {
-    c: 'DatePicker',
+
+  disabled: {
+    c: 'DateTimePicker',
     xs: 12,
-    label: '年份 ',
-    views: ['year'],
-    format: 'YYYY',
-    dataFormat: 'YYYY',
+    label: 'diabled',
+    disabled: true,
   },
 };
 export default schema;

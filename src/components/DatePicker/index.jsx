@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Select, MenuItem, FormControl, InputLabel, FormHelperText,
 } from '@mui/material';
@@ -24,25 +24,26 @@ export default observer(({
 
   console.log('~~~ DatePicker', path);
 
+  const [open, setOpen] = useState(false);
+
   const value = $$store.getValue(path);
 
-  $$store.setRule(path, (v) => {
-    const {
-      minDate = dayjs('1900-01-01'),
-      maxDate = dayjs('2099-12-31'),
-    } = componentsProps;
-    if (v === 'Invalid Date') return '无效日期';
-    if (dayjs(v, dataFormat).isBefore(minDate, 'day') || dayjs(v, dataFormat).isAfter(maxDate, 'day')) { return '无效日期'; }
-    return '';
-  });
+  /**
+   * 由于禁止键盘输入，所以取消了内置错误时间输入的校验
+   */
+  // $$store.setRule(path, (v) => {
+  //   const {
+  //     minDate = dayjs('1900-01-01'),
+  //     maxDate = dayjs('2099-12-31'),
+  //   } = componentsProps;
+  //   if (v === 'Invalid Date') return '无效日期';
+  //   if (dayjs(v, dataFormat).isBefore(minDate, 'day') || dayjs(v, dataFormat).isAfter(maxDate, 'day')) { return '无效日期'; }
+  //   return '';
+  // });
 
   useEffect(() => {
     $$store.linkage(path);
   }, [value]);
-
-  // const componentsProps = {
-  //   openTo, orientation, maxDate, minDate, format,
-  // };
 
   const _validate = () => {
     $$store.validate(path);
@@ -51,6 +52,7 @@ export default observer(({
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
+        open={open}
         label={label}
         value={value ? dayjs(value, dataFormat) : null}
         onChange={(v) => {
@@ -58,7 +60,11 @@ export default observer(({
         }}
         onClose={(() => {
           _validate();
+          setOpen(false);
         })}
+        onOpen={() => {
+          setOpen(true);
+        }}
         disabled={disabled}
         slotProps={{
           textField: {
@@ -68,6 +74,16 @@ export default observer(({
             fullWidth: true,
             onBlur: () => {
               _validate();
+            },
+            readOnly: true,
+            inputProps: {
+              onClick: () => {
+                if (disabled) return;
+                setOpen(true);
+              },
+              style: {
+                cursor: 'pointer',
+              },
             },
           },
         }}

@@ -1,6 +1,6 @@
 ---
 group:
-  title: API
+  title: 组件
   order: 0
 order: 02
 toc: content

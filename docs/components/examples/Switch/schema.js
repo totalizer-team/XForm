@@ -1,32 +1,39 @@
 const schema = {
-  outlined: {
-    c: 'Select',
-    xs: 4,
-    label: 'outlined',
-    variant: 'outlined',
-    options: ['a', 'b', 'c'],
-  },
-  filled: {
-    c: 'Select',
-    xs: 4,
-    label: 'filled',
-    variant: 'filled',
-    options: ['a', 'b', 'c'],
-  },
-  standard: {
-    c: 'Select',
-    xs: 4,
-    label: 'standard',
-    variant: 'standard',
-    options: ['a', 'b', 'c'],
-  },
-  helperText: {
-    c: 'Select',
+  switch: {
+    c: 'Switch',
     xs: 12,
-    label: 'helperText ',
-    variant: 'outlined',
-    helperText: 'helperText ',
-    options: ['a', 'b', 'c'],
+    label: 'switch',
+    switchLabel: '开关文案',
+    helperText: 'helperText',
   },
+  disabled: {
+    c: 'Switch',
+    xs: 12,
+    label: 'diabled',
+    switchLabel: '开关文案',
+    default: true,
+    disabled: true,
+  },
+  // start: {
+  //   c: 'Switch',
+  //   xs: 12,
+  //   label: 'start',
+  //   switchLabel: 'start',
+  //   labelPlacement: 'start',
+  // },
+  // top: {
+  //   c: 'Switch',
+  //   xs: 12,
+  //   label: 'top',
+  //   switchLabel: 'top',
+  //   labelPlacement: 'top',
+  // },
+  // bottom: {
+  //   c: 'Switch',
+  //   xs: 12,
+  //   label: 'bottom',
+  //   switchLabel: 'bottom',
+  //   labelPlacement: 'bottom',
+  // },
 };
 export default schema;

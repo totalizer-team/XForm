@@ -18,12 +18,14 @@ mobile: false
 
 ## Props
 
-| 名称       | 类型     | 默认值  | 描述               |
-| ---------- | -------- | ------- | ------------------ |
-| label      | `string` | ''      | 组件标题           |
-| default    | `array`  | []      | 默认值             |
-| options    | `array`  | []      | 选项配置           |
-| helperText | `string` | ''      | 提示               |
-| checkbox   | `bool`   | `false` | 选项卡为复选框样式 |
-| chip       | `bool`   | `false` | 值显示为标签样式   |
 
+| 名称       | 类型     | 默认值                 | 描述           |
+| ---------- | -------- | ---------------------- | -------------- |
+| label      | `string` | ''                     | 组件标题       |
+| default    | `string` | ''                     | 默认值         |
+| helperText | `string` | ''                     | 提示           |
+| format     | `string` | `-`                    | 组件显示的格式 |
+| dataFormat | `string` | `HH:mm:ss`             | 数据存储的格式 |
+| minTime    | `dayjs`  | `-`                    | 最小时间       |
+| maxTime    | `dayjs`  | `-`                    | 最大时间       |
+| views      | `array`  | `['hours', 'minutes']` | 可见视图       |
