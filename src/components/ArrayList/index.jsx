@@ -135,10 +135,9 @@ const XItem = observer(({
  * 主组建
  */
 export default observer(({
-  path, schema, $$store,
+  path, $$store,
 }) => {
-  const { label } = schema;
-  const _schema = schema.schema;
+  const { label, addText = '', schema } = $$store.context(path);
 
   const noKeyData = $$store.getValue(path);
   const keys = useRef([]);
@@ -191,7 +190,7 @@ export default observer(({
         items={data.map((el) => el._key)}
         strategy={verticalListSortingStrategy}
       >
-        <Stack
+        {/* <Stack
           direction="column"
           spacing={0}
           sx={{
@@ -200,14 +199,15 @@ export default observer(({
             borderColor: 'divider',
             borderRadius: 1,
           }}
-        >
+        > */}
+        <Paper>
           <Box sx={{
             p: 2,
             borderBottom: 1,
             borderColor: 'divider',
           }}
           >
-            <Typography>{label}</Typography>
+            <Typography variant="h6">{label}</Typography>
           </Box>
           <Box sx={{ p: 1 }}>
             {data.map((el, i) => (
@@ -215,7 +215,7 @@ export default observer(({
                 path={`${path}[${i}]`}
                 key={el._key}
                 record={el}
-                schema={_schema}
+                schema={schema}
                 onDelete={() => {
                   const res = [...data];
                   res.splice(i, 1);
@@ -225,7 +225,7 @@ export default observer(({
               />
             ))}
           </Box>
-          <Stack sx={{ pt: 1, pb: 2 }}>
+          <Stack sx={{ pb: 2 }}>
             <Button
               onClick={() => {
                 const res = [...data];
@@ -236,22 +236,23 @@ export default observer(({
                 _key += 1;
                 res.push({
                   _key,
-                  ..._merge(_schema, {}),
+                  ..._merge(schema, {}),
                 });
                 changeHandler(res);
               }}
               variant="outlined"
               sx={{
-                mr: 1,
-                ml: 1,
+                mr: 2,
+                ml: 2,
                 borderStyle: 'dashed',
               }}
               startIcon={<AddIcon />}
+              disableRipple
             >
-              ADD
+              {addText || 'ADD'}
             </Button>
           </Stack>
-        </Stack>
+        </Paper>
       </SortableContext>
     </DndContext>
   );

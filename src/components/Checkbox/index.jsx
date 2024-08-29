@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import {
-  Select, MenuItem, FormControl, FormLabel, FormHelperText, RadioGroup, FormControlLabel, Checkbox,
+  Select, ListItemText, FormControl, FormLabel, FormHelperText, RadioGroup, FormControlLabel, Checkbox,
 } from '@mui/material';
 import { observer } from 'mobx-react';
 
@@ -64,7 +64,12 @@ export default observer(({
                 }}
               />
             )}
-            label={el.label}
+            label={(
+              <ListItemText
+                primary={el.label}
+                secondary={el.secondary}
+              />
+            )}
             disabled={disabled || !!el.disabled}
           />
         ))}

@@ -13,5 +13,5 @@ mobile: false
 
 ## 示例
 
-<code src="./examples/product" compact background="#fff"></code>
+<code src="./examples/product"  background="#fff"></code>
 

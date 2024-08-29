@@ -35,23 +35,25 @@ import { observer } from 'mobx-react';
 import FormRenderingEngine from '../../engine/FormRenderingEngine';
 
 export default observer(({
-  path, schema, $$store,
+  path, $$store,
 }) => {
-  const _schema = schema.schema;
-  const { label } = schema;
+  const {
+    variant = 'outlined', // text outlined elevation
+    label,
+    schema,
+  } = $$store.context(path);
   return (
-    <>
-      <Stack sx={{ pt: 1, pb: 1.5 }}>
-        <Typography>
+    <Paper sx={{ p: 2.5 }} variant="elevation" elevation={1}>
+      <Stack sx={{ pt: 0, pb: 2.5 }}>
+        <Typography fontSize={18}>
           {label}
-          :
         </Typography>
       </Stack>
       <FormRenderingEngine
         path={path}
-        schema={_schema}
+        schema={schema}
         $$store={$$store}
       />
-    </>
+    </Paper>
   );
 });

@@ -41,7 +41,6 @@ const FormItem = observer(({
       <Child
         path={path}
         $$store={$$store}
-        schema={schema}
       />
     </Grid>
   );

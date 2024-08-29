@@ -5,8 +5,17 @@ const schema = {
     label: '垂直布局',
     options: [
       { label: '正确选项', value: 1 },
-      { label: '错误选项，点击后会提示错误信息', value: 0 },
-      { label: '禁止编辑，无法选中这个选项', value: -1, disabled: true },
+      {
+        label: '错误选项',
+        secondary: '点击后会提示错误信息',
+        value: 0,
+      },
+      {
+        label: '禁止编辑',
+        secondary: '无法选中这个选项',
+        value: -1,
+        disabled: true,
+      },
     ],
     rule: (v) => {
       if (v === 0) return '校验失败，错误选项';
