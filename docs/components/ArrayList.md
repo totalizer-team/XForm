@@ -10,8 +10,30 @@ mobile: false
 # ArrayList
 
 
+## 样式
 
-## 示例
+通过 `variant` 设置样式。有三种样式可供选择：
 
-<code src="./examples/ArrayList" compact background="#fff"></code>
+* 默认样式 `default` 
+* 边框样式 `outlined`
+* 带阴影的卡片样式 `elevation`
 
+
+
+### 默认样式 
+
+`variant: 'defalut'`
+
+<code src="./examples/ArrayListDefault" compact  background="#fff"></code>
+
+### 边框样式 
+
+`variant: 'outlined'`
+
+<code src="./examples/ArrayListOutlined" compact background="#fff"></code>
+
+### 带阴影的卡片样式 
+
+`variant: 'elevation'`
+
+<code src="./examples/ArrayListElevation" compact  background="#fff"></code>

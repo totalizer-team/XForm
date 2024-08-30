@@ -24,6 +24,7 @@ const FormItem = observer(({
 
   useEffect(
     () => () => {
+      console.log('========remove', path);
       // 移除该路径下的组件状态
       $$store.destroyStatus(path);
     },

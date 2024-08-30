@@ -13,8 +13,44 @@ export default observer(({
     disabled,
     helperText,
     errorMsg,
-    ...componentProps
+    /**
+     * componentProps
+     */
+    color,
+    marks,
+    max,
+    min,
+    name,
+    orientation,
+    scale,
+    shiftStep,
+    step,
+    tabIndex,
+    track,
+    valueLabelDisplay,
+    valueLabelFormate,
+
   } = $$store.context(path);
+
+  const componentProps = {
+    color,
+    marks,
+    max,
+    min,
+    name,
+    orientation,
+    scale,
+    shiftStep,
+    step,
+    tabIndex,
+    track,
+    valueLabelDisplay,
+    valueLabelFormate,
+  };
+
+  Object.keys(componentProps).forEach((key) => {
+    if (componentProps[key] === undefined) delete componentProps[key];
+  });
 
   console.log('~~~ Slider', path);
 

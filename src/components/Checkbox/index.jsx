@@ -41,7 +41,7 @@ export default observer(({
   const componentsProps = {};
 
   return (
-    <FormControl fullWidth error={!!errorMsg}>
+    <FormControl error={!!errorMsg}>
       <FormLabel disabled={disabled}>{label}</FormLabel>
       <RadioGroup
         row={row}

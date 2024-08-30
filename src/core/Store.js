@@ -65,6 +65,7 @@ class Store {
   }
 
   resetStatus(path, visible) {
+    console.log('=======', path, this.componentStatus[path]);
     /**
      * 如果 visible 不产出变化，不进行值操作
      * */

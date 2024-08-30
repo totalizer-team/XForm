@@ -9,5 +9,6 @@ export default defineConfig({
     socialLinks: {
       github: 'https://github.com/totalizer-team/XForm',
     },
+    footer: 'Open-source MIT Licensed | Copyright © 2024-present',
   },
 });

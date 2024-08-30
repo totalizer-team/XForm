@@ -10,7 +10,8 @@ export default observer(({
 }) => {
   const {
     label,
-    switchLabel = '',
+    onText = '',
+    offText = '',
     disabled,
     helperText,
     errorMsg,
@@ -45,7 +46,7 @@ export default observer(({
             }}
           />
         )}
-        label={switchLabel}
+        label={value ? onText : offText}
         labelPlacement={labelPlacement}
       />
       <FormHelperText>{errorMsg || helperText}</FormHelperText>

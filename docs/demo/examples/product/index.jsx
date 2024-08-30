@@ -23,7 +23,7 @@ export default observer(() => {
         store={store}
         schema={schema}
         open={visible}
-        width={800}
+        width={1200}
         title="Add a new product"
         onSave={() => {
           console.log('save');
@@ -31,7 +31,7 @@ export default observer(() => {
         onClose={() => {
           store.closeDrawer();
         }}
-        debug
+        // debug
       />
     </>
   );

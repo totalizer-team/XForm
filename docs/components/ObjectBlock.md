@@ -11,13 +11,29 @@ mobile: false
 
 该组件用于构建对象结构的数据。
 
-## 示例
+## 样式
 
-## text   
+通过 `variant` 设置样式。有三种样式可供选择：
 
-## outlined
+* 默认样式 `default` 
+* 边框样式 `outlined`
+* 带阴影的卡片样式 `elevation`
 
-## elevation
 
-<code src="./examples/ObjectBlock" compact background="#fff"></code>
+### 默认样式 
 
+`variant: 'defalut'`
+
+<code src="./examples/ObjectBlockDefault" compact  background="#fff"></code>
+
+### 边框样式 
+
+`variant: 'outlined'`
+
+<code src="./examples/ObjectBlockOutlined" compact background="#fff"></code>
+
+### 带阴影的卡片样式 
+
+`variant: 'elevation'`
+
+<code src="./examples/ObjectBlockElevation" compact  background="#fff"></code>

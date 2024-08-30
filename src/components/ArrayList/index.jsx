@@ -21,6 +21,7 @@ import {
   CardContent,
   TableContainer, Table, TableHead,
   TableBody, TableRow, TableCell,
+  FormControl, FormLabel,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { deepOrange } from '@mui/material/colors';
@@ -132,12 +133,16 @@ const XItem = observer(({
 });
 
 /**
- * 主组建
+ * 主组组件
  */
 export default observer(({
   path, $$store,
 }) => {
-  const { label, addText = '', schema } = $$store.context(path);
+  const {
+    variant = 'default', // default outlined elevation
+    elevation = 1,
+    label, addText = '', schema,
+  } = $$store.context(path);
 
   const noKeyData = $$store.getValue(path);
   const keys = useRef([]);
@@ -172,60 +177,54 @@ export default observer(({
     $$store.setTick();
   };
 
+  const isDefault = !['outlined', 'elevation'].includes(variant);
+  let paperProps = {};
+  if (variant === 'elevation') {
+    paperProps = { elevation };
+  }
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={(e) => {
-        const { active, over } = e;
-        if (active.id !== over.id) {
-          const oldIndex = data.findIndex((el) => el._key === active.id);
-          const newIndex = data.findIndex((el) => el._key === over.id);
-          const newData = arrayMove(data, oldIndex, newIndex);
-          changeHandler(newData);
-        }
-      }}
-    >
-      <SortableContext
-        items={data.map((el) => el._key)}
-        strategy={verticalListSortingStrategy}
+    <Paper sx={{ p: isDefault ? 0 : 2.5 }} variant={variant} {...paperProps}>
+      {isDefault ? <FormLabel sx={{ mb: 2 }}>{label}</FormLabel>
+        : (
+          <Stack sx={{ pt: 0, pb: 2.5 }}>
+            <Typography fontSize={18}>
+              {label}
+            </Typography>
+          </Stack>
+        )}
+
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={(e) => {
+          const { active, over } = e;
+          if (active.id !== over.id) {
+            const oldIndex = data.findIndex((el) => el._key === active.id);
+            const newIndex = data.findIndex((el) => el._key === over.id);
+            const newData = arrayMove(data, oldIndex, newIndex);
+            changeHandler(newData);
+          }
+        }}
       >
-        {/* <Stack
-          direction="column"
-          spacing={0}
-          sx={{
-            width: '100%',
-            border: 1,
-            borderColor: 'divider',
-            borderRadius: 1,
-          }}
-        > */}
-        <Paper>
-          <Box sx={{
-            p: 2,
-            borderBottom: 1,
-            borderColor: 'divider',
-          }}
-          >
-            <Typography variant="h6">{label}</Typography>
-          </Box>
-          <Box sx={{ p: 1 }}>
-            {data.map((el, i) => (
-              <XItem
-                path={`${path}[${i}]`}
-                key={el._key}
-                record={el}
-                schema={schema}
-                onDelete={() => {
-                  const res = [...data];
-                  res.splice(i, 1);
-                  changeHandler(res);
-                }}
-                $$store={$$store}
-              />
-            ))}
-          </Box>
-          <Stack sx={{ pb: 2 }}>
+        <SortableContext
+          items={data.map((el) => el._key)}
+          strategy={verticalListSortingStrategy}
+        >
+          {data.map((el, i) => (
+            <XItem
+              path={`${path}[${i}]`}
+              key={el._key}
+              record={el}
+              schema={schema}
+              onDelete={() => {
+                const res = [...data];
+                res.splice(i, 1);
+                changeHandler(res);
+              }}
+              $$store={$$store}
+            />
+          ))}
+          <Stack sx={{ pt: 1.5 }}>
             <Button
               onClick={() => {
                 const res = [...data];
@@ -242,8 +241,7 @@ export default observer(({
               }}
               variant="outlined"
               sx={{
-                mr: 2,
-                ml: 2,
+
                 borderStyle: 'dashed',
               }}
               startIcon={<AddIcon />}
@@ -252,8 +250,8 @@ export default observer(({
               {addText || 'ADD'}
             </Button>
           </Stack>
-        </Paper>
-      </SortableContext>
-    </DndContext>
+        </SortableContext>
+      </DndContext>
+    </Paper>
   );
 });

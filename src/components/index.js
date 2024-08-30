@@ -16,9 +16,22 @@ import ObjectBlock from './ObjectBlock';
 const COMPONENTS = {};
 const DEFAULT_VALUE = {};
 
-const registerComponent = (name, c, defaultValue) => {
+/**
+ * 注册一个组件，注册后可在 schema 中使用
+ * @param {*} name 组件名称
+ * @param {*} c 组件
+ * @param {*} d  默认值
+ * @param {*} t  用来表示如何处理该组件的数据，可选值 'base' 'object' 'array' 'info'
+ */
+const registerComponent = (name, c, defaultValue, type = 'base') => {
   COMPONENTS[name] = c;
   DEFAULT_VALUE[name] = defaultValue;
+
+  // COMPONENTS[name] = {
+  //   c,
+  //   defaultValue,
+  //   type,
+  // };
 };
 
 registerComponent('TextField', TextField, '');

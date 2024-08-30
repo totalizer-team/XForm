@@ -6,21 +6,10 @@ mobile: false
 
 # 更多表单类型
 
-截止当前版本，XForm 包含以下表单组件：
 
-* 基础表单： `XBaseForm`
-* 抽屉表单： `XDrawerForm`
+除了 `XBaseForm` ，XForm 包含更多表单，可在 [表单](../form/index.md) 中查看。
 
-
-:::info{title=计划中研发的表单}
-XDialogForm、XFilterForm、XStepForm、XMiniForm
-:::
-
-
-## 抽屉表单
-
-* 组件名称：`XDrawerForm`
-* 组件功能：在基础表单的基础上，整合了 Material UI 的 `Drawer` 功能，同时提供保存功能。
+以 `XDrawerForm` 为例，在基础表单的基础上，整合了 Material UI 的 `Drawer` 功能，同时提供保存功能。
 
 代码示例：
 

@@ -2,16 +2,14 @@
 group:
   title:  示例
   order: 1
-order: 03
+order: 01
 toc: content
 mobile: false
 ---
 
-# product
+# Product
 
-创建产品。
-
-## 示例
+Add a new product.
 
 <code src="./examples/product"  background="#fff"></code>
 
