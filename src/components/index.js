@@ -24,16 +24,18 @@ const DEFAULT_VALUE = {};
  * @param {*} t  用来表示如何处理该组件的数据，可选值 'base' 'object' 'array' 'info'
  */
 const registerComponent = (name, c, defaultValue, type = 'base') => {
-  COMPONENTS[name] = c;
-  DEFAULT_VALUE[name] = defaultValue;
+  // COMPONENTS[name] = c;
+  // DEFAULT_VALUE[name] = defaultValue;
 
-  // COMPONENTS[name] = {
-  //   c,
-  //   defaultValue,
-  //   type,
-  // };
+  COMPONENTS[name] = {
+    c,
+    defaultValue,
+    type,
+  };
 };
-
+/**
+ * 基础组件
+ */
 registerComponent('TextField', TextField, '');
 registerComponent('Select', Select, '');
 registerComponent('MultipleSelect', MultipleSelect, []);
@@ -46,7 +48,12 @@ registerComponent('Switch', Switch, false);
 registerComponent('Rating', Rating, 0);
 registerComponent('Slider', Slider, 0);
 
-registerComponent('ArrayList', ArrayList, []);
-registerComponent('ObjectBlock', ObjectBlock, {});
+/**
+ * 结构组件
+ */
+registerComponent('ArrayList', ArrayList, [], 'array');
+registerComponent('ObjectBlock', ObjectBlock, {}, 'object');
 
-export { COMPONENTS, DEFAULT_VALUE };
+export default COMPONENTS;
+
+// export { COMPONENTS, DEFAULT_VALUE };

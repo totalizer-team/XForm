@@ -1,7 +1,7 @@
+import COMPONENTS from '../components';
 import _get from './get';
 import _repair from './repair';
 import _set from './set';
-
 /**
  * 根据配置合并数据，确保数据一致性
  * @param {*} schema
@@ -10,7 +10,9 @@ import _set from './set';
 const _setValue = (res, schema, data, parentPath = '') => {
   Object.keys(schema).forEach((key) => {
     const path = parentPath ? `${parentPath}.${key}` : key;
-    if (['ArrayList'].includes(schema[key].c)) {
+
+    const type = COMPONENTS[schema[key].c];
+    if (type === 'array') {
       // do somthing
       const value = _get(data, path);
       if (Array.isArray(value)) {
@@ -22,7 +24,7 @@ const _setValue = (res, schema, data, parentPath = '') => {
       } else {
         _set(res, path, []);
       }
-    } else if (['ObjectBlock'].includes(schema[key].c)) {
+    } else if (type === 'object') {
       _set(res, path, {});
       _setValue(res, schema[key].schema, data, path);
     } else {

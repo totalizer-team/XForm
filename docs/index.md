@@ -1,4 +1,5 @@
 ---
+title: XForm
 hero:
   title: XForm
   description: 专为数据录入的人机交互体验而生，实现基于配置开发，并为低代码产品提供解决方案。
@@ -20,4 +21,8 @@ features:
 
 ---
 
+<div style="width:400px;margin:0 auto;">
+<image src="../public/logo.png" style="display:block;transform:scale(1.2)"/>
+</div>
 
+<p style="text-align:center;font-size:28px">正式版本，即将发布</p>

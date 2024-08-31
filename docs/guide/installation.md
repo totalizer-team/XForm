@@ -35,20 +35,20 @@ Ok to proceed? (y) y
 ```json
 "dependencies": {
   "@dnd-kit/core": "^6.1.0",
-  "@dnd-kit/sortable": "^8.0.0",
-  "@emotion/react": "^11.13.0",
-  "@emotion/styled": "^11.13.0",
-  "@mui/icons-material": "^5.16.7",
-  "@mui/lab": "^5.0.0-alpha.173",
-  "@mui/material": "^5.16.7",
-  "@mui/x-date-pickers": "^7.14.0",
-  "@uiw/react-json-view": "^2.0.0-alpha.26",
-  "dayjs": "^1.11.13",
-  "mobx": "^6.13.1",
-  "mobx-react": "^9.1.1",
-  "react": "^18.3.1",
-  "react-diff-viewer-continued": "^3.4.0",
-  "react-dom": "^18.3.1"
+    "@dnd-kit/sortable": "^8.0.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.0.1",
+    "@mui/lab": "^6.0.0-beta.8",
+    "@mui/material": "^6.0.1",
+    "@mui/material/styles": "^6.0.1",
+    "@mui/x-date-pickers": "^7.15.0",
+    "@uiw/react-json-view": "^2.0.0-alpha.26",
+    "dayjs": "^1.11.13",
+    "mobx": "^6.13.1",
+    "mobx-react": "^9.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
 }
 ```
 
@@ -67,7 +67,7 @@ npm install -S react react-dom
 
 ### Material UI
 
-使用 MUI 全家桶，作为基础组件库，确保安装 Material UI v5 以上版本
+使用 MUI 全家桶，作为基础组件库，确保安装 Material UI v6 以上版本
 
 ```sh
 npm install -S @mui/materia @emotion/react @emotion/styled

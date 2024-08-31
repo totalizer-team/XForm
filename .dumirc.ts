@@ -2,10 +2,11 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   outputPath: 'docs-dist',
-  favicons: ['/logo.jpeg'],
+  favicons: ['/logo.png'],
   themeConfig: {
+    title: 'XForm',
     name: 'XForm',
-    logo: '/logo.jpeg',
+    logo: '/logo.png',
     socialLinks: {
       github: 'https://github.com/totalizer-team/XForm',
     },

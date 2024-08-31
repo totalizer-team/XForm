@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 import dayjs from 'dayjs';
-import { DEFAULT_VALUE } from '../components';
+import COMPONENTS from '../components';
 
 const _setDefault = (schema) => {
   const DEFAULT_CONFIG = {
     xs: 12,
-    default: DEFAULT_VALUE[schema.c],
+    default: COMPONENTS[schema.c].defaultValue,
     label: '',
     helperText: '',
     visible: true,
@@ -29,17 +29,13 @@ const _setObjectDefault = (config) => {
 const _fillDefaults = (schema) => {
   Object.keys(schema).forEach((key) => {
     const itemSchema = schema[key];
-    if (
-      itemSchema.c === 'ObjectBlock' &&
-      typeof itemSchema.schema === 'object'
-    ) {
+
+    const { type } = COMPONENTS[itemSchema.c];
+    if (type === 'object') {
       _setDefault(itemSchema);
       _fillDefaults(itemSchema.schema);
       _setObjectDefault(itemSchema);
-    } else if (
-      itemSchema.c === 'ArrayList' &&
-      typeof itemSchema.schema === 'object'
-    ) {
+    } else if (type === 'array') {
       _setDefault(itemSchema);
       _fillDefaults(itemSchema.schema);
     } else {

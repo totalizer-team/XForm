@@ -105,9 +105,10 @@ const XItem = observer(({
         {...listeners}
         sx={{
           position: 'relative',
-          top: 15,
+          top: 14,
           cursor: 'move',
         }}
+        size="small"
       >
         <DragIndicatorIcon fontSize="small" />
       </IconButton>
@@ -120,11 +121,11 @@ const XItem = observer(({
         direction="row"
         sx={{
           position: 'relative',
-          top: 15,
+          top: 14,
         }}
       >
-        <IconButton onClick={onDelete}>
-          <DeleteOutlineIcon />
+        <IconButton onClick={onDelete} size="small">
+          <DeleteOutlineIcon fontSize="small" />
         </IconButton>
       </Stack>
 
@@ -210,21 +211,22 @@ export default observer(({
           items={data.map((el) => el._key)}
           strategy={verticalListSortingStrategy}
         >
-          {data.map((el, i) => (
-            <XItem
-              path={`${path}[${i}]`}
-              key={el._key}
-              record={el}
-              schema={schema}
-              onDelete={() => {
-                const res = [...data];
-                res.splice(i, 1);
-                changeHandler(res);
-              }}
-              $$store={$$store}
-            />
-          ))}
-          <Stack sx={{ pt: 1.5 }}>
+          <Stack sx={{ pt: 2 }} spacing={1}>
+            {data.map((el, i) => (
+              <XItem
+                path={`${path}[${i}]`}
+                key={el._key}
+                record={el}
+                schema={schema}
+                onDelete={() => {
+                  const res = [...data];
+                  res.splice(i, 1);
+                  changeHandler(res);
+                }}
+                $$store={$$store}
+              />
+            ))}
+
             <Button
               onClick={() => {
                 const res = [...data];

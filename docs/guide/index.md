@@ -9,9 +9,14 @@ mobile: false
 
 # 什么是 XForm？
 
+:::warning{title=非正式版本}
+当前为非正式发布版本，仅供体验，请勿应用于开发环境。
+:::
+
+
 XForm 源自一个内部低代码项目（产品代号 Totalizer）的重要组成部分，其诞生之初是为了通过一个简单的协议来管理组件和数据，以便进一步实现表单的低代码或无代码解决方案。
 
-:::info{title=Totalizer}
+:::info{title=Totalizer项目}
 Totalizer 项目暂时并没有开源计划，仅内部系统使用。但这并不影响你使用其重要组成部分 XForm 。
 :::
 
