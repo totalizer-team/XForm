@@ -41,7 +41,6 @@ Ok to proceed? (y) y
     "@mui/icons-material": "^6.0.1",
     "@mui/lab": "^6.0.0-beta.8",
     "@mui/material": "^6.0.1",
-    "@mui/material/styles": "^6.0.1",
     "@mui/x-date-pickers": "^7.15.0",
     "@uiw/react-json-view": "^2.0.0-alpha.26",
     "dayjs": "^1.11.13",
