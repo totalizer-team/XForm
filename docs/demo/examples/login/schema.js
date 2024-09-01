@@ -1,26 +1,21 @@
 const schema = {
-  organizationName: {
+  account: {
     c: 'TextField',
     xs: 12,
-    label: '组织名称',
+    label: 'Username or Email',
   },
-  member: {
-    c: 'ArrayList',
+  password: {
+    c: 'TextField',
     xs: 12,
-    label: '成员',
-    schema: {
-      name: {
-        c: 'TextField',
-        xs: 6,
-        label: '姓名',
-      },
-      sex: {
-        c: 'Select',
-        xs: 6,
-        label: '性别',
-        options: ['男', '女'],
-      },
-    },
+    label: 'password',
+    type: 'password',
+  },
+  remember: {
+    c: 'Checked',
+    xs: 12,
+    label: 'Remember me',
+    secondary: 'Forget Password?',
+    secondaryHref: '/',
   },
 };
 export default schema;

@@ -13,9 +13,6 @@ export default observer(() => (
     path="myFormData"
     store={store}
     schema={schema}
-    hasSubmit
-    submitText="LOGIN"
-    onSubmit={() => {}}
     debug
   />
 ));

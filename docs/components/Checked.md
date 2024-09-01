@@ -2,24 +2,25 @@
 group:
   title:  基础组件
   order: 0
-order: 11
+order: 05
 toc: content
 mobile: false
 ---
 
-# Rating
+# Checked
 
-评分输入器，用于打分信息录入。
+单个选项框，返回 `true` 或者 `false`。
+
 
 ## 示例
 
-<code src="./examples/Rating" compact background="#fff"></code>
+<code src="./examples/Checked" compact background="#fff"></code>
+
 
 ## Props
 
 | 名称       | 类型     | 默认值 | 描述     |
 | ---------- | -------- | ------ | -------- |
 | label      | `string` | ''     | 组件标题 |
-| default    | `number` | `0`    | 默认值   |
+| default    | `array`  | false  | 默认值   |
 | helperText | `string` | ''     | 提示     |
-

@@ -1,4 +1,5 @@
 import Checkbox from './Checkbox';
+import Checked from './Checked';
 import DatePicker from './DatePicker';
 import DateTimePicker from './DateTimePicker';
 import MultipleSelect from './MultipleSelect';
@@ -40,6 +41,7 @@ registerComponent('TextField', TextField, '');
 registerComponent('Select', Select, '');
 registerComponent('MultipleSelect', MultipleSelect, []);
 registerComponent('Radio', Radio, '');
+registerComponent('Checked', Checked, false);
 registerComponent('Checkbox', Checkbox, []);
 registerComponent('DatePicker', DatePicker, '');
 registerComponent('TimePicker', TimePicker, '');
