@@ -11,7 +11,8 @@ const _setValue = (res, schema, data, parentPath = '') => {
   Object.keys(schema).forEach((key) => {
     const path = parentPath ? `${parentPath}.${key}` : key;
 
-    const type = COMPONENTS[schema[key].c];
+    const { type } = COMPONENTS[schema[key].c];
+    if (type === 'Enh') return;
     if (type === 'array') {
       // do somthing
       const value = _get(data, path);

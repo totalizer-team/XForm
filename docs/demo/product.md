@@ -1,13 +1,12 @@
 ---
-group:
-  title:  示例
-  order: 1
-order: 03
+order: 04
 toc: content
 mobile: false
 ---
 
 # Product
+
+创建一个商品。
 
 Add a new product.
 

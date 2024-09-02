@@ -1,3 +1,6 @@
+/**
+ * 引入基础组件
+ */
 import Checkbox from './Checkbox';
 import Checked from './Checked';
 import DatePicker from './DatePicker';
@@ -11,8 +14,17 @@ import Switch from './Switch';
 import TextField from './TextField';
 import TimePicker from './TimePicker';
 
+/**
+ * 引入结构组件
+ */
 import ArrayList from './ArrayList';
 import ObjectBlock from './ObjectBlock';
+
+/**
+ * 引入增强组件
+ */
+import EnhFormTitle from './Enh/FormTitle';
+import EnhLink from './Enh/Link';
 
 const COMPONENTS = {};
 const DEFAULT_VALUE = {};
@@ -55,6 +67,12 @@ registerComponent('Slider', Slider, 0);
  */
 registerComponent('ArrayList', ArrayList, [], 'array');
 registerComponent('ObjectBlock', ObjectBlock, {}, 'object');
+
+/**
+ * 增强组件
+ */
+registerComponent('Enh.FormTitle', EnhFormTitle, '', 'Enh');
+registerComponent('Enh.Link', EnhLink, '', 'Enh');
 
 export default COMPONENTS;
 

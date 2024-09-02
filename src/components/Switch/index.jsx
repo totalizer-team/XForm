@@ -10,8 +10,8 @@ export default observer(({
 }) => {
   const {
     label,
-    onText = '',
-    offText = '',
+    onTitle = '',
+    offTitle = '',
     disabled,
     helperText,
     errorMsg,
@@ -46,7 +46,7 @@ export default observer(({
             }}
           />
         )}
-        label={value ? onText : offText}
+        label={value ? onTitle : offTitle}
         labelPlacement={labelPlacement}
       />
       <FormHelperText>{errorMsg || helperText}</FormHelperText>

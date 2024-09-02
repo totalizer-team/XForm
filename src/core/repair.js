@@ -19,6 +19,17 @@ const _setDefault = (schema) => {
   });
 };
 
+const _setEnhDefault = (schema) => {
+  const DEFAULT_CONFIG = {
+    visible: true,
+  };
+  Object.keys(DEFAULT_CONFIG).forEach((key) => {
+    if ([null, undefined].includes(schema[key])) {
+      schema[key] = DEFAULT_CONFIG[key];
+    }
+  });
+};
+
 const _setObjectDefault = (config) => {
   config.default = {};
   Object.keys(config.schema).forEach((key) => {
@@ -31,7 +42,9 @@ const _fillDefaults = (schema) => {
     const itemSchema = schema[key];
 
     const { type } = COMPONENTS[itemSchema.c];
-    if (type === 'object') {
+
+    if (type === 'Enh') _setEnhDefault(itemSchema);
+    else if (type === 'object') {
       _setDefault(itemSchema);
       _fillDefaults(itemSchema.schema);
       _setObjectDefault(itemSchema);

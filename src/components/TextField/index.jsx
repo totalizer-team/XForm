@@ -1,8 +1,13 @@
-import { useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   TextField,
   InputAdornment,
+  IconButton,
 } from '@mui/material';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 import { observer } from 'mobx-react';
 
 export default observer(({
@@ -30,6 +35,8 @@ export default observer(({
     startAdornment = '',
   } = $$store.context(path);
 
+  const [showPassword, setShowPassword] = useState(!!type === 'password');
+
   // 渲染组件
   const value = $$store.getValue(path);
 
@@ -37,7 +44,7 @@ export default observer(({
     $$store.linkage(path);
   }, [value]);
 
-  const componentProps = { variant, type, placeholder };
+  const componentProps = { variant, placeholder };
   if (multiline === true) {
     componentProps.multiline = multiline;
     if (rows) componentProps.rows = rows;
@@ -53,6 +60,22 @@ export default observer(({
   if (startAdornment) {
     InputProps.startAdornment = <InputAdornment position="start">{startAdornment}</InputAdornment>;
   }
+
+  if (type === 'password') {
+    InputProps.endAdornment = (
+      <InputAdornment position="end">
+        <IconButton
+          onClick={() => { setShowPassword((show) => !show); }}
+          onMouseDown={(e) => e.preventDefault()}
+          onMouseUp={(e) => e.preventDefault()}
+          edge="end"
+        >
+          {showPassword ? <VisibilityOff /> : <Visibility />}
+        </IconButton>
+      </InputAdornment>
+    );
+  }
+
   componentProps.InputProps = InputProps;
 
   return (
@@ -71,6 +94,7 @@ export default observer(({
       onBlur={() => $$store.validate(path)}
       error={!!errorMsg}
       helperText={errorMsg || helperText}
+      type={showPassword ? 'text' : 'password'}
       {...componentProps}
     />
   );

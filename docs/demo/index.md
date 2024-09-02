@@ -9,6 +9,7 @@ mobile: false
 
 # 示例预览
 
-* [login](/demo/login)
-* [account](/demo/account)
-* [product](/demo/product)
+* [Login](/demo/login)
+* [Register](/demo/register)
+* [Account](/demo/account)
+* [Product](/demo/product)

@@ -1,8 +1,5 @@
 ---
-group:
-  title:  示例
-  order: 1
-order: 02
+order: 03
 toc: content
 mobile: false
 ---

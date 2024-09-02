@@ -11,7 +11,7 @@ class Store {
    * 定义 myFormData 用于存储表单数据
    * $$merge 方法能够确保传入的数据与schema保持一致
    */
-  myFormData = $$merge(schema, { title: '2' });
+  myFormData = $$merge(schema, {});
 
   constructor() {
     makeAutoObservable(this);

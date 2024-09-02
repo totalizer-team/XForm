@@ -65,11 +65,14 @@ class Store {
   }
 
   resetStatus(path, visible) {
-    console.log('=======', path, this.componentStatus[path]);
+    // console.log('=======', path, this.componentStatus[path].visible, visible);
     /**
-     * 如果 visible 不产出变化，不进行值操作
+     *
+     * 此优化产生bug，导致visible无法联动，但如果去除
+     * 首次进入回执行这个操作，这个变化是否引起重复渲染，需要测试
+     * 暂时删除该优化
      * */
-    if (this.componentStatus[path].visible === visible) return;
+    // if (this.componentStatus[path].visible === visible) return;
 
     this.componentStatus[path].errorMsg = '';
     this.componentStatus[path].visible = visible;

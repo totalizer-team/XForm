@@ -1,4 +1,10 @@
 const schema = {
+  _title: {
+    c: 'Enh.FormTitle',
+    xs: 12,
+    title: 'Add a new product',
+    secondary: 'Orders placed across your store',
+  },
   left: {
     c: 'ObjectBlock',
     xs: 8,

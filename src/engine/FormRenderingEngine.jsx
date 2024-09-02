@@ -13,7 +13,12 @@ const FormItem = observer(({
 }) => {
   console.log('~~~ FormItem', path);
 
-  const { c, xs } = schema;
+  const {
+    c,
+    xs,
+    justifyContent = '',
+    alignItems = '',
+  } = schema;
   const Child = COMPONENTS[c].c;
 
   // 注册组件状态
@@ -36,8 +41,17 @@ const FormItem = observer(({
 
   if (!visible) return '';
 
+  let sx = {};
+  if (justifyContent || alignItems) {
+    sx = {
+      display: 'flex',
+      justifyContent,
+      alignItems,
+    };
+  }
+
   return (
-    <Grid size={xs || 12}>
+    <Grid size={xs || 12} sx={sx}>
       <Child
         path={path}
         $$store={$$store}

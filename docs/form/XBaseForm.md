@@ -1,8 +1,5 @@
 ---
-group:
-  title: 组件
-  order: 0
-order: 02
+order: 01
 toc: content
 mobile: false
 ---
