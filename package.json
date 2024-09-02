@@ -89,6 +89,9 @@
     "stylelint": "^14.9.1",
     "typescript": "^5.0.3"
   },
+  "resolutions": {
+    "coa": "2.0.2"
+  },
   "publishConfig": {
     "access": "public"
   },
