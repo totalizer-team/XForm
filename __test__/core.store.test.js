@@ -46,5 +46,4 @@ describe('module: src/code/Store', () => {
   // 测试对外方法 $getValue
   // 测试对外方法 $get
   // 测试对外方法 $set
-  //
 });
