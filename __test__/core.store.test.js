@@ -38,10 +38,6 @@ describe('module: src/code/Store', () => {
     expect(storeIns.getValue('myFormData.title')).toBe('new title');
   });
 
-  // test('husky test', () => {
-  //   expect(1).toBe(2);
-  // });
-
   // TODO: add more test cases
   // 测试嵌套对象
   // 测试字段不存在异常
