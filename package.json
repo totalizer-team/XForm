@@ -23,7 +23,7 @@
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "npm run compile && np --yolo --no-publish",
     "start": "npm run dev",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "commitlint": {
     "extends": [
