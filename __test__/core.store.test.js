@@ -36,7 +36,7 @@ describe('module: src/code/Store', () => {
     expect(storeIns.getValue('myFormData.title')).toBe('new title');
   });
 
-  test('husky', () => {
+  test('husky test', () => {
     expect(1).toBe(2);
   });
 
