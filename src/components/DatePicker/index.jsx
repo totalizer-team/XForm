@@ -1,18 +1,12 @@
-import { useState, useEffect } from 'react';
-import {
-  Select, MenuItem, FormControl, InputLabel, FormHelperText,
-} from '@mui/material';
+import { useEffect, useState } from 'react';
 
-import dayjs from 'dayjs';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 import { observer } from 'mobx-react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -32,12 +26,15 @@ export default observer(({
    * 由于禁止键盘输入，所以取消了内置错误时间输入的校验
    */
   // $$store.setRule(path, (v) => {
-  //   const {
-  //     minDate = dayjs('1900-01-01'),
-  //     maxDate = dayjs('2099-12-31'),
-  //   } = componentsProps;
+  //   const { minDate = dayjs('1900-01-01'), maxDate = dayjs('2099-12-31') } =
+  //     componentsProps;
   //   if (v === 'Invalid Date') return '无效日期';
-  //   if (dayjs(v, dataFormat).isBefore(minDate, 'day') || dayjs(v, dataFormat).isAfter(maxDate, 'day')) { return '无效日期'; }
+  //   if (
+  //     dayjs(v, dataFormat).isBefore(minDate, 'day') ||
+  //     dayjs(v, dataFormat).isAfter(maxDate, 'day')
+  //   ) {
+  //     return '无效日期';
+  //   }
   //   return '';
   // });
 
@@ -58,10 +55,10 @@ export default observer(({
         onChange={(v) => {
           $$store.setValue(path, dayjs(v).format(dataFormat));
         }}
-        onClose={(() => {
+        onClose={() => {
           _validate();
           setOpen(false);
-        })}
+        }}
         onOpen={() => {
           setOpen(true);
         }}

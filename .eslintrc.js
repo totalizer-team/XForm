@@ -39,5 +39,12 @@ module.exports = {
     'react/no-danger': 0,
     'no-underscore-dangle': 0,
     'import/no-extraneous-dependencies': 0,
+    'no-unused-vars': 0,
+    'import/no-cycle': 0,
+    'import/prefer-default-export': 0,
+    'no-console': 0,
+    'react/jsx-wrap-multilines': 0,
+    'react/no-array-index-key': 0,
+    'no-plusplus': 0,
   },
 };
