@@ -1,3 +1,7 @@
+/**
+ * compact: true
+ */
+
 import { XBaseForm } from '@totalizer/xform';
 import { observer } from 'mobx-react';
 

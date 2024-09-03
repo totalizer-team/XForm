@@ -39,7 +39,7 @@ module.exports = {
     'react/no-danger': 0,
     'no-underscore-dangle': 0,
     'import/no-extraneous-dependencies': 0,
-    'no-unused-vars': 0,
+    // 'no-unused-vars': 0,
     'import/no-cycle': 0,
     'import/prefer-default-export': 0,
     'no-console': 0,

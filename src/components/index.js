@@ -23,8 +23,10 @@ import ObjectBlock from './ObjectBlock';
 /**
  * 引入增强组件
  */
+import EnhFormButton from './Enh/FormButton';
 import EnhFormTitle from './Enh/FormTitle';
 import EnhLink from './Enh/Link';
+import EnhTypography from './Enh/Typography';
 
 const COMPONENTS = {};
 const DEFAULT_VALUE = {};
@@ -71,8 +73,11 @@ registerComponent('ObjectBlock', ObjectBlock, {}, 'object');
 /**
  * 增强组件
  */
+
 registerComponent('Enh.FormTitle', EnhFormTitle, '', 'Enh');
 registerComponent('Enh.Link', EnhLink, '', 'Enh');
+registerComponent('Enh.Typography', EnhTypography, '', 'Enh');
+registerComponent('Enh.FormButton', EnhFormButton, '', 'Enh');
 
 export default COMPONENTS;
 

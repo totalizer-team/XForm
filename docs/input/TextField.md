@@ -24,6 +24,7 @@ TextField, including support for single-line text input, multi-line text input, 
 | -------------- | -------- | ---------- | --------------------------------------------- |
 | label          | `string` | ''         | 组件标签                                      |
 | default        | `string` | ``         | 默认值                                        |
+| required       | `bool`   | `false`    | 是否必填                                      |
 | variant        | `string` | `outlined` | 样式。可选值 `outlined`, `filled`, `standard` |
 | placeholder    | `string` | ''         | 占位符                                        |
 | helperText     | `string` | ''         | 提示                                          |

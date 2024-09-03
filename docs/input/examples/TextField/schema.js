@@ -22,6 +22,7 @@ const schema = {
     xs: 12,
     label: 'endAdornment',
     endAdornment: 'kg',
+    required: true,
   },
   startAdornment: {
     c: 'TextField',

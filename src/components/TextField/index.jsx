@@ -22,6 +22,7 @@ export default observer(({
     readOnly,
     helperText,
     errorMsg,
+    required = false,
 
     /** 拓展参数： */
     placeholder = '',
@@ -39,6 +40,17 @@ export default observer(({
 
   // 渲染组件
   const value = $$store.getValue(path);
+
+  /**
+   * 必填项 require
+   * 实验型属性，实现方法有待探讨
+   */
+  if (required) {
+    $$store.setRule(path, (v) => {
+      if ([undefined, null, ''].includes(v)) return '必填项';
+      return '';
+    });
+  }
 
   useEffect(() => {
     $$store.linkage(path);
@@ -80,6 +92,7 @@ export default observer(({
 
   return (
     <TextField
+      required={required}
       value={value}
       onChange={(e) => {
         $$store.setValue(path, e.target.value);

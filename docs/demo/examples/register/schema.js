@@ -37,5 +37,23 @@ const schema = {
     title: 'I agree to [Terms of Use](/) and [Privacy Policy](/)',
     default: true,
   },
+  _btn: {
+    c: 'Enh.FormButton',
+    xs: 12,
+    text: 'SIGN UP',
+    size: 'large',
+    alignItems: 'center',
+    justifyContent: 'center',
+    onClick: ($$store) => {
+      console.log($$store.getValue($$store.path));
+    },
+  },
+  _link2: {
+    c: 'Enh.Typography',
+    xs: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    text: 'Already have an account? [Sign in instead](/demo/login)',
+  },
 };
 export default schema;

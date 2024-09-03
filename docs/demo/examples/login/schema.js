@@ -16,12 +16,12 @@ const schema = {
         $set('account', 'visible', true);
         $set('password', 'visible', true);
         $set('phone', 'visible', false);
-        $set('code', 'visible', false);
+        $set('_btn', 'text', 'Sign In');
       } else if (v === 'phone') {
         $set('account', 'visible', false);
         $set('password', 'visible', false);
         $set('phone', 'visible', true);
-        $set('code', 'visible', true);
+        $set('_btn', 'text', 'SMS Verification');
       }
     },
   },
@@ -42,12 +42,7 @@ const schema = {
     label: 'Phone Number',
     visible: false,
   },
-  code: {
-    c: 'TextField',
-    xs: 8,
-    label: 'Code',
-    visible: false,
-  },
+
   remember: {
     c: 'Checked',
     xs: 6,
@@ -60,6 +55,24 @@ const schema = {
     justifyContent: 'end',
     title: 'Forget Password?',
     href: '/',
+  },
+  _btn: {
+    c: 'Enh.FormButton',
+    xs: 12,
+    text: 'SIGN IN',
+    size: 'large',
+    alignItems: 'center',
+    justifyContent: 'center',
+    onClick: ($$store) => {
+      console.log($$store.getValue($$store.path));
+    },
+  },
+  _link2: {
+    c: 'Enh.Typography',
+    xs: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    text: 'New on our platform? [Create an account](/demo/register)',
   },
 };
 export default schema;

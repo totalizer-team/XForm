@@ -1,5 +1,5 @@
 import { makeAutoObservable, observable } from 'mobx';
-
+import COMPONENTS from '../components';
 import getPrefixPath from './getPrefixPath';
 
 class Store {
@@ -54,44 +54,73 @@ class Store {
     this.debugMode = v;
   }
 
+  /**
+   * 组件生命周期事件：注册组件状态
+   * 组件初始化时，注册组件的状态
+   * @param {*} path
+   * @param {*} schema
+   * @returns
+   */
   registerStatus(path, schema) {
     if (this.componentStatus[path]) return;
 
-    this.componentStatus[path] = {
-      errorMsg: '', // 错误信息， 类型 String
-      _rule: null, // 组件内置校验规则
-      ...schema,
-    };
-  }
+    const { type } = COMPONENTS[schema.c];
 
-  resetStatus(path, visible) {
-    // console.log('=======', path, this.componentStatus[path].visible, visible);
-    /**
-     *
-     * 此优化产生bug，导致visible无法联动，但如果去除
-     * 首次进入回执行这个操作，这个变化是否引起重复渲染，需要测试
-     * 暂时删除该优化
-     * */
-    // if (this.componentStatus[path].visible === visible) return;
-
-    this.componentStatus[path].errorMsg = '';
-    this.componentStatus[path].visible = visible;
-    if (this.getValue(path) !== this.componentStatus[path].default) {
-      this.setValue(path, this.componentStatus[path].default);
+    if (type === 'Enh') {
+      this.componentStatus[path] = {
+        ...schema,
+      };
+    } else {
+      this.componentStatus[path] = {
+        errorMsg: '', // 错误信息， 类型 String
+        _rule: null, // 组件内置校验规则
+        ...schema,
+      };
     }
-    this.tick = !this.tick;
   }
 
+  /**
+   * 组件生命周期事件：重置组件状态
+   * 组件 visible 发生变化时，重置部分状态，包括 visible errorMsg value
+   * @param {*} path
+   * @param {*} visible
+   */
+  resetStatus(path, visible) {
+    const { type } = COMPONENTS[this.componentStatus[path].c];
+
+    if (type === 'Enh') {
+      this.componentStatus[path].visible = visible;
+    } else {
+      this.componentStatus[path].errorMsg = '';
+      this.componentStatus[path].visible = visible;
+      if (this.getValue(path) !== this.componentStatus[path].default) {
+        this.setValue(path, this.componentStatus[path].default);
+      }
+    }
+  }
+
+  /**
+   * 组件生命周期事件：销毁组件状态
+   * 组件被销毁时触发该事件
+   * @param {*} path
+   */
   destroyStatus(path) {
     delete this.componentStatus[path];
   }
 
-  init() {
+  /**
+   * 表单生命周期事件：表单初始化完成
+   * schema所有组件均已注册完毕，执行 changeAll 以便确保组件的初始状态与联动规则保持一致。
+   */
+  formLoaded() {
     this.changeAll();
     this.loaded = true;
   }
 
-  destroy() {
+  /**
+   * 表单生命周期事件：表单销毁时触发
+   */
+  formDestroy() {
     this.loaded = false;
   }
 

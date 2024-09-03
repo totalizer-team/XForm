@@ -71,9 +71,9 @@ export default observer(({
   console.log('~~~ FormEngine', path);
 
   useEffect(() => {
-    $$store.init();
+    $$store.formLoaded();
     return () => {
-      $$store.destroy();
+      $$store.formDestroy();
     };
   }, []);
   return (
