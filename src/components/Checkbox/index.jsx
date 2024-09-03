@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
 import {
-  Select, ListItemText, FormControl, FormLabel, FormHelperText, RadioGroup, FormControlLabel, Checkbox,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  ListItemText,
+  RadioGroup,
 } from '@mui/material';
 import { observer } from 'mobx-react';
+import { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -34,7 +37,7 @@ export default observer(({
   });
 
   const checked = new Map();
-  _options.map((el) => {
+  _options.forEach((el) => {
     checked.set(el.value, value.includes(el.value));
   });
 
@@ -43,33 +46,28 @@ export default observer(({
   return (
     <FormControl error={!!errorMsg}>
       <FormLabel disabled={disabled}>{label}</FormLabel>
-      <RadioGroup
-        row={row}
-      >
+      <RadioGroup row={row}>
         {_options.map((el, i) => (
           <FormControlLabel
             value={i}
             key={el.value}
-            control={(
+            control={
               <Checkbox
                 checked={checked.get(el.value)}
                 onChange={(e, v) => {
                   checked.set(el.value, v);
                   const res = [];
-                  for (const [k, v] of checked.entries()) {
-                    if (v) res.push(k);
+                  const entries = checked.entries();
+                  // eslint-disable-next-line no-restricted-syntax
+                  for (const [subK, subV] of entries) {
+                    if (subV) res.push(subK);
                   }
                   $$store.setValue(path, res);
                   $$store.validate(path);
                 }}
               />
-            )}
-            label={(
-              <ListItemText
-                primary={el.label}
-                secondary={el.secondary}
-              />
-            )}
+            }
+            label={<ListItemText primary={el.label} secondary={el.secondary} />}
             disabled={disabled || !!el.disabled}
           />
         ))}

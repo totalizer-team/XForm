@@ -1,4 +1,6 @@
-import { beforeEach, describe, expect, test } from '@jest/globals';
+import {
+  beforeEach, describe, expect, test,
+} from '@jest/globals';
 import $$Store from '../src/core/Store';
 import schema from './instance/schema';
 import store from './instance/store';
@@ -36,9 +38,9 @@ describe('module: src/code/Store', () => {
     expect(storeIns.getValue('myFormData.title')).toBe('new title');
   });
 
-  test('husky test', () => {
-    expect(1).toBe(2);
-  });
+  // test('husky test', () => {
+  //   expect(1).toBe(2);
+  // });
 
   // TODO: add more test cases
   // 测试嵌套对象
