@@ -14,6 +14,7 @@ export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
+    required,
     helperText,
     options = [],
     errorMsg,
@@ -45,7 +46,7 @@ export default observer(({ path = '', $$store = null }) => {
 
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
       <RadioGroup row={row}>
         {_options.map((el, i) => (
           <FormControlLabel

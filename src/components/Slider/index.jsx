@@ -11,6 +11,7 @@ export default observer(({
   const {
     label,
     disabled,
+    required,
     helperText,
     errorMsg,
 
@@ -51,7 +52,7 @@ export default observer(({
 
   return (
     <FormControl fullWidth error={!!errorMsg}>
-      <FormLabel disabled={disabled}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
       <Slider
         value={value}
         disabled={disabled}

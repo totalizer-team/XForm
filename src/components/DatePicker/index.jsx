@@ -10,6 +10,7 @@ export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
+    required,
     helperText,
     errorMsg,
     dataFormat = 'YYYY-MM-DD',
@@ -65,6 +66,7 @@ export default observer(({ path = '', $$store = null }) => {
         disabled={disabled}
         slotProps={{
           textField: {
+            required,
             size: 'medium',
             error: !!errorMsg,
             helperText: errorMsg || helperText,

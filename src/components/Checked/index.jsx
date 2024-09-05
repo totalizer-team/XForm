@@ -44,6 +44,7 @@ export default observer(({ path = '', $$store = null }) => {
     label = '',
     title = '',
     disabled,
+    required,
     helperText,
     errorMsg,
   } = $$store.context(path);
@@ -78,7 +79,7 @@ export default observer(({ path = '', $$store = null }) => {
 
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
       <FormControlLabel
         control={(
           <Checkbox

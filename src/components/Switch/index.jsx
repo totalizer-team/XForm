@@ -13,6 +13,7 @@ export default observer(({
     onTitle = '',
     offTitle = '',
     disabled,
+    required,
     helperText,
     errorMsg,
     labelPlacement = 'end',
@@ -28,7 +29,7 @@ export default observer(({
 
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
       <FormControlLabel
         sx={{
           justifyContent: 'start',

@@ -77,7 +77,7 @@ const XDrawerForm = observer(({
             </Typography>
             <Stack direction="row">
               <IconButton onClick={() => {
-                $$store.validateAll();
+                $$store.validateForm();
                 if ($$store.isCorrect) {
                   onSave();
                 }

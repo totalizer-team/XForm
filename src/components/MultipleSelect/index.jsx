@@ -12,7 +12,7 @@ export default observer(({
   const {
     label,
     disabled,
-    readOnly,
+    required,
     helperText,
     options = [],
     errorMsg,
@@ -40,7 +40,7 @@ export default observer(({
 
   return (
     <FormControl fullWidth error={!!errorMsg}>
-      <InputLabel disabled={disabled}>{label}</InputLabel>
+      <InputLabel disabled={disabled} required={required}>{label}</InputLabel>
       <Select
         value={value}
         multiple

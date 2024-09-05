@@ -17,6 +17,7 @@ const schema = {
         disabled: true,
       },
     ],
+    required: true,
     rule: (v) => {
       if (v === 0) return '校验失败，错误选项';
       return '';
@@ -46,5 +47,16 @@ const schema = {
     row: true,
     disabled: true,
   },
+  // _btn: {
+  //   c: 'Enh.FormButton',
+  //   xs: 12,
+  //   text: 'SIGN IN',
+  //   size: 'large',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   onClick: ({ validateForm }) => {
+  //     validateForm();
+  //   },
+  // },
 };
 export default schema;

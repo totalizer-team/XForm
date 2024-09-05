@@ -4,17 +4,21 @@ import getPrefixPath from './getPrefixPath';
 
 class Store {
   /**
-   *
+   * tick 产生变化，需要强制更新的组件进行状态刷新
    */
   tick = true;
 
   /**
-   *
+   * 面板模式：data, schema, stauts
+   * data: 显示当前表单值
+   * schema: 表单的配置 schema
+   * status: 当前组件的状态
    */
   debugMode = 'data';
 
   /**
-   *
+   * 表单生命周期状态
+   * 用来判断表单是否加载完成
    */
   loaded = false;
 
@@ -25,6 +29,7 @@ class Store {
 
   /**
    * 存储原始数据
+   * path store schema
    */
   path = '';
 
@@ -50,6 +55,12 @@ class Store {
     this.tick = !this.tick;
   }
 
+  /**
+   * setDebugMode
+   * 设置面板模式：data, schema, stauts
+   * 参考 debugMode
+   * @param {*} v
+   */
   setDebugMode(v) {
     this.debugMode = v;
   }
@@ -65,6 +76,7 @@ class Store {
     if (this.componentStatus[path]) return;
 
     const { type } = COMPONENTS[schema.c];
+    const { required } = schema;
 
     if (type === 'Enh') {
       this.componentStatus[path] = {
@@ -74,6 +86,14 @@ class Store {
       this.componentStatus[path] = {
         errorMsg: '', // 错误信息， 类型 String
         _rule: null, // 组件内置校验规则
+        _required: required
+          ? (v) => {
+              // 必填项校验规则
+              if ([null, undefined, ''].includes(v)) return 'required';
+              if (Array.isArray(v) && v.length === 0) return 'required';
+              return '';
+            }
+          : null,
         ...schema,
       };
     }
@@ -110,11 +130,11 @@ class Store {
 
   /**
    * 表单生命周期事件：表单初始化完成
-   * schema所有组件均已注册完毕，执行 changeAll 以便确保组件的初始状态与联动规则保持一致。
+   * schema 所有组件均已注册完毕，触发所有组件 schema 的 onChange 事件以便确保组件的初始状态与联动规则保持一致。
    */
   formLoaded() {
-    this.changeAll();
     this.loaded = true;
+    this.changeAll();
   }
 
   /**
@@ -124,6 +144,12 @@ class Store {
     this.loaded = false;
   }
 
+  /**
+   * linkage
+   * 当组件的值发生变化时，触发组件的联动
+   * 组件未全部加载（loaded = false）时，不触发联动
+   * @param {*} path
+   */
   linkage(path) {
     if (this.loaded) {
       this.onChange(path);
@@ -134,12 +160,22 @@ class Store {
     return this.componentStatus[path];
   }
 
+  /**
+   * 设置组件的内置的校验规则（非用户定义的校验规则）
+   * @param {*} path
+   * @param {*} fn
+   */
   setRule(path, fn) {
     if (!this.componentStatus[path]._rule) {
       this.componentStatus[path]._rule = fn;
     }
   }
 
+  /**
+   * 校验组件
+   * 如果组件不可见（visible = false），则不进行校验
+   * @param {*} path
+   */
   validate(path) {
     const { visible } = this.componentStatus[path];
     if (visible) {
@@ -147,13 +183,27 @@ class Store {
 
       let errorMsg = '';
 
+      /**
+       * 组件内置规则校验
+       */
       if (typeof this.componentStatus[path]._rule === 'function') {
-        errorMsg = this.componentStatus[path]._rule(value, {
-          $getValue: this.$getValue.bind(this),
-          prefixPath: getPrefixPath(path, this.path),
-        });
+        errorMsg = this.componentStatus[path]._rule(value);
       }
 
+      /**
+       * 必填项校验规则
+       */
+
+      if (
+        !errorMsg &&
+        typeof this.componentStatus[path]._required === 'function'
+      ) {
+        errorMsg = this.componentStatus[path]._required(value);
+      }
+
+      /**
+       * 自定义校验规则
+       */
       if (!errorMsg && typeof this.componentStatus[path].rule === 'function') {
         errorMsg = this.componentStatus[path].rule(value, {
           $getValue: this.$getValue.bind(this),
@@ -169,18 +219,29 @@ class Store {
     }
   }
 
+  /**
+   * 校验方法，清空组件的错误信息
+   * @param {*} path
+   */
   clearErrorMsg(path) {
     if (this.componentStatus[path].errorMsg) {
       this.componentStatus[path].errorMsg = '';
     }
   }
 
-  validateAll() {
+  /**
+   * 表单校验，依次校验每个组件
+   */
+  validateForm() {
     Object.keys(this.componentStatus).forEach((path) => {
       this.validate(path);
     });
   }
 
+  /**
+   * 联动方法，当组件值发生变化时触发该事件
+   * @param {*} path
+   */
   onChange(path) {
     if (typeof this.componentStatus[path].onChange === 'function') {
       const value = this.getValue(path);
@@ -190,6 +251,15 @@ class Store {
         prefixPath: getPrefixPath(path, this.path),
       });
     }
+  }
+
+  /**
+   * 触发表单所有组件的联动
+   */
+  changeAll() {
+    Object.keys(this.componentStatus).forEach((path) => {
+      this.onChange(path);
+    });
   }
 
   $get(path, attr) {
@@ -213,12 +283,6 @@ class Store {
   $getValue(path) {
     const targetPath = `${this.path}.${path}`;
     return this.store.$$get(targetPath);
-  }
-
-  changeAll() {
-    Object.keys(this.componentStatus).forEach((path) => {
-      this.onChange(path);
-    });
   }
 
   setValue(path, value) {

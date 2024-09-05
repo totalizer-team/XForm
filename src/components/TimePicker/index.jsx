@@ -20,6 +20,7 @@ export default observer(({
   const {
     label,
     disabled,
+    required,
     helperText,
     errorMsg,
     dataFormat = 'HH:mm:ss',
@@ -74,6 +75,7 @@ export default observer(({
         disabled={disabled}
         slotProps={{
           textField: {
+            required,
             size: 'medium',
             error: !!errorMsg,
             helperText: errorMsg || helperText,

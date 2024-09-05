@@ -22,7 +22,7 @@ const FormButton = observer(({
         variant="contained"
         // size="large"
         onClick={() => {
-          $$store.validateAll();
+          $$store.validateForm();
           if ($$store.isCorrect) {
             onSubmit();
           }

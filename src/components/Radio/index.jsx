@@ -12,6 +12,7 @@ export default observer(({
   const {
     label,
     disabled,
+    required,
     helperText,
     options = [],
     errorMsg,
@@ -38,7 +39,7 @@ export default observer(({
 
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
       <RadioGroup
         row={row}
         value={_options.findIndex((el) => el.value === value)}

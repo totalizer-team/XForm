@@ -41,16 +41,16 @@ export default observer(({
   // 渲染组件
   const value = $$store.getValue(path);
 
-  /**
-   * 必填项 require
-   * 实验型属性，实现方法有待探讨
-   */
-  if (required) {
-    $$store.setRule(path, (v) => {
-      if ([undefined, null, ''].includes(v)) return '必填项';
-      return '';
-    });
-  }
+  // /**
+  //  * 必填项 require
+  //  * 实验型属性，实现方法有待探讨
+  //  */
+  // if (required) {
+  //   $$store.setRule(path, (v) => {
+  //     if ([undefined, null, ''].includes(v)) return '必填项';
+  //     return '';
+  //   });
+  // }
 
   useEffect(() => {
     $$store.linkage(path);
