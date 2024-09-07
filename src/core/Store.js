@@ -269,6 +269,12 @@ class Store {
       validate: this.validateForm.bind(this),
       reset: () => {
         this.setValue(this.path, merge(this.schema, {}));
+        Object.keys(this.componentStatus).forEach((key) => {
+          if (this.componentStatus[key].errorMsg) {
+            this.componentStatus[key].errorMsg = '';
+          }
+        });
+        this.changeAll();
       },
       getFormValues: () => JSON.parse(JSON.stringify(this.getValue(this.path))),
     };

@@ -18,6 +18,7 @@ export default observer(({
     variant = 'contained',
     disabled = false,
     fullWidth = true,
+    width,
     onClick = () => { },
   } = $$store.context(path);
 
@@ -26,6 +27,9 @@ export default observer(({
   useEffect(() => {
     $$store.linkage(path);
   }, []);
+
+  const extraProps = {};
+  if (width) extraProps.width = width;
 
   return (
     <Button
@@ -39,6 +43,7 @@ export default observer(({
       }}
       sx={{
         textTransform: 'none',
+        ...extraProps,
       }}
     >
       {text}

@@ -14,8 +14,9 @@ mobile: false
 
 ## Props
 
-| 名称      | 类型     | 默认值 | 描述   |
-| --------- | -------- | ------ | ------ |
-| title     | `string` | `''`   | 标题   |
-| secondary | `string` | `''`   | 副标题 |
+| 名称      | 类型     | 默认值 | 描述                      |
+| --------- | -------- | ------ | ------------------------- |
+| title     | `string` | `''`   | 标题                      |
+| secondary | `string` | `''`   | 副标题                    |
+| align     | `string` | `left` | `left`, `center`, `right` |
 
