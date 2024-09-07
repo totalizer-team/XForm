@@ -36,21 +36,10 @@ export default observer(({
     startAdornment = '',
   } = $$store.context(path);
 
-  const [showPassword, setShowPassword] = useState(!!type === 'password');
+  const [showPassword, setShowPassword] = useState(type === 'password');
 
   // 渲染组件
   const value = $$store.getValue(path);
-
-  // /**
-  //  * 必填项 require
-  //  * 实验型属性，实现方法有待探讨
-  //  */
-  // if (required) {
-  //   $$store.setRule(path, (v) => {
-  //     if ([undefined, null, ''].includes(v)) return '必填项';
-  //     return '';
-  //   });
-  // }
 
   useEffect(() => {
     $$store.linkage(path);
@@ -107,7 +96,7 @@ export default observer(({
       onBlur={() => $$store.validate(path)}
       error={!!errorMsg}
       helperText={errorMsg || helperText}
-      type={showPassword ? 'text' : 'password'}
+      type={showPassword ? 'password' : 'text'}
       {...componentProps}
     />
   );

@@ -1,6 +1,7 @@
 import { makeAutoObservable, observable } from 'mobx';
 import COMPONENTS from '../components';
 import getPrefixPath from './getPrefixPath';
+import merge from './merge';
 
 class Store {
   /**
@@ -88,11 +89,11 @@ class Store {
         _rule: null, // 组件内置校验规则
         _required: required
           ? (v) => {
-              // 必填项校验规则
-              if ([null, undefined, ''].includes(v)) return 'required';
-              if (Array.isArray(v) && v.length === 0) return 'required';
-              return '';
-            }
+            // 必填项校验规则
+            if ([null, undefined, ''].includes(v)) return 'Required!';
+            if (Array.isArray(v) && v.length === 0) return 'Required!';
+            return '';
+          }
           : null,
         ...schema,
       };
@@ -178,10 +179,9 @@ class Store {
    */
   validate(path) {
     const { visible } = this.componentStatus[path];
+    let errorMsg = '';
     if (visible) {
       const value = this.getValue(path);
-
-      let errorMsg = '';
 
       /**
        * 组件内置规则校验
@@ -195,8 +195,8 @@ class Store {
        */
 
       if (
-        !errorMsg &&
-        typeof this.componentStatus[path]._required === 'function'
+        !errorMsg
+        && typeof this.componentStatus[path]._required === 'function'
       ) {
         errorMsg = this.componentStatus[path]._required(value);
       }
@@ -205,18 +205,13 @@ class Store {
        * 自定义校验规则
        */
       if (!errorMsg && typeof this.componentStatus[path].rule === 'function') {
-        errorMsg = this.componentStatus[path].rule(value, {
-          $getValue: this.$getValue.bind(this),
-          prefixPath: getPrefixPath(path, this.path),
-        });
+        errorMsg = this.componentStatus[path].rule(value, this.events(path));
       }
-
-      if (this.componentStatus[path].errorMsg !== errorMsg) {
-        this.componentStatus[path].errorMsg = errorMsg;
-      }
-    } else {
-      this.componentStatus[path].errorMsg = '';
     }
+    if (this.componentStatus[path].errorMsg !== errorMsg) {
+      this.componentStatus[path].errorMsg = errorMsg;
+    }
+    return errorMsg;
   }
 
   /**
@@ -233,9 +228,12 @@ class Store {
    * 表单校验，依次校验每个组件
    */
   validateForm() {
+    let isCorrect = true;
     Object.keys(this.componentStatus).forEach((path) => {
-      this.validate(path);
+      const errorMsg = this.validate(path);
+      if (errorMsg) isCorrect = false;
     });
+    return isCorrect;
   }
 
   /**
@@ -245,11 +243,7 @@ class Store {
   onChange(path) {
     if (typeof this.componentStatus[path].onChange === 'function') {
       const value = this.getValue(path);
-      this.componentStatus[path].onChange(value, {
-        $get: this.$get.bind(this),
-        $set: this.$set.bind(this),
-        prefixPath: getPrefixPath(path, this.path),
-      });
+      this.componentStatus[path].onChange(value, this.events(path));
     }
   }
 
@@ -262,10 +256,28 @@ class Store {
     });
   }
 
+  /**
+   * 暴露给用户操控表单的事件函数
+   * @param {*} path
+   * @returns
+   */
+  events(path = '') {
+    return {
+      prefixPath: path ? getPrefixPath(path, this.path) : '',
+      get: this.$get.bind(this),
+      set: this.$set.bind(this),
+      validate: this.validateForm.bind(this),
+      reset: () => {
+        this.setValue(this.path, merge(this.schema, {}));
+      },
+      getFormValues: () => JSON.parse(JSON.stringify(this.getValue(this.path))),
+    };
+  }
+
   $get(path, attr) {
     const targetPath = `${this.path}.${path}`;
     if (attr === 'value') {
-      return this.store.$$get(targetPath);
+      return this.getValue(targetPath);
     }
 
     return this.componentStatus[targetPath][attr];
@@ -274,7 +286,7 @@ class Store {
   $set(path, attr, value) {
     const targetPath = `${this.path}.${path}`;
     if (attr === 'value') {
-      this.store.$$set(targetPath, value);
+      this.setValue(targetPath, value);
     } else {
       this.componentStatus[targetPath][attr] = value;
     }
@@ -288,17 +300,10 @@ class Store {
   setValue(path, value) {
     this.store.$$set(path, value);
     this.setTick();
-    // this.validate(path);
   }
 
   getValue(path) {
     return this.store.$$get(path);
-  }
-
-  get isCorrect() {
-    return Object.keys(this.componentStatus)
-      .filter((el) => el.visible)
-      .every((key) => this.componentStatus[key].errorMsg === '');
   }
 }
 export default Store;

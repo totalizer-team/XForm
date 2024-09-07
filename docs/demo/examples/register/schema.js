@@ -9,11 +9,17 @@ const schema = {
     c: 'TextField',
     xs: 12,
     label: 'Username',
+    required: true,
   },
   email: {
     c: 'TextField',
     xs: 12,
     label: 'Email',
+    required: true,
+    rule: (value) => {
+      if (!(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))) return 'Please enter the correct email!';
+      return '';
+    },
   },
   password: {
     c: 'TextField',
@@ -22,6 +28,11 @@ const schema = {
     type: 'password',
     placeholder: 'Set the login password',
     helperText: 'Passwords must be at least 6 characters.',
+    required: true,
+    rule: (value) => {
+      if (value.length < 6) return 'Passwords must be at least 6 characters.';
+      return '';
+    },
   },
   confirmPassword: {
     c: 'TextField',
@@ -29,13 +40,21 @@ const schema = {
     label: 'Confirm Password',
     type: 'password',
     placeholder: 'Enter the login password again',
+    required: true,
+    rule: (value, { get }) => {
+      const password = get('password', 'value');
+      if (value !== password) return 'The two passwords do not match. Please enter them again!';
+      return '';
+    },
   },
-
   agree: {
     c: 'Checked',
     xs: 12,
     title: 'I agree to [Terms of Use](/) and [Privacy Policy](/)',
-    default: true,
+    rule: (value) => {
+      if (value !== true) return 'Please check the agreement!';
+      return '';
+    },
   },
   _btn: {
     c: 'Enh.FormButton',
@@ -44,8 +63,12 @@ const schema = {
     size: 'large',
     alignItems: 'center',
     justifyContent: 'center',
-    onClick: ($$store) => {
-      console.log($$store.getValue($$store.path));
+    onClick: ({ getFormValues, validate }) => {
+      if (validate()) {
+        console.log(getFormValues());
+      } else {
+        console.log('VERIFICATION FAILED');
+      }
     },
   },
   _link2: {

@@ -13,8 +13,8 @@ const schema = {
     size: 'small',
     variant: 'text',
     fullWidth: false,
-    onClick: ($$store) => {
-      console.log($$store.getValue($$store.path));
+    onClick: () => {
+      console.log('setting');
     },
   },
   Username: {
@@ -30,8 +30,8 @@ const schema = {
     justifyContent: 'center',
     size: 'large',
     variant: 'outlined',
-    onClick: ($$store) => {
-      console.log($$store.getValue($$store.path));
+    onClick: ({ reset }) => {
+      reset();
     },
   },
   _sbumit: {
@@ -41,8 +41,8 @@ const schema = {
     alignItems: 'center',
     justifyContent: 'center',
     size: 'large',
-    onClick: ($$store) => {
-      console.log($$store.getValue($$store.path));
+    onClick: ({ getFormValues }) => {
+      console.log(getFormValues());
     },
   },
 };

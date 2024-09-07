@@ -10,41 +10,11 @@ import $$Store from './core/Store';
 import FormRenderingEngine from './engine/FormRenderingEngine';
 import Dashboard from './debug/Dashboard';
 
-const FormButton = observer(({
-  $$store = null,
-  hasSubmit = false,
-  submitText = 'Submit',
-  onSubmit = () => {},
-}) => {
-  if (hasSubmit) {
-    return (
-      <Button
-        variant="contained"
-        // size="large"
-        onClick={() => {
-          $$store.validateForm();
-          if ($$store.isCorrect) {
-            onSubmit();
-          }
-        }}
-      >
-        {submitText}
-      </Button>
-    );
-  }
-
-  return '';
-});
-
 const XBaseForm = observer(({
   path = '',
   store = null,
   schema,
   debug = false,
-
-  hasSubmit = false,
-  submitText = 'Submit',
-  onSubmit = () => {},
 }) => {
   console.log('~~~ XBaseForm');
 
@@ -58,20 +28,12 @@ const XBaseForm = observer(({
           width: '60%', minHeight: 400, p: 4, boxSizing: 'border-box',
         }}
         >
-          <Stack spacing={2}>
-            <FormRenderingEngine
-              path={path}
-              store={store}
-              schema={correctSchema}
-              $$store={$$store}
-            />
-            <FormButton
-              $$store={$$store}
-              hasSubmit={hasSubmit}
-              submitText={submitText}
-              onSubmit={onSubmit}
-            />
-          </Stack>
+          <FormRenderingEngine
+            path={path}
+            store={store}
+            schema={correctSchema}
+            $$store={$$store}
+          />
         </Box>
         <Box sx={{
           position: 'absolute',
@@ -88,20 +50,12 @@ const XBaseForm = observer(({
   }
 
   return (
-    <Stack spacing={2} sx={{ width: '100%' }}>
-      <FormRenderingEngine
-        path={path}
-        store={store}
-        schema={correctSchema}
-        $$store={$$store}
-      />
-      <FormButton
-        $$store={$$store}
-        hasSubmit={hasSubmit}
-        submitText={submitText}
-        onSubmit={onSubmit}
-      />
-    </Stack>
+    <FormRenderingEngine
+      path={path}
+      store={store}
+      schema={correctSchema}
+      $$store={$$store}
+    />
   );
 });
 

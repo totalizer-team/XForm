@@ -11,17 +11,17 @@ const schema = {
     options: ['username', 'phone'],
     default: 'username',
     row: true,
-    onChange: (v, { $set }) => {
+    onChange: (v, { set }) => {
       if (v === 'username') {
-        $set('account', 'visible', true);
-        $set('password', 'visible', true);
-        $set('phone', 'visible', false);
-        $set('_btn', 'text', 'Sign In');
+        set('account', 'visible', true);
+        set('password', 'visible', true);
+        set('phone', 'visible', false);
+        set('_btn', 'text', 'Sign In');
       } else if (v === 'phone') {
-        $set('account', 'visible', false);
-        $set('password', 'visible', false);
-        $set('phone', 'visible', true);
-        $set('_btn', 'text', 'SMS Verification');
+        set('account', 'visible', false);
+        set('password', 'visible', false);
+        set('phone', 'visible', true);
+        set('_btn', 'text', 'SMS Verification');
       }
     },
   },
@@ -29,20 +29,22 @@ const schema = {
     c: 'TextField',
     xs: 12,
     label: 'Username or Email',
+    required: true,
   },
   password: {
     c: 'TextField',
     xs: 12,
     label: 'password',
     type: 'password',
+    required: true,
   },
   phone: {
     c: 'TextField',
     xs: 12,
     label: 'Phone Number',
     visible: false,
+    required: true,
   },
-
   remember: {
     c: 'Checked',
     xs: 6,
@@ -63,8 +65,12 @@ const schema = {
     size: 'large',
     alignItems: 'center',
     justifyContent: 'center',
-    onClick: ($$store) => {
-      console.log($$store.getValue($$store.path));
+    onClick: ({ getFormValues, validate }) => {
+      if (validate()) {
+        console.log(getFormValues());
+      } else {
+        console.log('VERIFICATION FAILED');
+      }
     },
   },
   _link2: {

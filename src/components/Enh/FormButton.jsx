@@ -35,7 +35,7 @@ export default observer(({
       color={color}
       disabled={disabled}
       onClick={() => {
-        onClick($$store);
+        onClick($$store.events(path));
       }}
       sx={{
         textTransform: 'none',
