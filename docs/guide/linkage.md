@@ -48,9 +48,10 @@ export default schema;
 
 代码解释：
 
-* `onChange(value, { $get, $set })`: 该方法在组件值发生改变时触发，以便控制其他组件的状态。
+* `onChange(value, XFormEvents)`: 该方法在组件值发生改变时触发，以便控制其他组件的状态。
 * `value` : 当前组件的值。
 * `set(path, attr, value)`: 将路径 `path` 对应的组件的属性 `attr` 的值设置为 `value`。
+* XFormEvents: 详见 [事件](/guide/events)。
 
 
 ## 触发时机
@@ -58,6 +59,6 @@ export default schema;
 * 在表单初始化完成时，会触发一次 onChange 事件，以确保组件间的状态符合 onChange 中定义的逻辑。
 * 无论以任何方式导致组件的值发生改变，都会触发 onChange 事件。
 
-## 完整示例
+## 代码示例
 
 <code src="./examples/linkage" compact background="#fff"></code>

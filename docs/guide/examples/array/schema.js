@@ -2,23 +2,23 @@ const schema = {
   organizationName: {
     c: 'TextField',
     xs: 12,
-    label: '组织名称',
+    label: 'Organization Name',
   },
   member: {
     c: 'ArrayList',
     xs: 12,
-    label: '成员',
+    label: 'Member',
     schema: {
       name: {
         c: 'TextField',
         xs: 6,
-        label: '姓名',
+        label: 'Name',
       },
       sex: {
         c: 'Select',
         xs: 6,
-        label: '性别',
-        options: ['男', '女'],
+        label: 'Sex',
+        options: ['male', 'female'],
       },
     },
   },

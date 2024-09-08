@@ -16,7 +16,7 @@ TextField, including support for single-line text input, multi-line text input, 
 * Output data type: `string`
 * Default value: `''`
 
-## single-line text input
+## Single-line text input
 
 <code src="./examples/TextField" compact background="#fff"></code>
 
@@ -31,7 +31,7 @@ TextField, including support for single-line text input, multi-line text input, 
 | startAdornment | `string` | ''         | 开始位置装饰符                                |
 | endAdornment   | `string` | ''         | 结束为止装饰符                                |
 
-## multi-line text input
+## Multi-line text input
 
 <code src="./examples/TextFieldMultiline" compact background="#fff"></code>
 
@@ -42,7 +42,7 @@ TextField, including support for single-line text input, multi-line text input, 
 | minRows   | `number` | `-`     | 多行输入时，最小行数 |
 | rows      | `number` | 1       | 多行输入时，固定行数 |
 
-## password input
+## Password input
 
 <code src="./examples/TextFieldPassword" compact background="#fff"></code>
 

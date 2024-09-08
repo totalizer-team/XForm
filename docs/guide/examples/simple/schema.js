@@ -2,18 +2,18 @@ const schema = {
   title: {
     c: 'TextField',
     xs: 6,
-    label: '标题',
+    label: 'Title',
   },
   type: {
     c: 'Select',
     xs: 6,
-    label: '类型',
+    label: 'Type',
     options: [1, 2, 3],
   },
   des: {
     c: 'TextField',
     xs: 12,
-    label: '描述',
+    label: 'Description',
     multiline: true,
     minRows: 5,
     maxRows: 10,

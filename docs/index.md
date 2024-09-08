@@ -21,8 +21,10 @@ features:
 
 ---
 
-<div style="width:400px;margin:0 auto;">
-<image src="../public/logo.png" style="display:block;transform:scale(1.2)"/>
+<div style="width:300px;margin:40px auto 20px;">
+<image src="../public/logo.png" style="display:block;transform:scale(1.5)"/>
 </div>
-
-<p style="text-align:center;font-size:28px">正式版本，即将发布</p>
+<p style="padding:0;margin:0;text-align:center;font-size:52px;font-weight:bold;line-height:1.5;">XForm</p>
+<p style="padding:0;margin:0;text-align:center;font-size:28px;">卓越的数据录入体验 + 极致的产品研发效能</p>
+<p style="padding:0;margin:0;text-align:center;font-size:22px;color:#08c;">正式版本，即将发布</p>
+<div style="height:50px"></div>

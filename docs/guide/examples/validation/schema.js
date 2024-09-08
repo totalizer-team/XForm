@@ -5,20 +5,29 @@ const schema = {
     label: 'Username',
     required: true,
   },
-  pwd: {
+  password: {
     c: 'TextField',
     xs: 12,
     label: 'Password',
+    type: 'password',
+    placeholder: 'Set the login password',
+    helperText: 'Passwords must be at least 6 characters.',
     required: true,
+    rule: (value) => {
+      if (value.length < 6) return 'Passwords must be at least 6 characters.';
+      return '';
+    },
   },
-  pwd2: {
+  confirmPassword: {
     c: 'TextField',
     xs: 12,
     label: 'Confirm Password',
+    type: 'password',
+    placeholder: 'Enter the login password again',
     required: true,
     rule: (value, { get }) => {
-      const pwd = get('pwd', 'value');
-      if (value !== pwd) return '两次密码必须一致';
+      const password = get('password', 'value');
+      if (value !== password) return 'The two passwords do not match. Please enter them again!';
       return '';
     },
   },

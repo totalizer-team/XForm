@@ -2,35 +2,35 @@ const schema = {
   information: {
     c: 'ObjectBlock',
     xs: 12,
-    label: '身份信息',
+    label: 'Information',
     schema: {
       name: {
         c: 'TextField',
         xs: 6,
-        label: '姓名',
+        label: 'Name',
       },
       sex: {
         c: 'Select',
         xs: 6,
-        label: '性别',
-        options: ['男', '女'],
+        label: 'Sex',
+        options: ['male', 'female'],
       },
     },
   },
-  account: {
+  contact: {
     c: 'ObjectBlock',
     xs: 12,
-    label: '账户信息',
+    label: 'Contact',
     schema: {
       email: {
         c: 'TextField',
         xs: 12,
-        label: '邮箱地址',
+        label: 'Email',
       },
       phone: {
         c: 'TextField',
         xs: 12,
-        label: '电话号码',
+        label: 'Phone Number',
       },
     },
   },

@@ -35,20 +35,20 @@ Ok to proceed? (y) y
 ```json
 "dependencies": {
   "@dnd-kit/core": "^6.1.0",
-    "@dnd-kit/sortable": "^8.0.0",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^6.0.1",
-    "@mui/lab": "^6.0.0-beta.8",
-    "@mui/material": "^6.0.1",
-    "@mui/x-date-pickers": "^7.15.0",
-    "@uiw/react-json-view": "^2.0.0-alpha.26",
-    "dayjs": "^1.11.13",
-    "mobx": "^6.13.1",
-    "mobx-react": "^9.1.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-}
+  "@dnd-kit/sortable": "^8.0.0",
+  "@emotion/react": "^11.13.3",
+  "@emotion/styled": "^11.13.0",
+  "@mui/icons-material": "^6.0.1",
+  "@mui/lab": "^6.0.0-beta.8",
+  "@mui/material": "^6.0.1",
+  "@mui/x-date-pickers": "^7.15.0",
+  "@uiw/react-json-view": "^2.0.0-alpha.26",
+  "dayjs": "^1.11.13",
+  "mobx": "^6.13.1",
+  "mobx-react": "^9.1.1",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1"
+},
 ```
 
 然后执行 `npm i` 即可完成依赖安装。

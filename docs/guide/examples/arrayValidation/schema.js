@@ -2,25 +2,25 @@ const schema = {
   member: {
     c: 'ArrayList',
     xs: 12,
-    label: '成员',
+    label: 'Member',
     schema: {
       type: {
         c: 'Select',
         xs: 6,
-        label: '语言',
+        label: 'Language',
         options: ['en', 'zh'],
       },
       name: {
         c: 'TextField',
         xs: 6,
-        label: '姓名',
-        rule: (value, { $getValue, prefixPath }) => {
-          const type = $getValue(`${prefixPath}.type`);
+        label: 'Name',
+        rule: (value, { get, prefixPath }) => {
+          const type = get(`${prefixPath}.type`, 'value');
           if (type === 'en' && !/^[A-Za-z]+$/.test(value)) {
-            return '请输入英文';
+            return 'Please input in English.';
           }
           if (type === 'zh' && !/^[\u4e00-\u9fa5]+$/.test(value)) {
-            return '请输入中文';
+            return 'Please input in Chinese.';
           }
           return '';
         },

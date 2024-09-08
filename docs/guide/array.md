@@ -30,7 +30,7 @@ mobile: false
 }
 ```
 
-很显然，`member` 便是一个需要存储为数组类型，且每一个元素是一个对象结构。要描述该结构，需要使用 `ArrayList` 组件。
+要描述该结构，需要使用 `ArrayList` 组件。
 
 ## 实现数组对象
 
@@ -41,23 +41,23 @@ const schema = {
   organizationName: {
     c: 'TextField',
     xs: 12,
-    label: '组织名称',
+    label: 'Organization Name',
   },
   member: {
     c: 'ArrayList',
     xs: 12,
-    label: '成员',
+    label: 'Member',
     schema: {
       name: {
         c: 'TextField',
         xs: 6,
-        label: '姓名',
+        label: 'Name',
       },
       sex: {
         c: 'Select',
         xs: 6,
-        label: '性别',
-        options: ['男', '女'],
+        label: 'Sex',
+        options: ['male', 'female'],
       },
     },
   },
@@ -67,7 +67,7 @@ export default schema;
 
 代码解释：
 
-* `ArrayList` 是一个专门实现数组对象的组件，除了内部嵌套了 XForm 标准的 schema 以外，其他参数和基础组件的通用属性是一致的。
+* `ArrayList` 是一个专门实现数组对象的组件，内部嵌套了 XForm 标准的 `schema`，用来表达数组元素，每一个对象内部的数据结构和表单组件。
 * 除了组件的基础数据录入能力，该组件还内置了排序、增加、删除功能。
 
 完整示例：
@@ -77,9 +77,9 @@ export default schema;
 
 
 ## 数组对象的校验与联动
-校验和联动，依然是使用 rule 和 onChange 来实现，只是$getValue、$get、$set 方法中传递路径参数会变的复杂。
+校验和联动，依然是使用 `rule` 和 `onChange` 来实现，只是 XFormEvents 的方法中传递路径参数会变的复杂。
 
-尽管你可以使用 `member[3].name` 这样的路径来定位到组件，但在`schema`的路径描述中很难描述当前操作索引，尤其是在类似 `organization[1].group[2].member[0].name` 这种复杂的路径中准确定位。
+尽管你可以使用 `member[3].name` 这样的路径来定位到数据和组件，但在 `schema` 的路径描述中很难描述当前操作索引，尤其是在类似 `organization[1].group[2].member[0].name` 这种复杂的路径中准确定位。
 
 我们引入了 `prefixPath` 概念，你可以像这样 `${prefixPath}.name` 来在数组表单的局部 `schema` 表单中进行定位。
 

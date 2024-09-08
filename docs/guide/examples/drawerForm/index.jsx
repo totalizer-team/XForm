@@ -16,16 +16,16 @@ export default observer(() => {
           store.openDrawer();
         }}
       >
-        打开表单
+        Open Form
       </Button>
       <XDrawerForm
         path="myFormData"
         store={store}
         schema={schema}
         open={visible}
-        title="抽屉表单"
+        title="Drawer Form"
         onSave={() => {
-          console.log('save');
+          console.log(store.myFormData);
         }}
         onClose={() => {
           store.closeDrawer();

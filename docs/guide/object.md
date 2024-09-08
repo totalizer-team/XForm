@@ -16,12 +16,12 @@ mobile: false
 ``` json
 {
   "information": {
-    "name": "",
-    "sex": "",
+    "name": "Thomas",
+    "sex": "male",
   },
-  "account": {
-    "email": "",
-    "phone": ""
+  "contact": {
+    "email": "***@gmail.com",
+    "phone": "**********"
   }
 }
 ```
@@ -38,35 +38,35 @@ const schema = {
   information: {
     c: 'ObjectBlock',
     xs: 12,
-    label: '身份信息',
+    label: 'Information',
     schema: {
       name: {
         c: 'TextField',
         xs: 6,
-        label: '姓名',
+        label: 'Name',
       },
       sex: {
         c: 'Select',
         xs: 6,
-        label: '性别',
-        options: ['男', '女'],
+        label: 'Sex',
+        options: ['male', 'female'],
       },
     },
   },
-  account: {
+  contact: {
     c: 'ObjectBlock',
     xs: 12,
-    label: '账户信息',
+    label: 'Contact',
     schema: {
       email: {
         c: 'TextField',
         xs: 12,
-        label: '邮箱地址',
+        label: 'Email',
       },
       phone: {
         c: 'TextField',
         xs: 12,
-        label: '电话号码',
+        label: 'Phone Number',
       },
     },
   },
@@ -75,7 +75,7 @@ export default schema;
 ```
 
 代码解释：
-* `ObjectBlock` 是一个专为实现嵌套对象的组件，除了内部嵌套了 XForm 标准的 `schema` 以外，其他参数和基础组件的通用属性是一致的。
+* `ObjectBlock` 是一个专为实现嵌套对象的组件，内部嵌套了 XForm 标准的 `schema`，用来表达对象内部的数据结构和表单组件。
 
 
 完整示例：
@@ -83,9 +83,9 @@ export default schema;
 <code src="./examples/object" compact background="#fff"></code>
 
 
-## 嵌套对象的校验与联动
+## 校验与联动
 
-校验和联动，依然是使用 `rule` 和 `onChange` 来实现，只是`$getValue`、`$get`、`$set` 方法中传递路径参数时，需要和生成的 `JSON`路径保持一致：
+校验和联动，依然是使用 `rule` 和 `onChange` 来实现，只是 XFormEvents 中的方法中传递的路径参数，需要和生成的  `JSON` 路径保持一致：
 
 例如：
 
@@ -94,23 +94,18 @@ const schema = {
   information: {
     c: 'ObjectBlock',
     xs: 12,
-    label: '身份信息',
+    label: 'Information',
     schema: {
       name: {
         c: 'TextField',
         xs: 6,
-        label: '姓名',
-        onChange: (value, { $get, $set }) => {
-          const sex = $get('information.sex', 'value');
+        label: 'Name',
+        onChange: (value, { get }) => {
+          const sex = get('information.sex', 'value');
           console.log(sex);
         },
       },
-       sex: {
-        c: 'Select',
-        xs: 6,
-        label: '性别',
-        options: ['男', '女'],
-      },
+      ...
     },
   },
   ...

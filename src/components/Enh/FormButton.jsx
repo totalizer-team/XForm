@@ -13,7 +13,7 @@ export default observer(({
 }) => {
   const {
     text = '',
-    size = 'large',
+    size = 'medium',
     color = 'primary',
     variant = 'contained',
     disabled = false,
