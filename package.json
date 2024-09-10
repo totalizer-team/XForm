@@ -1,6 +1,6 @@
 {
   "name": "@totalizer/xform",
-  "version": "0.0.1-beta.10",
+  "version": "0.0.1-beta.11",
   "description": "Form",
   "license": "MIT",
   "main": "./lib/index",
