@@ -12,5 +12,5 @@
       "@totalizer/xform/*": ["src/*", "*"]
     }
   },
-  "include": [".dumirc.ts", "src/**/*"]
+  "include": [".dumirc.ts", "src/**/*", ".dumi/theme/*"]
 }

@@ -9,10 +9,7 @@ mobile: false
 
 # 什么是 XForm？
 
-:::warning{title=非正式版本}
-当前为非正式发布版本，内部测试和组件完善中，请勿应用于开发环境。
-:::
-
+> React components for building web forms using Material UI and MobX, based on a JSON schema.
 
 XForm 源自一个内部低代码项目（产品代号 Totalizer）的重要组成部分，其诞生之初是为了通过一个简单的协议来管理组件和数据，以便进一步实现表单的低代码或无代码解决方案。
 

@@ -12,4 +12,5 @@ export default defineConfig({
     },
     footer: 'Open-source MIT Licensed | Copyright © 2024-present',
   },
+  mfsu: false,
 });
