@@ -3,7 +3,7 @@ const schema = {
     c: 'Enh.FormTitle',
     xs: 12,
     title: 'Edit User Information',
-    secondary: 'Updating user details will receive a privacy audit.',
+    secondary: 'This is an example of a form built using XForm.',
     align: 'center',
   },
   firstName: {

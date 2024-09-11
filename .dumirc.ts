@@ -13,4 +13,8 @@ export default defineConfig({
     footer: 'Open-source MIT Licensed | Copyright © 2024-present',
   },
   mfsu: false,
+  locales: [
+    { id: 'en-US', name: 'English', suffix: '' },
+    { id: 'zh-CN', name: '中文', suffix: '-cn' },
+  ],
 });

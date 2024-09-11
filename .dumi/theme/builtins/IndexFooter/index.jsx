@@ -1,12 +1,10 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { history } from 'umi';
-import './index.less';
 export default () => {
   return (
     <Box
       sx={{
-        display: 'flex',
         pt: 10,
         pb: 10,
         width: 1100,
@@ -15,26 +13,20 @@ export default () => {
     >
       <Box
         sx={{
-          width: 300,
-          height: 300,
+          width: 100,
+          height: 100,
+          margin: '0 auto',
           margin: '0 auto',
           background: 'url(./logo.png) center center no-repeat',
           backgroundSize: '125% 125%',
         }}
       ></Box>
-      <Box sx={{ width: 800, p: 1, pl: 3 }}>
-        <Typography fontSize={62} fontWeight="bold">
-          XForm
+      <Stack alignItems="center" sx={{ mt: 2 }}>
+        <Typography fontSize={28}>Get started now</Typography>
+        <Typography fontSize={20} color="textSecondary">
+          Build a beautiful, modern website with XForm
         </Typography>
-        <Typography fontSize={22}>
-          React components for building web forms using{' '}
-          <strong>Material UI</strong> and <strong>Mobx</strong>, based on a{' '}
-          <strong>JSON schema</strong>.
-        </Typography>
-        <Typography color="textSecondary" sx={{ mt: 1 }}>
-          A formal version will be available soon.
-        </Typography>
-        <Stack direction="row" spacing={2} sx={{ mt: 4 }}>
+        <Stack direction="row" spacing={2} sx={{ pt: 4 }}>
           <Button
             variant="contained"
             size="large"
@@ -49,15 +41,8 @@ export default () => {
           >
             Demo
           </Button>
-          <Button
-            variant="text"
-            size="large"
-            onClick={() => history.push('/aboutus')}
-          >
-            About us
-          </Button>
         </Stack>
-      </Box>
+      </Stack>
     </Box>
   );
 };
