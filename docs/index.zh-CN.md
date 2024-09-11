@@ -1,5 +1,12 @@
 ---
 title: XForm
+sidebar: false
 ---
 
-# ABC
+<IndexHeader></IndexHeader>
+
+<IndexInfo></IndexInfo>
+
+<IndexDemo></IndexDemo>
+
+<IndexFooter></IndexFooter>

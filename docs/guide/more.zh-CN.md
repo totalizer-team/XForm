@@ -4,7 +4,7 @@ toc: content
 mobile: false
 ---
 
-# More Form Components
+# 更多表单类型
 
 
 除了 `XBaseForm` ，XForm 包含多种表单组件，例如，抽屉表单 `XDrawerForm`。详见 [表单](/form)。

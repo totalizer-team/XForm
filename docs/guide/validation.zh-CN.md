@@ -8,7 +8,7 @@ mobile: false
 ---
 
 
-# Validation
+# 校验
 
 ## 必填校验
 

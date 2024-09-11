@@ -8,7 +8,7 @@ mobile: false
 ---
 
 
-# Linkage
+# 联动
 
 联动是表单常见的场景，XForm 通过在`schema`中引入 `onChange` 方法来实现联动。
 

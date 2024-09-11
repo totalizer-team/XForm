@@ -1,13 +1,13 @@
 ---
 nav:
-  title: Form
+  title: 表单
   order: 3
 order: 0
 toc: content
 mobile: false
 ---
 
-# Form Components
+# 表单
 
 XForm 提供了多种类型的表单，不同的表单会提供独特的布局和交互逻辑，以及内置特定的功能。表单接受 `schema` 参数，用来处理数据结构和组件渲染。
 

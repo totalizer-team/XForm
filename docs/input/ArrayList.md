@@ -1,6 +1,6 @@
 ---
 group:
-  title:  结构组件
+  title: Structural Components
   order: 1
 order: 02
 toc: content

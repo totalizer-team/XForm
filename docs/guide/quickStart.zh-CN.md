@@ -4,7 +4,7 @@ toc: content
 mobile: false
 ---
 
-# Quick Start
+# 快速上手
 
 本文会引导你构建一个简单的 XForm 表单。
 

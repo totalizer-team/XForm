@@ -1,19 +1,21 @@
 ---
 nav:
-  title: Guide
+  title: 指南
   order: 0
 order: 0
 toc: content
 mobile: false
 ---
 
-# What is XForm？
+# 什么是 XForm？
 
 > React components for building web forms using Material UI and MobX, based on a JSON schema.
 
-**XForm** originated as a key component of an internal low-code project (codenamed **Totalizer**). Its initial purpose was to manage components and data through a simple protocol, with the aim of further enabling low-code or no-code form solutions.
+XForm 源自一个内部低代码项目（产品代号 Totalizer）的重要组成部分，其诞生之初是为了通过一个简单的协议来管理组件和数据，以便进一步实现表单的低代码或无代码解决方案。
 
-
+:::info{title=Totalizer项目}
+Totalizer 项目暂时并没有开源计划，仅内部系统使用。但这并不影响你使用其重要组成部分 XForm 。
+:::
 
 ## 适用场景
 
@@ -38,11 +40,11 @@ mobile: false
 
 在实现 XForm 产品方案中，依赖了以下开源技术：
 
-* UI Framework: [React](https://react.dev/)
-* Component library: [MUI](https://mui.com/)
-* State management: [Mobx](https://mobx.js.org/README.html)
-* Drag and drop: [dnd kit](https://dndkit.com/)
-* Date & time: [dayjs](https://day.js.org/)
+* 原生交互框架：[React](https://react.dev/)
+* 组件库：[MUI](https://mui.com/)
+* 数据状态管理：[Mobx](https://mobx.js.org/README.html)
+* 拖拽工具：[dnd kit](https://dndkit.com/)
+* 时间库：[dayjs](https://day.js.org/)
 * JSON 数据展示：[@uiw/react-json-view](https://uiwjs.github.io/react-json-view/)
 * 代码 Diff 展示： [react-diff-viewer](https://praneshravi.in/react-diff-viewer/)
 * Excel 解析：[SheetJS](https://docs.sheetjs.com/docs/)
@@ -74,14 +76,5 @@ mobile: false
 > 作为该工具的使用者，你并不需要对这种设计体系有深入的了解，因为大多数组件与 API 都是所见即所得的。
 
 
-### Why is XForm
 
-* [uniforms](https://uniforms.tools/)
-* [Formik](https://github.com/jaredpalmer/formik)
-* [redux-form](https://github.com/redux-form/redux-form)
-* [react Final Form](https://github.com/final-form/react-final-form)
-* [react hook form](https://react-hook-form.com/)
-* [auto-form](https://github.com/vantezzen/auto-form)
-* [formily](https://formilyjs.org/)
-* [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form)
 

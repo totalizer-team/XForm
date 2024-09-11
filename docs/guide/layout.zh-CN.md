@@ -8,7 +8,7 @@ mobile: false
 ---
 
 
-# Layout
+# 布局
 
 
 `schema` 中的布局属性：

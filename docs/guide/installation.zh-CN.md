@@ -4,7 +4,7 @@ toc: content
 mobile: false
 ---
 
-# Installation
+# 安装
 
 ## 环境配置
 

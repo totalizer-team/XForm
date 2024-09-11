@@ -1,6 +1,6 @@
 ---
 group:
-  title:  基础组件
+  title: Basic Components
   order: 0
 order: 04
 toc: content

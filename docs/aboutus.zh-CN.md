@@ -11,3 +11,4 @@ order: 6
 
 <AboutUs></AboutUs>
 
+<IndexFooter></IndexFooter>

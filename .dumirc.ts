@@ -11,6 +11,17 @@ export default defineConfig({
       github: 'https://github.com/totalizer-team/XForm',
     },
     footer: 'Open-source MIT Licensed | Copyright © 2024-present',
+    rtl: false,
+    localesEnhance: [
+      {
+        id: 'zh-CN',
+        switchPrefix: '中',
+      },
+      {
+        id: 'en-US',
+        switchPrefix: 'En',
+      },
+    ],
   },
   mfsu: false,
   locales: [

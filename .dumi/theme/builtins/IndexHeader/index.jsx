@@ -45,9 +45,9 @@ export default () => {
           <Button
             variant="outlined"
             size="large"
-            onClick={() => history.push('/demo')}
+            onClick={() => history.push('/examples')}
           >
-            Demo
+            Examples
           </Button>
           <Button
             variant="text"
