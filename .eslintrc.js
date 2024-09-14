@@ -14,6 +14,10 @@ module.exports = {
       },
     },
   },
+  ignorePatterns: [
+    'jest.config.ts',
+    'docs/*/examples/*',
+  ],
   overrides: [
     {
       env: {
@@ -23,6 +27,11 @@ module.exports = {
       parserOptions: {
         sourceType: 'script',
       },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
     },
   ],
   parserOptions: {
@@ -39,12 +48,15 @@ module.exports = {
     'react/no-danger': 0,
     'no-underscore-dangle': 0,
     'import/no-extraneous-dependencies': 0,
-    // 'no-unused-vars': 0,
     'import/no-cycle': 0,
     'import/prefer-default-export': 0,
     'no-console': 0,
     'react/jsx-wrap-multilines': 0,
     'react/no-array-index-key': 0,
     'no-plusplus': 0,
+    'no-unused-vars': 0,
+    'no-cond-assign': 0,
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'no-else-return': 0,
   },
 };

@@ -27,6 +27,7 @@ import EnhFormButton from './Enh/FormButton';
 import EnhFormTitle from './Enh/FormTitle';
 import EnhLink from './Enh/Link';
 import EnhTypography from './Enh/Typography';
+import EnhAvatar from './Enh/Avatar';
 
 const COMPONENTS = {};
 const DEFAULT_VALUE = {};
@@ -78,6 +79,7 @@ registerComponent('Enh.FormTitle', EnhFormTitle, '', 'Enh');
 registerComponent('Enh.Link', EnhLink, '', 'Enh');
 registerComponent('Enh.Typography', EnhTypography, '', 'Enh');
 registerComponent('Enh.FormButton', EnhFormButton, '', 'Enh');
+registerComponent('Enh.Avatar', EnhAvatar, '', 'Enh');
 
 export default COMPONENTS;
 
