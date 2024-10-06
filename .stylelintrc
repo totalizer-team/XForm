@@ -1,6 +1,7 @@
 {
-  "extends": "@umijs/lint/dist/config/stylelint",
+  "extends": "stylelint-config-standard",
   "rules": {
     "selector-class-pattern": null
-  }
+  },
+  "plugins": ["stylelint-less"]
 }

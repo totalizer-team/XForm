@@ -1,3 +1,4 @@
+import React from 'react';
 import _get from './core/get';
 import _merge from './core/merge';
 import _repair from './core/repair';
