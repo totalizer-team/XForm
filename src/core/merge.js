@@ -14,7 +14,6 @@ const _setValue = (res, schema, data, parentPath = '') => {
     const { type } = COMPONENTS[schema[key].c];
     if (type === 'Enh') return;
     if (type === 'array') {
-      // do somthing
       const value = _get(data, path);
       if (Array.isArray(value)) {
         _set(res, path, []);

@@ -1,14 +1,19 @@
-import { useEffect } from 'react';
 import {
-  Select, MenuItem, FormControl, InputLabel, FormHelperText, OutlinedInput, Checkbox, ListItemText,
-  Box, Chip,
+  Box,
+  Checkbox,
+  Chip,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
 } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -40,14 +45,18 @@ export default observer(({
 
   return (
     <FormControl fullWidth error={!!errorMsg}>
-      <InputLabel disabled={disabled} required={required}>{label}</InputLabel>
+      <InputLabel disabled={disabled} required={required}>
+        {label}
+      </InputLabel>
       <Select
         value={value}
         multiple
         disabled={disabled}
         input={<OutlinedInput label={label} />}
         renderValue={(selected) => {
-          const labels = _options.filter((el) => selected.includes(el.value)).map((el) => el.label);
+          const labels = _options
+            .filter((el) => selected.includes(el.value))
+            .map((el) => el.label);
           if (chip) {
             return (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -66,20 +75,14 @@ export default observer(({
         {...componentsProps}
       >
         {_options.map((el) => (
-          <MenuItem
-            value={el.value}
-            key={el.value}
-            disabled={el.disabled}
-          >
+          <MenuItem value={el.value} key={el.value} disabled={el.disabled}>
             {checkbox && <Checkbox checked={!!value.includes(el.value)} />}
             {/* {el.label} */}
             <ListItemText primary={el.label} />
           </MenuItem>
         ))}
-
       </Select>
       <FormHelperText>{errorMsg || helperText}</FormHelperText>
-
     </FormControl>
   );
 });

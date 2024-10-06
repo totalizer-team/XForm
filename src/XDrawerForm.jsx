@@ -1,13 +1,18 @@
-import { useMemo } from 'react';
 import { observer } from 'mobx-react';
+import React, { useMemo } from 'react';
 
 import {
-  Box, Drawer, Toolbar, IconButton, Typography, Stack,
+  Box,
+  Drawer,
+  IconButton,
+  Stack,
+  Toolbar,
+  Typography,
 } from '@mui/material';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SaveIcon from '@mui/icons-material/Save';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import SaveIcon from '@mui/icons-material/Save';
 
 import _repair from './core/repair';
 
@@ -17,98 +22,94 @@ import FormRenderingEngine from './engine/FormRenderingEngine';
 
 import Dashboard from './debug/Dashboard';
 
-const XDrawerForm = observer(({
-  path = '',
-  store = null,
-  schema,
+const XDrawerForm = observer(
+  ({
+    path = '',
+    store = null,
+    schema,
 
-  width = 600,
+    width = 600,
 
-  open = false,
-  anchor = 'left',
-  title = '',
-  debug = false,
-  onClose = () => { },
-  onSave = () => { },
-}) => {
-  const correctSchema = useMemo(() => _repair(schema), [schema]);
+    open = false,
+    anchor = 'left',
+    title = '',
+    debug = false,
+    onClose = () => {},
+    onSave = () => {},
+  }) => {
+    const correctSchema = useMemo(() => _repair(schema), [schema]);
 
-  const $$store = useMemo(() => new $$Store(path, store, schema), []);
+    const $$store = useMemo(() => new $$Store(path, store, schema), []);
 
-  return (
-    <Drawer
-      open={open}
-      onClose={onClose}
-      anchor={anchor}
-    >
-      <Stack
-        direction="row"
-        alignItems="start"
-      >
-        <Stack
-          sx={{
-            width,
-            display: 'flex',
-            height: '100vh',
-            flexDirection: 'column',
-            borderLeft: 1,
-            borderColor: 'divider',
-          }}
-        >
-          <Toolbar
+    return (
+      <Drawer open={open} onClose={onClose} anchor={anchor}>
+        <Stack direction="row" alignItems="start">
+          <Stack
             sx={{
-              position: 'sticky',
-              top: 0,
-              zIndex: 10,
-              borderBottom: 1,
+              width,
+              display: 'flex',
+              height: '100vh',
+              flexDirection: 'column',
+              borderLeft: 1,
               borderColor: 'divider',
             }}
           >
-            <IconButton
-              sx={{ mr: 2 }}
-              onClick={() => {
-                onClose();
+            <Toolbar
+              sx={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 10,
+                borderBottom: 1,
+                borderColor: 'divider',
               }}
             >
-              <ArrowBackIcon />
-            </IconButton>
-            <Typography component="div" sx={{ flexGrow: 1 }}>
-              {title}
-            </Typography>
-            <Stack direction="row">
-              <IconButton onClick={() => {
-                if ($$store.validateForm()) {
-                  onSave();
-                }
-              }}
+              <IconButton
+                sx={{ mr: 2 }}
+                onClick={() => {
+                  onClose();
+                }}
               >
-                <SaveIcon />
+                <ArrowBackIcon />
               </IconButton>
-              <IconButton disabled>
-                <MoreVertIcon />
-              </IconButton>
-            </Stack>
-          </Toolbar>
+              <Typography component="div" sx={{ flexGrow: 1 }}>
+                {title}
+              </Typography>
+              <Stack direction="row">
+                <IconButton
+                  onClick={() => {
+                    if ($$store.validateForm()) {
+                      onSave();
+                    }
+                  }}
+                >
+                  <SaveIcon />
+                </IconButton>
+                <IconButton disabled>
+                  <MoreVertIcon />
+                </IconButton>
+              </Stack>
+            </Toolbar>
 
-          <Box sx={{
-            p: 4,
-            flex: 1,
-            overflow: 'auto',
-          }}
-          >
-            <FormRenderingEngine
-              path={path}
-              store={store}
-              schema={correctSchema}
-              $$store={$$store}
-            />
-          </Box>
-
+            <Box
+              sx={{
+                p: 4,
+                flex: 1,
+                overflow: 'auto',
+              }}
+            >
+              <FormRenderingEngine
+                path={path}
+                store={store}
+                schema={correctSchema}
+                $$store={$$store}
+              />
+            </Box>
+          </Stack>
+          {!!debug && <Dashboard store={store} $$store={$$store} path={path} />}
         </Stack>
-        {!!debug && <Dashboard store={store} $$store={$$store} path={path} />}
-      </Stack>
-    </Drawer>
-  );
-});
+      </Drawer>
+    );
+  },
+);
 
 export { XDrawerForm };

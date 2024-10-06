@@ -30,7 +30,6 @@ import EnhTypography from './Enh/Typography';
 import EnhAvatar from './Enh/Avatar';
 
 const COMPONENTS = {};
-const DEFAULT_VALUE = {};
 
 /**
  * 注册一个组件，注册后可在 schema 中使用

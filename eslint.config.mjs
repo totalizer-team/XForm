@@ -9,9 +9,9 @@ export default [
   pluginJs.configs.recommended,
   pluginReact.configs.flat.recommended,
  {rules:{
-  'react/react-in-jsx-scope':0,
-  'no-unused-vars':0,
-  'no-param-reassign':0,
-  'no-restricted-syntax':0,
+  // 'react/react-in-jsx-scope':0,
+  // 'no-unused-vars':0,
+  // 'no-param-reassign':0,
+  // 'no-restricted-syntax':0,
  }}
 ];

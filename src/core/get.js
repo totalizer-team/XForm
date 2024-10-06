@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+ 
 /**
  * 根据路径读取数据
  * @param {*} obj

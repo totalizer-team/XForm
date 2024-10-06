@@ -1,30 +1,14 @@
-import { useRef } from 'react';
+import React from 'react';
 /**
  * UI
  */
 import {
-  Button,
-  Avatar,
-  Stack,
-  Box,
+  FormControl,
+  FormLabel,
   Paper,
-  IconButton, Typography,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemButton,
-  ListItemIcon,
-  Card,
-  CardHeader,
-  CardMedia,
-  CardActions,
-  CardContent,
-  TableContainer, Table, TableHead,
-  TableBody, TableRow, TableCell,
-  FormControl, FormLabel,
+  Stack,
+  Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { deepOrange } from '@mui/material/colors';
 /**
  * 状态管理
  */
@@ -35,9 +19,7 @@ import { observer } from 'mobx-react';
  */
 import FormRenderingEngine from '../../engine/FormRenderingEngine';
 
-export default observer(({
-  path, $$store,
-}) => {
+export default observer(({ path, $$store }) => {
   const {
     variant = 'default', // default outlined elevation
     elevation = 1,
@@ -49,15 +31,9 @@ export default observer(({
     return (
       <Paper sx={{ p: 2.5 }} variant="outlined">
         <Stack sx={{ pt: 0, pb: 2.5 }}>
-          <Typography fontSize={18}>
-            {label}
-          </Typography>
+          <Typography fontSize={18}>{label}</Typography>
         </Stack>
-        <FormRenderingEngine
-          path={path}
-          schema={schema}
-          $$store={$$store}
-        />
+        <FormRenderingEngine path={path} schema={schema} $$store={$$store} />
       </Paper>
     );
   }
@@ -66,15 +42,9 @@ export default observer(({
     return (
       <Paper sx={{ p: 2.5 }} variant="elevation" elevation={elevation}>
         <Stack sx={{ pt: 0, pb: 2.5 }}>
-          <Typography fontSize={18}>
-            {label}
-          </Typography>
+          <Typography fontSize={18}>{label}</Typography>
         </Stack>
-        <FormRenderingEngine
-          path={path}
-          schema={schema}
-          $$store={$$store}
-        />
+        <FormRenderingEngine path={path} schema={schema} $$store={$$store} />
       </Paper>
     );
   }
@@ -82,11 +52,7 @@ export default observer(({
   return (
     <FormControl fullWidth>
       <FormLabel sx={{ mb: 2 }}>{label}</FormLabel>
-      <FormRenderingEngine
-        path={path}
-        schema={schema}
-        $$store={$$store}
-      />
+      <FormRenderingEngine path={path} schema={schema} $$store={$$store} />
     </FormControl>
   );
 });

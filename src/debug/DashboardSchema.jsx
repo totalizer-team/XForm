@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useTheme } from '@mui/material/styles';
 import JsonView from '@uiw/react-json-view';
 import { vscodeTheme } from '@uiw/react-json-view/vscode';
-import { useTheme } from '@mui/material/styles';
 import { observer } from 'mobx-react';
-import { reaction } from 'mobx';
+import React from 'react';
 
 export default observer(({ $$store }) => {
   const theme = useTheme();
   const isDark = theme?.palette?.mode === 'dark';
 
+  // eslint-disable-next-line no-unused-vars
   const { tick } = $$store;
   const style = isDark ? { vscodeTheme } : {};
 
@@ -21,14 +21,4 @@ export default observer(({ $$store }) => {
       enableClipboard={false}
     />
   );
-  // return (
-  //   <ReactJson
-  //     src={$$store.schema}
-  //     style={{ fontSize: 12, lineHeight: 1.2, backgroundColor: 'none' }}
-  //     theme={isDark ? 'monokai' : 'rjv-default'}
-  //     displayDataTypes={false}
-  //     displayObjectSize={false}
-  //     enableClipboard={false}
-  //   />
-  // );
 });

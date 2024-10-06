@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+ 
 /**
  * 根据路径更新数据
  * @param {*} obj 目标对象

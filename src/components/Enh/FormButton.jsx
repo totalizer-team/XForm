@@ -1,16 +1,8 @@
-import { useState, useEffect } from 'react';
-import {
-  Stack,
-  Typography,
-  Link,
-  Button,
-} from '@mui/material';
+import { Button } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     text = '',
     size = 'medium',
@@ -19,10 +11,10 @@ export default observer(({
     disabled = false,
     fullWidth = true,
     width,
-    onClick = () => { },
+    onClick = () => {},
   } = $$store.context(path);
 
-  console.log('~~~ Enh LockButtom', path);
+  console.log('~~~ Enh LockButton', path);
 
   useEffect(() => {
     $$store.linkage(path);

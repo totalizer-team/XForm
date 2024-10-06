@@ -1,13 +1,8 @@
-import { useEffect } from 'react';
-import {
-  Rating, FormControl, FormLabel, FormHelperText, FormControlLabel,
-} from '@mui/material';
+import { FormControl, FormHelperText, FormLabel, Rating } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -30,7 +25,6 @@ export default observer(({
     track,
     valueLabelDisplay,
     valueLabelFormate,
-
   } = $$store.context(path);
 
   const componentProps = {
@@ -63,7 +57,9 @@ export default observer(({
 
   return (
     <FormControl fullWidth error={!!errorMsg}>
-      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>
+        {label}
+      </FormLabel>
       <Rating
         value={value}
         disabled={disabled}

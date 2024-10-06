@@ -10,7 +10,7 @@ class Store {
   tick = true;
 
   /**
-   * 面板模式：data, schema, stauts
+   * 面板模式：data, schema, status
    * data: 显示当前表单值
    * schema: 表单的配置 schema
    * status: 当前组件的状态
@@ -58,7 +58,7 @@ class Store {
 
   /**
    * setDebugMode
-   * 设置面板模式：data, schema, stauts
+   * 设置面板模式：data, schema, status
    * 参考 debugMode
    * @param {*} v
    */

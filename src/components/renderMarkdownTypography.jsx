@@ -1,7 +1,5 @@
-import {
-  Typography,
-  Link,
-} from '@mui/material';
+import { Link, Typography } from '@mui/material';
+import React from 'react';
 
 const parseString = (input) => {
   const regex = /(\[([^\]]+)\]\(([^)]+)\))/g;
@@ -36,7 +34,11 @@ const renderMarkdownTypography = (text, componentProps) => {
       <Typography {...componentProps}>
         {array.map((el, i) => {
           if (Array.isArray(el)) {
-            return <Link href={el[1]} key={i}>{el[0]}</Link>;
+            return (
+              <Link href={el[1]} key={i}>
+                {el[0]}
+              </Link>
+            );
           }
           return el;
         })}

@@ -1,5 +1,6 @@
 import { XBaseForm } from '@totalizer/xform';
 import { observer } from 'mobx-react';
+import React from 'react';
 
 import schema from './schema.jsx';
 import store from './store.js';

@@ -12,19 +12,17 @@ mobile: false
 
 在这个基础的示例中，需要创建以下三个文件，用来开发一个 XForm 表单：
 
-* `index.jsx` : 用于构建页面的用户界面部分。并引入 XForm 组件。
-* `store.js` : 用于管理全局或局部的应用状态。定义一个 MobX store，存放页面所需的数据和逻辑。
-* `schema.js` : 用于存储 XForm 的配置文件。定义表单中需要的组件、布局、数据结构、校验、联动等规则。
-
-
+- `index.jsx` : 用于构建页面的用户界面部分。并引入 XForm 组件。
+- `store.js` : 用于管理全局或局部的应用状态。定义一个 MobX store，存放页面所需的数据和逻辑。
+- `schema.js` : 用于存储 XForm 的配置文件。定义表单中需要的组件、布局、数据结构、校验、联动等规则。
 
 ## 创建 store
 
 在此之前，你需要对 Mobx 有基础的了解， 可以通过 [Mobx 官方文档](https://mobx.js.org/README.html) 进行学习。
 
-在 `store.js` 中添加如下代码： 
+在 `store.js` 中添加如下代码：
 
-``` js
+```js
 import { $$get, $$merge, $$set } from '@totalizer/xform';
 import { configure, makeAutoObservable } from 'mobx';
 import schema from './schema';
@@ -58,21 +56,19 @@ class Store {
 }
 
 export default new Store();
-
 ```
 
 代码解释：
 
-* `$$get` `$$set` `$$merge` 是 XForm 中用于数据处理的方法，你需要按照上面示例引入到 store 中，以确保 store 能够正确的与表单组件进行数据同步。
+- `$$get` `$$set` `$$merge` 是 XForm 中用于数据处理的方法，你需要按照上面示例引入到 store 中，以确保 store 能够正确的与表单组件进行数据同步。
 
-
-## 创建 schema 
+## 创建 schema
 
 `schema` 是 XForm 用于表单配置所引入的概念。通过 `JSON` 来定义表单中需要的组件、布局、数据结构、校验、联动等规则。
 
-在 `schema.js` 中添加如下代码： 
+在 `schema.js` 中添加如下代码：
 
-``` js
+```js
 const schema = {
   title: {
     c: 'TextField',
@@ -95,21 +91,22 @@ const schema = {
   },
 };
 export default schema;
-
 ```
+
 代码解释：
-* `title`、`type`、`des`，是用户自定义关键字，描述了表单生成的数据结构，表单会按照这个结构与 store 中定义的 `myFormData` 进行数据同步。
-* `c` 用来描述使用的组件名称，`TextField`,`Select` 是 XForm 中内置的输入组件。
-* `xs` 用于描述组件在网格布局中占用的空间大小，可选值为 1 ～ 12。
-* `label` 是表单的标题，`options` 是 `Select` 中用于组件定义选项，`multiline`、`minRows`、`maxRows` 则是 `TextField` 中用来定义多行输入的配置。
+
+- `title`、`type`、`des`，是用户自定义关键字，描述了表单生成的数据结构，表单会按照这个结构与 store 中定义的 `myFormData` 进行数据同步。
+- `c` 用来描述使用的组件名称，`TextField`,`Select` 是 XForm 中内置的输入组件。
+- `xs` 用于描述组件在网格布局中占用的空间大小，可选值为 1 ～ 12。
+- `label` 是表单的标题，`options` 是 `Select` 中用于组件定义选项，`multiline`、`minRows`、`maxRows` 则是 `TextField` 中用来定义多行输入的配置。
 
 以上 schema 描述的数据结构如下：
 
-``` json 
+```json
 {
- "title": "",
- "type": "",
- "des": ""
+  "title": "",
+  "type": "",
+  "des": ""
 }
 ```
 
@@ -119,7 +116,8 @@ export default schema;
 
 在 `index.js` 中添加如下代码：
 
-``` jsx | pure
+```jsx | pure
+import React from 'react';
 import { XBaseForm } from '@totalizer/xform';
 import { observer } from 'mobx-react';
 
@@ -145,7 +143,7 @@ export default observer(() => {
 
 代码解释：
 
-* `XBaseForm` 是 XForm 中提供的一种表单组件，其中组件的参数 `store`、`schema` 属性用于关联定义好的 store 和 schema，`path` 则是 store 中用于指定表单最终需要双向绑定的数据路径。
+- `XBaseForm` 是 XForm 中提供的一种表单组件，其中组件的参数 `store`、`schema` 属性用于关联定义好的 store 和 schema，`path` 则是 store 中用于指定表单最终需要双向绑定的数据路径。
 
 ## 代码示例
 
@@ -153,14 +151,13 @@ export default observer(() => {
 
 <code src="./examples/simple"  background="#fff"></code>
 
-
-
 ## 增加标题和按钮
 
 实现标题和按钮，在 `schema` 中同样是使用对应的组件来描述，这种类型组件用来信息展示和增强表单的功能，被定义为表单增强组件（Form Enhancement Components），与表单输入组件（Form Input Components）不同的是，该类型组件不用来表达数据结构。详细可参考 [增强组件](/enh)。
 
 增加如下代码：
-``` js
+
+```js
 const schema = {
   _title: {
     c: 'Enh.FormTitle',
@@ -196,14 +193,13 @@ const schema = {
 export default schema;
 ```
 
-
 ## 增加必填校验
 
 在需要必填的数据描述中，增加`required`属性，并设置为 `true` 即可。
 
 例如：
 
-``` js {5}
+```js {5}
 title: {
   c: 'TextField',
   xs: 6,

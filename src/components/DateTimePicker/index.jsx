@@ -1,18 +1,12 @@
-import { useState, useEffect } from 'react';
-import {
-  Select, MenuItem, FormControl, InputLabel, FormHelperText,
-} from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-import dayjs from 'dayjs';
+import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 import { observer } from 'mobx-react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -81,10 +75,10 @@ export default observer(({
         onChange={(v) => {
           $$store.setValue(path, dayjs(v).format(dataFormat));
         }}
-        onClose={(() => {
+        onClose={() => {
           setOpen(false);
           _validate();
-        })}
+        }}
         onOpen={() => {
           setOpen(true);
         }}

@@ -1,22 +1,10 @@
-import { useEffect } from 'react';
-import {
-  Stack,
-  Typography,
-  Link,
-} from '@mui/material';
 import { observer } from 'mobx-react';
+import { useEffect } from 'react';
 
 import renderMarkdownTypography from '../renderMarkdownTypography';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
-  const {
-    text = '',
-    fontSize,
-    color,
-  } = $$store.context(path);
+export default observer(({ path = '', $$store = null }) => {
+  const { text = '', fontSize, color } = $$store.context(path);
 
   const componentsProps = { fontSize, color };
 

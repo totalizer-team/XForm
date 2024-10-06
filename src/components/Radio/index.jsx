@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
 import {
-  Select, MenuItem, ListItemText,
-  FormControl, FormLabel, FormHelperText, RadioGroup, FormControlLabel, Radio,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  ListItemText,
+  Radio,
+  RadioGroup,
 } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -19,7 +21,7 @@ export default observer(({
     row = false,
   } = $$store.context(path);
 
-  console.log('~~~ Raido', path, errorMsg);
+  console.log('~~~ Radio', path, errorMsg);
 
   const value = $$store.getValue(path);
 
@@ -35,11 +37,11 @@ export default observer(({
     };
   });
 
-  const componentsProps = {};
-
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>
+        {label}
+      </FormLabel>
       <RadioGroup
         row={row}
         value={_options.findIndex((el) => el.value === value)}
@@ -53,12 +55,7 @@ export default observer(({
             value={i}
             key={el.value}
             control={<Radio />}
-            label={(
-              <ListItemText
-                primary={el.label}
-                secondary={el.secondary}
-              />
-            )}
+            label={<ListItemText primary={el.label} secondary={el.secondary} />}
             disabled={disabled || !!el.disabled}
           />
         ))}

@@ -1,13 +1,14 @@
-import { useEffect } from 'react';
 import {
-  Switch, FormControl, FormLabel, FormHelperText, FormControlLabel,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormLabel,
+  Switch,
 } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     onTitle = '',
@@ -29,7 +30,9 @@ export default observer(({
 
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>
+        {label}
+      </FormLabel>
       <FormControlLabel
         sx={{
           justifyContent: 'start',
@@ -37,7 +40,7 @@ export default observer(({
             ml: 0,
           },
         }}
-        control={(
+        control={
           <Switch
             checked={value}
             disabled={disabled}
@@ -46,12 +49,11 @@ export default observer(({
               $$store.validate(path);
             }}
           />
-        )}
+        }
         label={value ? onTitle : offTitle}
         labelPlacement={labelPlacement}
       />
       <FormHelperText>{errorMsg || helperText}</FormHelperText>
-
     </FormControl>
   );
 });

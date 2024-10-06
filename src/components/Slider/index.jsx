@@ -1,13 +1,8 @@
-import { useEffect } from 'react';
-import {
-  Slider, FormControl, FormLabel, FormHelperText, FormControlLabel,
-} from '@mui/material';
+import { FormControl, FormHelperText, FormLabel, Slider } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -25,7 +20,6 @@ export default observer(({
     max,
     name,
     precision,
-
   } = $$store.context(path);
 
   const componentProps = {
@@ -52,7 +46,9 @@ export default observer(({
 
   return (
     <FormControl fullWidth error={!!errorMsg}>
-      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>
+        {label}
+      </FormLabel>
       <Slider
         value={value}
         disabled={disabled}

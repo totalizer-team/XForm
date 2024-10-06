@@ -1,13 +1,14 @@
-import { useEffect } from 'react';
 import {
-  Select, MenuItem, FormControl, InputLabel, FormHelperText,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
 } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
+export default observer(({ path = '', $$store = null }) => {
   const {
     label,
     disabled,
@@ -38,7 +39,9 @@ export default observer(({
 
   return (
     <FormControl fullWidth error={!!errorMsg} variant={variant}>
-      <InputLabel disabled={disabled} required={required}>{label}</InputLabel>
+      <InputLabel disabled={disabled} required={required}>
+        {label}
+      </InputLabel>
       <Select
         label={label}
         value={value}
@@ -59,10 +62,8 @@ export default observer(({
             {el.label}
           </MenuItem>
         ))}
-
       </Select>
       <FormHelperText>{errorMsg || helperText}</FormHelperText>
-
     </FormControl>
   );
 });

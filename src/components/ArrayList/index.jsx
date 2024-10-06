@@ -1,30 +1,15 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 /**
  * UI
  */
 import {
   Button,
-  Avatar,
-  Stack,
-  Box,
+  FormLabel,
+  IconButton,
   Paper,
-  IconButton, Typography,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemButton,
-  ListItemIcon,
-  Card,
-  CardHeader,
-  CardMedia,
-  CardActions,
-  CardContent,
-  TableContainer, Table, TableHead,
-  TableBody, TableRow, TableCell,
-  FormControl, FormLabel,
+  Stack,
+  Typography,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { deepOrange } from '@mui/material/colors';
 /**
  * 排序
  */
@@ -38,15 +23,15 @@ import {
 } from '@dnd-kit/core';
 import {
   SortableContext,
+  arrayMove,
   sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
-  arrayMove,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 /**
  * 状态管理
  */
@@ -61,11 +46,9 @@ import _merge from '../../core/merge';
 /**
  * 子组件
  */
-const XItem = observer(({
-  path, record, schema, onDelete, $$store,
-}) => {
-  const theme = useTheme();
-  const isDark = theme?.palette?.mode === 'dark';
+const XItem = observer(({ path, record, schema, onDelete, $$store }) => {
+  // const theme = useTheme();
+  // const isDark = theme?.palette?.mode === 'dark';
 
   const { _key } = record;
   const {
@@ -82,9 +65,9 @@ const XItem = observer(({
     transition,
     ...(isDragging
       ? {
-        position: 'relative',
-        zIndex: 9999,
-      }
+          position: 'relative',
+          zIndex: 9999,
+        }
       : {}),
   };
 
@@ -112,11 +95,7 @@ const XItem = observer(({
       >
         <DragIndicatorIcon fontSize="small" />
       </IconButton>
-      <FormRenderingEngine
-        path={path}
-        schema={schema}
-        $$store={$$store}
-      />
+      <FormRenderingEngine path={path} schema={schema} $$store={$$store} />
       <Stack
         direction="row"
         sx={{
@@ -128,7 +107,6 @@ const XItem = observer(({
           <DeleteOutlineIcon fontSize="small" />
         </IconButton>
       </Stack>
-
     </Stack>
   );
 });
@@ -136,13 +114,13 @@ const XItem = observer(({
 /**
  * 主组组件
  */
-export default observer(({
-  path, $$store,
-}) => {
+export default observer(({ path, $$store }) => {
   const {
     variant = 'default', // default outlined elevation
     elevation = 1,
-    label, addText = '', schema,
+    label,
+    addText = '',
+    schema,
   } = $$store.context(path);
 
   const noKeyData = $$store.getValue(path);
@@ -171,6 +149,7 @@ export default observer(({
   const changeHandler = (newData) => {
     keys.current = newData.map((el) => el._key);
     const result = newData.map((el) => {
+      // eslint-disable-next-line no-unused-vars
       const { _key, ...others } = el;
       return others;
     });
@@ -185,14 +164,13 @@ export default observer(({
   }
   return (
     <Paper sx={{ p: isDefault ? 0 : 2.5 }} variant={variant} {...paperProps}>
-      {isDefault ? <FormLabel sx={{ mb: 2 }}>{label}</FormLabel>
-        : (
-          <Stack sx={{ pt: 0, pb: 2.5 }}>
-            <Typography fontSize={18}>
-              {label}
-            </Typography>
-          </Stack>
-        )}
+      {isDefault ? (
+        <FormLabel sx={{ mb: 2 }}>{label}</FormLabel>
+      ) : (
+        <Stack sx={{ pt: 0, pb: 2.5 }}>
+          <Typography fontSize={18}>{label}</Typography>
+        </Stack>
+      )}
 
       <DndContext
         sensors={sensors}
@@ -243,7 +221,6 @@ export default observer(({
               }}
               variant="outlined"
               sx={{
-
                 borderStyle: 'dashed',
               }}
               startIcon={<AddIcon />}

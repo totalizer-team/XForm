@@ -9,15 +9,6 @@ export default observer(({ path = '', $$store = null }) => {
   if (!$$store) return null;
 
   const {
-    c,
-    xs,
-    label,
-    disabled,
-    required,
-    helperText,
-    errorMsg,
-    visible,
-
     /**
      * componentProps
      */

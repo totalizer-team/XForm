@@ -1,19 +1,9 @@
-import { useEffect } from 'react';
-import {
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
-  const {
-    title,
-    secondary = '',
-    align = 'left',
-  } = $$store.context(path);
+export default observer(({ path = '', $$store = null }) => {
+  const { title, secondary = '', align = 'left' } = $$store.context(path);
 
   console.log('~~~ Enh FormTitle', path);
 
@@ -23,8 +13,12 @@ export default observer(({
 
   return (
     <Stack spacing={0.5}>
-      <Typography fontSize={24} align={align}>{title}</Typography>
-      <Typography fontSize={16} color="textSecondary" align={align}>{secondary}</Typography>
+      <Typography fontSize={24} align={align}>
+        {title}
+      </Typography>
+      <Typography fontSize={16} color="textSecondary" align={align}>
+        {secondary}
+      </Typography>
     </Stack>
   );
 });

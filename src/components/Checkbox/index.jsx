@@ -8,7 +8,7 @@ import {
   RadioGroup,
 } from '@mui/material';
 import { observer } from 'mobx-react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 export default observer(({ path = '', $$store = null }) => {
   const {
@@ -42,11 +42,11 @@ export default observer(({ path = '', $$store = null }) => {
     checked.set(el.value, value.includes(el.value));
   });
 
-  const componentsProps = {};
-
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>
+        {label}
+      </FormLabel>
       <RadioGroup row={row}>
         {_options.map((el, i) => (
           <FormControlLabel
@@ -59,7 +59,7 @@ export default observer(({ path = '', $$store = null }) => {
                   checked.set(el.value, v);
                   const res = [];
                   const entries = checked.entries();
-                  // eslint-disable-next-line no-restricted-syntax
+
                   for (const [subK, subV] of entries) {
                     if (subV) res.push(subK);
                   }

@@ -1,17 +1,14 @@
-import { useMemo, useEffect } from 'react';
 import {
-  Stack,
-  Typography,
-  Link,
   Checkbox,
   FormControl,
   FormControlLabel,
   FormHelperText,
   FormLabel,
-  ListItemText,
-  RadioGroup,
+  Link,
+  Typography,
 } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect, useMemo } from 'react';
 
 const parseString = (input) => {
   const regex = /(\[([^\]]+)\]\(([^)]+)\))/g;
@@ -60,7 +57,11 @@ export default observer(({ path = '', $$store = null }) => {
         <Typography color={disabled ? 'textDisabled' : 'textPrimary'}>
           {array.map((el, i) => {
             if (Array.isArray(el)) {
-              return <Link href={el[1]} key={i}>{el[0]}</Link>;
+              return (
+                <Link href={el[1]} key={i}>
+                  {el[0]}
+                </Link>
+              );
             }
             return el;
           })}
@@ -75,13 +76,13 @@ export default observer(({ path = '', $$store = null }) => {
     $$store.linkage(path);
   }, [value]);
 
-  const componentsProps = {};
-
   return (
     <FormControl error={!!errorMsg}>
-      <FormLabel disabled={disabled} required={required}>{label}</FormLabel>
+      <FormLabel disabled={disabled} required={required}>
+        {label}
+      </FormLabel>
       <FormControlLabel
-        control={(
+        control={
           <Checkbox
             checked={value}
             onChange={(e, v) => {
@@ -89,7 +90,7 @@ export default observer(({ path = '', $$store = null }) => {
               $$store.validate(path);
             }}
           />
-          )}
+        }
         label={renderTitle}
         disabled={disabled}
       />

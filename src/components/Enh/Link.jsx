@@ -1,19 +1,9 @@
-import { useEffect } from 'react';
-import {
-  Stack,
-  Typography,
-  Link,
-} from '@mui/material';
+import { Link } from '@mui/material';
 import { observer } from 'mobx-react';
+import React, { useEffect } from 'react';
 
-export default observer(({
-  path = '',
-  $$store = null,
-}) => {
-  const {
-    title,
-    href = '',
-  } = $$store.context(path);
+export default observer(({ path = '', $$store = null }) => {
+  const { title, href = '' } = $$store.context(path);
 
   console.log('~~~ Enh Link', path);
 
@@ -22,6 +12,8 @@ export default observer(({
   }, []);
 
   return (
-    <Link align="right" href={href}>{title}</Link>
+    <Link align="right" href={href}>
+      {title}
+    </Link>
   );
 });
