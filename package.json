@@ -3,9 +3,9 @@
   "version": "0.0.1-beta.14",
   "description": "Form",
   "license": "MIT",
-  "main": "./lib/index",
-  "module": "./es/index",
+  "main": "./src/index.js",
   "files": [
+    "src",
     "es",
     "lib"
   ],
