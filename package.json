@@ -45,7 +45,7 @@
     "coa": "2.0.2"
   },
   "dependencies": {
-    "@dnd-kit/utilities": "^3.2.2"
+    "@totalizer/json-view": "^0.0.1-beta"
   },
   "devDependencies": {
     "@babel/core": "^7.25.7",

@@ -30,6 +30,15 @@ Ok to proceed? (y) y
 
 ## 安装依赖
 
+- UI Framework: [React](https://react.dev/)
+- Component library: [MUI](https://mui.com/)
+- State management: [Mobx](https://mobx.js.org/README.html)
+- Drag and drop: [dnd kit](https://dndkit.com/)
+- Date & time: [dayjs](https://day.js.org/)
+- JSON 数据展示：[@uiw/react-json-view](https://uiwjs.github.io/react-json-view/)
+- 代码 Diff 展示： [react-diff-viewer](https://praneshravi.in/react-diff-viewer/)
+- Excel 解析：[SheetJS](https://docs.sheetjs.com/docs/)
+
 你可以添加下面依赖到 package.json 的 dependencies 下:
 
 ```json
@@ -58,7 +67,6 @@ Ok to proceed? (y) y
 ### React
 
 确保安装 react 18 以上版本
-
 
 ```sh
 npm install -S react react-dom
@@ -115,7 +123,7 @@ npm install -S dayjs
 
 ### @uiw/react-json-view
 
-* @uiw/react-json-view：用于展示 JSON 数据
+- @uiw/react-json-view：用于展示 JSON 数据
 
 ```sh
 npm install -S @uiw/react-json-view
@@ -124,11 +132,13 @@ npm install -S @uiw/react-json-view
 ### react-diff-viewer
 
 ```sh
+
 ```
 
 ### SheetJS
 
 ```sh
+
 ```
 
 ## XForm
