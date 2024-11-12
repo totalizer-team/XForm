@@ -26,13 +26,17 @@ const FormItem = observer(
       () => () => {
         console.log('========remove', path);
         // 移除该路径下的组件状态
+        // Bug：受到  <React.StrictMode> 影响，组件会触发多次，导致触发 destroyStatus
         $$store.destroyStatus(path);
       },
       [path],
     );
 
     useEffect(() => {
-      $$store.resetStatus(path, visible);
+      // 重置组件状态
+      // Bug：resetStatus 在 DrawerForm 中会导致初始状态值被重置，从而导致被赋予的值无效化
+      // 考虑改变 DrawerForm 初始化值的时机
+      // $$store.resetStatus(path, visible);
     }, [visible]);
 
     if (!visible) return '';
