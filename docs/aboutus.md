@@ -1,13 +1,10 @@
 ---
 nav:
   title: About Us
-  order: 6
+  order: 7
 sidebar: false
-order: 6
+order: 7
 ---
-
-
-
 
 <AboutUs></AboutUs>
 

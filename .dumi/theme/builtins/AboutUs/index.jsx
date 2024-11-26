@@ -3,7 +3,7 @@ import { Avatar, Box, Link, Stack, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React from 'react';
 
-export default () => {
+export default function AboutUs() {
   const users = [
     {
       avatar: 'https://avatars.githubusercontent.com/u/7948534?v=4',
@@ -27,7 +27,6 @@ export default () => {
       github: 'https://github.com/jzllove9',
       intro: 'Front-end Senior Technical Specialist',
     },
-    ,
     {
       avatar: 'https://avatars.githubusercontent.com/u/10071557?v=4',
       name: '陈贽',
@@ -234,4 +233,4 @@ export default () => {
       </Box>
     </>
   );
-};
+}
