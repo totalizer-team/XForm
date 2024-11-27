@@ -1,3 +1,5 @@
+import { Alert, AlertTitle } from '@mui/material';
+
 import Grid from '@mui/material/Grid2';
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
@@ -70,6 +72,16 @@ export default observer(({ path = '', schema, $$store }) => {
       $$store.formDestroy();
     };
   }, []);
+
+  if (typeof schema !== 'object' || Array.isArray(schema)) {
+    return (
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        The schema must be in JSON format; it cannot be an array or a string.
+      </Alert>
+    );
+  }
+
   return (
     <Grid container spacing={2} sx={{ flexGrow: 1 }}>
       {Object.keys(schema).map((key) => (

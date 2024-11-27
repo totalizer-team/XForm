@@ -1,4 +1,4 @@
- 
+
 import { makeAutoObservable, configure } from 'mobx';
 import { $$get, $$set, $$merge } from '@totalizer/xform';
 
@@ -10,47 +10,84 @@ configure({
 
 class Store {
   mode = 'light';
+  content = { text: '' };
   myFormData = {};
   myFormSchema = {};
   visible = false;
 
   constructor() {
     makeAutoObservable(this);
+
+    this.init();
   }
 
 
   setMode(v) {
     this.mode = v;
   }
+  setContent(v) {
+    this.content = v;
+  }
 
   setSchema(v) {
     this.myFormSchema = v;
+  }
+
+  setData() {
     this.myFormData = $$merge(this.myFormSchema, {})
   }
 
   init() {
-    this.myFormSchema = {
-      title: {
-        c: 'TextField',
-        xs: 6,
-        label: 'Title',
+    this.content = {
+      text: `{
+  "error1": {},
+  "error2": "***",
+  "error3": {
+    "c": "MyInput"
+  },
+  "information": {
+    "c": "ObjectBlock",
+    "xs": 12,
+    "label": "Information",
+    "schema": {
+      "name": {
+        "c": "TextField",
+        "xs": 6,
+        "label": "Name"
       },
-      type: {
-        c: 'Select',
-        xs: 6,
-        label: 'Type',
-        options: [1, 2, 3],
-      },
-      des: {
-        c: 'TextField',
-        xs: 12,
-        label: 'Description',
-        multiline: true,
-        minRows: 5,
-        maxRows: 10,
-      },
+      "sex": {
+        "c": "Select",
+        "xs": 6,
+        "label": "Sex",
+        "options": [
+          "male",
+          "female"
+        ]
+      }
     }
+  },
+  "test": {
+    "c": "ObjectBlock",
+    "xs": 12,
+    "label": "缺少schema"
+  },
+  "ABD": {
+    "c": "ObjectBlock",
+    "xs": 12,
+    "label": "schema格式不正确",
+    "schema": "****"
+  },
+  "email": {
+    "c": "TextField",
+    "xs": 12,
+    "label": "设置了多余的schema",
+    "schema": {}
+  }
+}`
+    }
+    this.myFormSchema = JSON.parse(this.content.text)
     this.myFormData = $$merge(this.myFormSchema, {})
+
   }
 
 

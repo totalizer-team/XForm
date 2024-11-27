@@ -28,6 +28,7 @@ import EnhFormTitle from './Enh/FormTitle';
 import EnhLink from './Enh/Link';
 import EnhTypography from './Enh/Typography';
 import EnhAvatar from './Enh/Avatar';
+import EnhErrorAlert from './Enh/ErrorAlert';
 
 const COMPONENTS = {};
 
@@ -79,6 +80,7 @@ registerComponent('Enh.Link', EnhLink, '', 'Enh');
 registerComponent('Enh.Typography', EnhTypography, '', 'Enh');
 registerComponent('Enh.FormButton', EnhFormButton, '', 'Enh');
 registerComponent('Enh.Avatar', EnhAvatar, '', 'Enh');
+registerComponent('Enh.ErrorAlert', EnhErrorAlert, '', 'Enh');
 
 export default COMPONENTS;
 

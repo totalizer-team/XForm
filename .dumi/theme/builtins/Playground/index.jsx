@@ -1,5 +1,5 @@
-import { Box, Button } from '@mui/material';
-import React, { useRef, useState } from 'react';
+import { Box } from '@mui/material';
+import React, { useRef } from 'react';
 
 /**
  * 全局状态
@@ -15,8 +15,7 @@ import './index.less';
 export default observer(() => {
   const contentRef = useRef(null);
 
-  const { myFormSchema } = store;
-  const [content, setContent] = useState({ text: '' });
+  const { content, myFormSchema } = store;
   return (
     <Box
       sx={{
@@ -28,24 +27,11 @@ export default observer(() => {
         width: 1200,
       }}
     >
-      <Button
-        onClick={() => {
-          try {
-            const json = JSON.parse(content.text);
-            store.setSchema(json);
-          } catch (e) {
-            // ...
-            console.log(e);
-          }
-        }}
-      >
-        调试
-      </Button>
       <Box
         ref={contentRef}
         sx={{
           position: 'absolute',
-          top: 30,
+          top: 0,
           left: 0,
           bottom: 0,
           width: 400,
@@ -54,7 +40,16 @@ export default observer(() => {
       >
         <VanillaJSONEditor
           content={content}
-          onChange={setContent}
+          onChange={(v) => {
+            try {
+              const json = JSON.parse(v.text);
+              store.setSchema(json);
+              store.setData();
+            } catch {
+              store.setSchema(v.text);
+            }
+            store.setContent(v);
+          }}
           mode="text"
         />
       </Box>

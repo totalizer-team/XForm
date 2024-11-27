@@ -45,7 +45,8 @@ class Store {
 
     this.path = path;
     this.store = store;
-    this.schema = schema;
+
+    if (typeof schema === 'object') this.schema = schema;
   }
 
   /**

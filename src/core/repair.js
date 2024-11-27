@@ -1,4 +1,4 @@
- 
+
 import dayjs from 'dayjs';
 import COMPONENTS from '../components';
 
@@ -37,22 +37,71 @@ const _setObjectDefault = (config) => {
   });
 };
 
+// 写一个校验函数
+function isValidSchema(schema, key) {
+  let errorMessage = '';
+  if (typeof schema !== 'object' || Array.isArray(schema)) {
+    errorMessage = `The schema must be in JSON format; it cannot be an array or a string.`;
+  }
+  else if (!Object.prototype.hasOwnProperty.call(schema, 'c') || typeof schema.c !== 'string') {
+    errorMessage = ` The component name is missing.`;
+  }
+  else if (!Object.prototype.hasOwnProperty.call(COMPONENTS, schema.c)) {
+    errorMessage = `The component "${schema.c}" does not exist.`;
+  } else {
+    // 校验嵌套的 schema 属性
+    const { type } = COMPONENTS[schema.c];
+    if (['object', 'array'].includes(type)) {
+      if (!Object.prototype.hasOwnProperty.call(schema, 'schema')) {
+        errorMessage = `The component "${schema.c}" is missing the schema property.`;
+      } else if (typeof schema.schema !== 'object' || Array.isArray(schema.schema)) {
+        errorMessage = `The schema property of component "${schema.c}" must be in JSON format.`;
+      }
+    } else {
+      if (Object.prototype.hasOwnProperty.call(schema, 'schema')) {
+        errorMessage = `The "schema" attribute cannot be set for component ${schema.c}.`;
+      }
+    }
+  }
+
+  if (errorMessage) {
+    return {
+      c: 'Enh.ErrorAlert',
+      name: key,
+      errorMessage,
+      visible: true,
+
+    }
+  }
+  return true;
+}
+
+
 const _fillDefaults = (schema) => {
+
+
   Object.keys(schema).forEach((key) => {
     const itemSchema = schema[key];
+
+    // 校验 itemSchema
+    const res = isValidSchema(itemSchema, key)
+    if (res !== true) {
+      schema[key] = res;
+      return;
+    }
 
     const { type } = COMPONENTS[itemSchema.c];
 
     if (type === 'Enh') _setEnhDefault(itemSchema);
     else if (type === 'object') {
       _setDefault(itemSchema);
-      _fillDefaults(itemSchema.schema);
+      _fillDefaults(itemSchema.schema, key);
       _setObjectDefault(itemSchema);
     } else if (type === 'array') {
       _setDefault(itemSchema);
-      _fillDefaults(itemSchema.schema);
+      _fillDefaults(itemSchema.schema, key);
     } else {
-      _setDefault(itemSchema);
+      _setDefault(itemSchema, key);
     }
   });
   return schema;
@@ -95,7 +144,9 @@ function deepClone(obj) {
  * @param {*} schema
  */
 export default (schema) => {
-  const _schema = deepClone(schema);
-  _fillDefaults(_schema);
-  return _schema;
+  if (typeof schema !== 'object' || Array.isArray(schema)) {
+    return 'The schema must be in JSON format; it cannot be an array or a string.'
+  }
+  return _fillDefaults(deepClone(schema))
+
 };
