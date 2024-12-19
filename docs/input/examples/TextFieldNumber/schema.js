@@ -1,8 +1,8 @@
 const schema = {
-  password: {
+  number: {
     c: 'TextField',
     xs: 12,
-    label: 'password',
+    label: 'number',
     type: 'number',
   },
 };
