@@ -24,7 +24,7 @@ export default observer(
       /** 拓展参数： */
       placeholder = '',
       variant = 'outlined',
-      type = 'text',
+      type = 'text', // text | password | number
       multiline,
       rows,
       minRows,
@@ -99,7 +99,7 @@ export default observer(
         onBlur={() => $$store.validate(path)}
         error={!!errorMsg}
         helperText={errorMsg || helperText}
-        type={showPassword ? 'password' : 'text'}
+        type={type === 'password' ? (showPassword ? 'password' : 'text') : type}
         {...componentProps}
       />
     );

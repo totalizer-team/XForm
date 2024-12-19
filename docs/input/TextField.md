@@ -13,8 +13,8 @@ mobile: false
 
 TextField, including support for single-line text input, multi-line text input, and password input in three modes.
 
-* Output data type: `string`
-* Default value: `''`
+- Output data type: `string`
+- Default value: `''`
 
 ## Single-line text input
 
@@ -46,6 +46,10 @@ TextField, including support for single-line text input, multi-line text input, 
 
 <code src="./examples/TextFieldPassword" compact background="#fff"></code>
 
-| 名称 | 类型     | 默认值 | 描述                                |
-| ---- | -------- | ------ | ----------------------------------- |
-| type | `string` | 'text' | 表单类型。可选值 `text`, `password` |
+| 名称 | 类型     | 默认值 | 描述                                          |
+| ---- | -------- | ------ | --------------------------------------------- |
+| type | `string` | 'text' | 表单类型。可选值 `text`, `password`, `number` |
+
+## Number input
+
+<code src="./examples/TextFieldNumber" compact background="#fff"></code>
