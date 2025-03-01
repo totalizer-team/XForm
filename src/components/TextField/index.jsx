@@ -16,7 +16,6 @@ export default observer(
     const {
       label,
       disabled,
-      readOnly,
       helperText,
       errorMsg,
       required = false,
@@ -87,14 +86,15 @@ export default observer(
         required={required}
         value={value}
         onChange={(e) => {
-          $$store.setValue(path, e.target.value);
+          if (type === 'number') {
+            $$store.setValue(path, Number(e.target.value));
+          } else {
+            $$store.setValue(path, e.target.value);
+          }
         }}
         label={label}
         fullWidth
         disabled={disabled}
-        inputProps={{
-          readOnly,
-        }}
         onFocus={() => $$store.clearErrorMsg(path)}
         onBlur={() => $$store.validate(path)}
         error={!!errorMsg}

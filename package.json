@@ -93,12 +93,11 @@
     "@mui/lab": "^6.0.0-beta.10",
     "@mui/material": "^6.1.2",
     "@mui/x-date-pickers": "^7.19.0",
-    "@uiw/react-json-view": "^2.0.0-alpha.27",
     "dayjs": "^1.11.13",
     "mobx": "^6.13.3",
     "mobx-react": "^9.1.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^18.3.1 || ^19.0.0",
+    "react-dom": "^18.3.1 || ^19.0.0"
   },
   "publishConfig": {
     "access": "public"
